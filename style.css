@@ -6,7 +6,8 @@ body {
 .final {
   background-color: #ffffff;
   width: 100%;
-  min-width: 1920px;
+  max-width: 1920px;
+  margin: 0 auto;
   min-height: 6850px;
   position: relative;
   font-family: "Poppins", Helvetica, sans-serif;
@@ -31,10 +32,8 @@ body {
    CONTACT SECTION & INPUTS
    ========================================= */
 .final .contact-section {
-  position: absolute;
-  top: 5809px;
-  left: calc(50.00% - 960px);
-  width: 1920px;
+  position: relative;
+  width: 100%;
   height: 1024px;
   background-color: #ffffff;
 }
@@ -436,10 +435,8 @@ body {
    MY WORKS SECTION
    ========================================= */
 .final .my-works-section {
-  position: absolute;
-  top: 4209px;
-  left: calc(50.00% - 960px);
-  width: 1920px;
+  position: relative;
+  width: 100%;
   height: 1600px;
   background-color: #ffffff;
 }
@@ -885,10 +882,8 @@ body {
    PORTFOLIO SECTION
    ========================================= */
 .final .portfolio-section {
-  position: absolute;
-  top: 3158px;
-  left: calc(50.00% - 960px);
-  width: 1920px;
+  position: relative;
+  width: 100%;
   height: 1051px;
   background-color: #ffffff;
 }
@@ -1191,10 +1186,8 @@ body {
    SKILLS SECTION
    ========================================= */
 .final .skills-section {
-  position: absolute;
-  top: 2023px;
-  left: calc(50.00% - 960px);
-  width: 1920px;
+  position: relative;
+  width: 100%;
   height: 1135px;
   background-color: #ffffff;
   overflow: hidden;
@@ -1359,10 +1352,8 @@ body {
    ABOUT SECTION
    ========================================= */
 .final .about-section {
-  position: absolute;
-  top: 970px;
-  left: calc(50.00% - 960px);
-  width: 1920px;
+  position: relative;
+  width: 100%;
   height: 1053px;
   background-color: #ffffff;
   overflow: hidden;
@@ -1419,11 +1410,38 @@ body {
   flex: 0 0 auto;
 }
 
-.final .ellipse-7 {
+/* REVISI DI SINI: Profile Wrapper */
+.final .profile-wrapper {
+  position: relative; /* Menjadi patokan posisi anak-anaknya */
+  width: 458px;       /* Sesuaikan lebar area foto */
+  height: 459px;      /* Sesuaikan tinggi area foto */
+  flex: 0 0 auto;     /* Agar tidak mengecil di flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.final .ellipse-17 {
   position: relative;
-  width: 458px;
-  height: 459px;
-  margin-bottom: -5.00px;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Foto di layer atas */
+  object-fit: cover;
+  margin-bottom: 0; /* Reset margin lama */
+}
+
+/* Frame/Bingkai: Menempel relatif terhadap Wrapper */
+.final .frame-47 {
+  position: absolute; /* Melayang DI DALAM wrapper */
+  top: 50%;
+  left: 50%;
+  /* Center + Rotation 0 */
+  transform: translate(-50%, -50%) rotate(0deg); 
+  width: 478px;
+  height: 515px;
+  z-index: 1;         /* Di belakang foto */
+  pointer-events: none; /* Klik tembus ke foto */
+  margin: 0;
 }
 
 .final .frame-46 {
@@ -1515,24 +1533,15 @@ body {
   letter-spacing: -4.10px;
 }
 
-.final .frame-47 {
-  position: absolute;
-  top: 248px;
-  left: 306px;
-  width: 478px;
-  height: 515px;
-}
-
 /* =========================================
    HERO SECTION
    ========================================= */
 .final .hero-section {
-  position: absolute;
-  top: 70px;
-  left: 0;
-  width: 100vw;
+  position: relative;
+  width: 100%;
   height: 900px;
   background-color: #ededed;
+  margin-top: 70px;
 }
 
 .final .ellipse-8 {
