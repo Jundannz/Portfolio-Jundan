@@ -554,7 +554,7 @@
   margin-top: -2.00px;
   font-family: "Poppins", Helvetica;
   font-weight: 500;
-  color: #ffffff;
+  color: #000000;
   font-size: 24px;
   text-align: center;
   letter-spacing: 0;
@@ -3300,6 +3300,30 @@
 
 .view-more-works-page .frame-27 {
   background-color: var(--palette-3);
+}
+
+/* --- TAMBAHAN UNTUK LOGIKA FILTER --- */
+
+/* Jika tombol statusnya aria-pressed="false" (tidak aktif),
+   maka ubah background jadi transparan */
+.final .all-button[aria-pressed="false"],
+.final .motion-button[aria-pressed="false"],
+.final .design-button[aria-pressed="false"],
+.final .code-button[aria-pressed="false"] {
+  background-color: transparent !important; /* Pakai !important agar menimpa warna bawaan */
+  color: var(--palette-4) !important;       /* Warna teks jadi gelap */
+  border: 2px solid var(--palette-4);       /* Pastikan border tetap terlihat */
+  box-shadow: none;                         /* Hilangkan shadow biar terlihat flat */
+}
+
+/* Efek hover untuk tombol yang sedang tidak aktif */
+.final .all-button[aria-pressed="false"]:hover,
+.final .motion-button[aria-pressed="false"]:hover,
+.final .design-button[aria-pressed="false"]:hover,
+.final .code-button[aria-pressed="false"]:hover {
+  background-color: #f0f0f0 !important;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px #1f1926;
 }
 
 @media (max-width: 1440px) {

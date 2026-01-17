@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>JUNDANNZ Portfolio</title>
+    <title>Jundannz Portfolio</title>
     <meta name="description" content="My personal portfolio website for digital rebranding purpose." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,16 +155,18 @@
         <img class="star-5" src="img/star-11.svg" alt="" aria-hidden="true" />
         <img class="star-6" src="img/star-12.svg" alt="" aria-hidden="true" />
         <img class="star-7" src="img/star-13.svg" alt="" aria-hidden="true" />
+        
         <div class="works-grid">
           <div class="div-2" role="group" aria-label="Filter works by category">
-            <button class="all-button" aria-pressed="true"><span class="text-wrapper-10">All</span></button>
-            <button class="motion-button" aria-pressed="false"><span class="text-wrapper-11">Motion</span></button>
-            <button class="design-button" aria-pressed="false"><span class="text-wrapper-11">Design</span></button>
-            <button class="code-button" aria-pressed="false"><span class="text-wrapper-11">Code</span></button>
+            <button class="all-button filter-btn" data-filter="all" aria-pressed="true"><span class="text-wrapper-10">All</span></button>
+            <button class="motion-button filter-btn" data-filter="motion" aria-pressed="false"><span class="text-wrapper-11">Motion</span></button>
+            <button class="design-button filter-btn" data-filter="design" aria-pressed="false"><span class="text-wrapper-11">Design</span></button>
+            <button class="code-button filter-btn" data-filter="code" aria-pressed="false"><span class="text-wrapper-11">Code</span></button>
           </div>
+
           <div class="frame-14">
             <div class="frame-15">
-              <article class="frame-16">
+              <article class="frame-16 filter-item motion">
                 <img class="rectangle-3" src="img/different.webp" alt="DIFFERENT MV Edit project thumbnail" />
                 <div class="frame-17">
                   <h3 class="text-wrapper-12">DIFFERENT - MV Edit</h3>
@@ -172,7 +174,8 @@
                 </div>
                 <div class="frame-18"><span class="text-wrapper-13">After Effects</span></div>
               </article>
-              <article class="frame-19">
+              
+              <article class="frame-19 filter-item motion">
                 <img class="rectangle-3" src="img/ue.webp" alt="UE Logo Animation project thumbnail" />
                 <div class="frame-17">
                   <h3 class="text-wrapper-12">UE 2026 Logo Animation</h3>
@@ -180,7 +183,8 @@
                 </div>
                 <div class="frame-20"><span class="text-wrapper-13">After Effects</span></div>
               </article>
-              <article class="frame-21">
+              
+              <article class="frame-21 filter-item design">
                 <img class="rectangle-3" src="img/logotype.webp" alt="Logotype Jundannz project thumbnail" />
                 <div class="frame-17">
                   <h3 class="text-wrapper-12">Logotype Jundannz</h3>
@@ -189,8 +193,9 @@
                 <div class="frame-20"><span class="text-wrapper-13">Illustrator</span></div>
               </article>
             </div>
+            
             <div class="frame-15">
-              <article class="frame-22">
+              <article class="frame-22 filter-item design">
                 <img class="rectangle-3" src="img/early-bird.webp" alt="Thumbnail Early Bird project thumbnail" />
                 <div class="frame-17">
                   <h3 class="text-wrapper-12">Thumbnail Early Bird</h3>
@@ -198,7 +203,8 @@
                 </div>
                 <div class="frame-23"><span class="text-wrapper-13">Illustrator</span></div>
               </article>
-              <article class="frame-24">
+              
+              <article class="frame-24 filter-item code">
                 <img class="rectangle-4" src="img/web.webp" alt="Portfolio Website project thumbnail" />
                 <div class="frame-17">
                   <h3 class="text-wrapper-12">Portfolio Website</h3>
@@ -210,7 +216,8 @@
                   <div class="frame-20"><span class="text-wrapper-13">JavaScript</span></div>
                 </div>
               </article>
-              <article class="frame-26">
+              
+              <article class="frame-26 filter-item code">
                 <img class="rectangle-3" src="img/airbnb.webp" alt="Airbnb Price Prediction project thumbnail" />
                 <div class="frame-17">
                   <h3 class="text-wrapper-12">Airbnb Price Prediction</h3>
@@ -382,5 +389,6 @@
         </div>
       </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
