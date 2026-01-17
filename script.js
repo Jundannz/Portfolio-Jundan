@@ -104,17 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // 3. WORK CARDS CLICKABLE
     // ========================================
-    
-    const workCards = document.querySelectorAll('.frame-16, .frame-19, .frame-21, .frame-22, .frame-24, .frame-26');
-    
-    workCards.forEach(card => {
-        card.addEventListener('click', function() {
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 200);
-        });
-    });
 });
 
 // ========================================

@@ -1,0 +1,58 @@
+/* responsive-tablet.css */
+/* Target: Tablet / iPad Portrait & Landscape (Max width 1024px) */
+
+@media screen and (max-width: 1024px) {
+  
+  .final { width: 100%; overflow-x: hidden; }
+
+  /* --- NAVBAR TABLET RESET --- */
+  .final .navbar { height: auto; padding: 10px 0; }
+  
+  .final .frame-49 {
+    gap: 20px; 
+    justify-content: space-between;
+    padding: 0 30px;
+  }
+
+  /* PENTING: Matikan Absolute Centering di tablet juga agar tidak menabrak logo */
+  .final .navbar-2 {
+    position: relative; 
+    left: auto;
+    transform: none;
+    gap: 25px;
+  }
+
+  /* --- HERO --- */
+  .final .hero-section { min-height: 800px; padding-bottom: 50px; }
+  .final .hero-text {
+    position: relative;
+    top: 150px; 
+    left: 50px;
+    width: 80%;
+  }
+  .final .visuals-motion { font-size: 72px; line-height: 1.1; }
+  .final .star-15, .final .ellipse-8, .final .polygon-2 { opacity: 0.5; transform: scale(0.7); }
+
+  /* --- ABOUT --- */
+  .final .about-section { padding-bottom: 100px; }
+  .final .frame-44 { width: 90%; left: 50%; transform: translateX(-50%); padding: 40px; }
+  .final .frame-45 { gap: 40px; flex-direction: column; text-align: center; }
+  .final .text-wrapper-32, .final .text-wrapper-33 { font-size: 300px; line-height: normal; }
+
+  /* --- SKILLS --- */
+  .final .skills-section { padding-bottom: 100px; }
+  .final .frame-33 { width: 90%; height: auto; flex-wrap: wrap; gap: 20px; }
+  .final .video, .final .design, .final .programmer { flex: 1 1 45%; height: 300px; }
+  .final .text-wrapper-19, .final .text-wrapper-20 { display: none; }
+
+  /* --- WORKS --- */
+  .final .works-grid { width: 90%; gap: 30px; }
+  .final .frame-15 { flex-wrap: wrap; justify-content: center; }
+
+  /* --- CONTACT --- */
+  .final .contact-section { padding-bottom: 100px; }
+  .final .frame { width: 90%; height: auto; top: 150px; }
+  .final .div { width: 100%; flex-direction: column; align-items: center; }
+  .final .frame-wrapper, .final .frame-8 { width: 100%; border-radius: 15px; }
+  .final .frame-8 { border-top: none; }
+}

@@ -1,0 +1,128 @@
+/* responsive-mobile.css */
+/* Target: Mobile / HP (Max width 768px) */
+
+@media screen and (max-width: 768px) {
+
+  /* --- GLOBAL MOBILE RESET --- */
+  .final {
+    width: 100%;
+    overflow-x: hidden;
+    min-height: auto;
+  }
+
+  h1, h2, h3 { word-wrap: break-word; }
+
+  /* --- NAVBAR MOBILE --- */
+  .final .navbar {
+    height: auto;
+    position: fixed;
+    padding: 10px 0;
+  }
+
+  .final .frame-49 {
+    flex-direction: column;
+    gap: 15px;
+    height: auto;
+    padding: 10px;
+  }
+
+  /* RESET POSISI ABSOLUTE DESKTOP DI SINI */
+  .final .navbar-2 {
+    position: relative; /* Kembalikan ke layout flow */
+    left: auto;
+    transform: none;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .final .text-wrapper-43 { font-size: 14px; }
+  .final .div-wrapper-2 { display: none; }
+
+  /* --- HERO SECTION MOBILE --- */
+  .final .hero-section {
+    height: auto;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .final .hero-text {
+    position: relative;
+    top: auto; left: auto;
+    width: 90%;
+    text-align: center;
+    align-items: center;
+    margin-left: 0; /* Reset margin */
+  }
+
+  .final .frame-48 { align-items: center; }
+  .final .visuals-motion { font-size: 48px; line-height: 1.1; text-align: center; }
+
+  /* Sembunyikan dekorasi berat */
+  .final .ellipse-8, .final .rectangle-11, .final .polygon-2,
+  .final .star-15, .final .star-16 {
+    opacity: 0.2; pointer-events: none;
+  }
+
+  /* --- ABOUT SECTION MOBILE --- */
+  .final .about-section { height: auto; padding: 50px 0; }
+  .final .text-wrapper-33, .final .text-wrapper-32 { display: none; }
+
+  .final .about-me-wrapper { width: 100%; margin-bottom: 20px; }
+  .final .frame-44 { width: 90%; height: auto; margin: 0 auto; padding: 20px; }
+  .final .frame-45 { flex-direction: column; gap: 20px; width: 100%; }
+
+  .final .profile-wrapper { width: 250px; height: 250px; }
+  .final .frame-47 { width: 260px; height: 270px; transform: translate(-50%, -50%) rotate(0deg); }
+  .final .i-m-jundan-a-video { font-size: 14px; text-align: center; }
+  .final .vector-4 { width: 100%; }
+
+  /* --- SKILLS SECTION MOBILE --- */
+  .final .skills-section { height: auto; padding: 50px 0; }
+  .final .frame-43 { margin-bottom: 30px; }
+  .final .SKILLS-expertise { font-size: 32px; }
+  .final .frame-33 { width: 90%; height: auto; flex-direction: column; }
+  .final .video, .final .design, .final .programmer { width: 100%; height: 200px; flex: none; }
+
+  /* --- PORTFOLIO MOBILE --- */
+  .final .portfolio-section { height: auto; padding: 50px 0; }
+  .final .portfolio { font-size: 40px; margin-bottom: 20px; }
+  .final .frame-28 { width: 95%; }
+  .final .frame-29 { width: 100%; height: auto; }
+  .final .rectangle-5 { width: 100%; height: auto; aspect-ratio: 16/9; }
+  .final .cube, .final .cube-2, .final .cube-3, .final .cube-4 { display: none; }
+
+  /* --- WORKS SECTION MOBILE --- */
+  .final .my-works-section { height: auto; padding-bottom: 50px; }
+  .final .frame-12 { margin: 40px 0; }
+  .final .my-works { font-size: 40px; }
+  .final .works { font-size: 40px; }
+  .final .works-grid { width: 90%; }
+  .final .div-2 { flex-wrap: wrap; justify-content: center; }
+  .final .frame-15 { flex-direction: column; }
+  
+  .final .frame-16, .final .frame-19, .final .frame-21, 
+  .final .frame-22, .final .frame-24, .final .frame-26 {
+    width: 100%; height: auto;
+  }
+  .final .rectangle-3, .final .rectangle-4 { width: 100%; height: auto; }
+
+  /* --- CONTACT SECTION MOBILE --- */
+  .final .contact-section { height: auto; padding: 50px 0; }
+  .final .let-s-collaborate { font-size: 36px; margin-bottom: 30px; }
+  .final .frame { width: 90%; height: auto; margin: 0 auto; }
+  .final .div { width: 100%; flex-direction: column; }
+  .final .frame-wrapper { width: 100%; border-radius: 15px 15px 0 0; padding: 20px; }
+  .final .frame-4, .final .frame-6 { width: 100%; }
+  .final .frame-5 { flex-direction: column; gap: 10px; }
+  .final .frame-8 { width: 100%; height: auto; border-radius: 0 0 15px 15px; padding: 30px 20px; }
+  .final .text-wrapper-5 { font-size: 16px; }
+
+  /* --- FOOTER MOBILE --- */
+  .footer-section .frame { flex-direction: column; padding: 0 20px; gap: 40px; }
+  .footer-section .navbar { flex-wrap: wrap; justify-content: center; }
+}
