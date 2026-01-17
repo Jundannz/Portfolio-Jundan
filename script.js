@@ -1,64 +1,143 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Ambil semua elemen yang dibutuhkan
+    // ========================================
+    // 1. NAVBAR ACTIVE STATE & LOGO HOME
+    // ========================================
+    
+    // Logo klik untuk kembali ke hero
+    const logo = document.querySelector('.final .logo');
+    if (logo) {
+        logo.addEventListener('click', (e) => {
+            e.preventDefault();
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        logo.style.cursor = 'pointer';
+    }
+
+    // Navbar active state berdasarkan scroll position
+    const navLinks = document.querySelectorAll('.final .navbar-2 a');
+    const sections = {
+        '#about': document.querySelector('#about'),
+        '#skills': document.querySelector('#skills'),
+        '#portfolio': document.querySelector('#portfolio'),
+        '#works': document.querySelector('#works'),
+        '#contact': document.querySelector('#contact'),
+    };
+
+    // Update active state saat scroll
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        for (const [hash, section] of Object.entries(sections)) {
+            if (section) {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                // Adjusted offset untuk deteksi yang lebih akurat
+                if (window.pageYOffset >= sectionTop - 300) {
+                    current = hash;
+                }
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (current && link.getAttribute('href') === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll dengan active state pada klik
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetHash = link.getAttribute('href');
+            const targetSection = document.querySelector(targetHash);
+            
+            if (targetSection) {
+                // Remove active dari semua
+                navLinks.forEach(l => l.classList.remove('active'));
+                // Tambahkan active ke link yang diklik
+                link.classList.add('active');
+                // Smooth scroll
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ========================================
+    // 2. FILTER BUTTONS & WORK CARDS
+    // ========================================
+    
     const filterButtons = document.querySelectorAll('.filter-btn');
     const filterItems = document.querySelectorAll('.filter-item');
 
-    // 2. Tambahkan event listener untuk setiap tombol
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // A. Hapus status aktif dari semua tombol
+            // Hapus status aktif dari semua tombol
             filterButtons.forEach(btn => {
                 btn.setAttribute('aria-pressed', 'false');
-                // Opsional: Hapus class active visual jika ada custom class
             });
 
-            // B. Set status aktif ke tombol yang diklik
+            // Set status aktif ke tombol yang diklik
             button.setAttribute('aria-pressed', 'true');
 
-            // C. Ambil kategori data dari tombol yang diklik
+            // Ambil kategori data dari tombol yang diklik
             const filterValue = button.getAttribute('data-filter');
 
-            // D. Logika Filtering
+            // Logika Filtering
             filterItems.forEach(item => {
                 if (filterValue === 'all' || item.classList.contains(filterValue)) {
-                    // Tampilkan item (kembalikan ke display flex/block bawaan CSS)
                     item.style.display = ''; 
                     item.classList.remove('hide');
                 } else {
-                    // Sembunyikan item
                     item.style.display = 'none';
                     item.classList.add('hide');
                 }
             });
         });
     });
+
+    // ========================================
+    // 3. WORK CARDS CLICKABLE
+    // ========================================
+    
+    const workCards = document.querySelectorAll('.frame-16, .frame-19, .frame-21, .frame-22, .frame-24, .frame-26');
+    
+    workCards.forEach(card => {
+        card.addEventListener('click', function() {
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+        });
+    });
 });
 
-// --- Fungsi Interaktif Video Portfolio (Play/Pause) ---
+// ========================================
+// 4. VIDEO PORTFOLIO TOGGLE
+// ========================================
+
 function toggleVideo() {
     const video = document.getElementById('portfolioVideo');
     const btn = document.getElementById('playBtn');
 
     if (video && btn) {
         if (video.paused) {
-            // A. Jika video sedang PAUSE:
-            // 1. Putar video
             video.play();
-            // 2. Nyalakan suara
             video.muted = false; 
-            // 3. Sembunyikan tombol
             btn.classList.add('hide-btn');
         } else {
-            // B. Jika video sedang PLAY (diklik lagi):
-            // 1. Pause video
             video.pause();
-            // 2. Munculkan tombol kembali
             btn.classList.remove('hide-btn');
         }
     }
 }
 
-// Opsional: Memastikan tombol muncul lagi jika video selesai (ended)
+// Memastikan tombol muncul lagi jika video selesai
 const vidElement = document.getElementById('portfolioVideo');
 if (vidElement) {
     vidElement.addEventListener('ended', () => {

@@ -6,7 +6,7 @@ body {
 .final {
   background-color: #ffffff;
   width: 100%;
-  min-width: 1440px;
+  min-width: 1920px;
   min-height: 6850px;
   position: relative;
   font-family: "Poppins", Helvetica, sans-serif;
@@ -33,8 +33,8 @@ body {
 .final .contact-section {
   position: absolute;
   top: 5809px;
-  left: calc(50.00% - 720px);
-  width: 1440px;
+  left: calc(50.00% - 960px);
+  width: 1920px;
   height: 1024px;
   background-color: #ffffff;
 }
@@ -74,15 +74,15 @@ body {
 .final .vector {
   position: absolute;
   top: 782px;
-  left: 1182px;
+  left: 1420px;
   width: 246px;
   height: 106px;
 }
 
 .final .star {
   position: absolute;
-  top: 229px;
-  left: 1243px;
+  top: 230px;
+  left: 1500px;
   width: 167px;
   height: 167px;
 }
@@ -90,7 +90,7 @@ body {
 .final .img {
   position: absolute;
   top: 769px;
-  left: 33px;
+  left: 270px;
   width: 132px;
   height: 132px;
 }
@@ -105,7 +105,9 @@ body {
   gap: 10px;
   position: absolute;
   top: 290px;
-  left: 100px;
+  /* LOGIKA CENTER */
+  left: 50%;
+  transform: translateX(-50%);
   background-color: var(--variable-collection-palette-5);
   border-radius: 15px;
   border: 3px solid var(--palette-4);
@@ -375,7 +377,10 @@ body {
 .final .let-s-collaborate {
   position: absolute;
   top: 140px;
-  left: calc(50.00% - 227px);
+  /* LOGIKA CENTER */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Tambahkan ini */
   font-weight: 600;
   color: transparent;
   font-size: 64px;
@@ -406,7 +411,7 @@ body {
 .final .star-2 {
   position: absolute;
   top: 431px;
-  left: 31px;
+  left: 261px;
   width: 61px;
   height: 61px;
 }
@@ -414,7 +419,7 @@ body {
 .final .star-3 {
   position: absolute;
   top: 496px;
-  left: 58px;
+  left: 288px;
   width: 23px;
   height: 23px;
 }
@@ -433,8 +438,8 @@ body {
 .final .my-works-section {
   position: absolute;
   top: 4209px;
-  left: calc(50.00% - 720px);
-  width: 1440px;
+  left: calc(50.00% - 960px);
+  width: 1920px;
   height: 1600px;
   background-color: #ffffff;
 }
@@ -520,7 +525,7 @@ body {
 .final .star-4 {
   position: absolute;
   top: 300px;
-  left: 43px;
+  left: 300px;
   width: 130px;
   height: 130px;
 }
@@ -528,7 +533,7 @@ body {
 .final .star-5 {
   position: absolute;
   top: 1245px;
-  left: 1272px;
+  left: 1500px;
   width: 109px;
   height: 109px;
 }
@@ -536,7 +541,7 @@ body {
 .final .star-6 {
   position: absolute;
   top: 680px;
-  left: 1347px;
+  left: 1570px;
   width: 70px;
   height: 70px;
 }
@@ -544,7 +549,7 @@ body {
 .final .star-7 {
   position: absolute;
   top: 1110px;
-  left: 37px;
+  left: 280px;
   width: 72px;
   height: 72px;
 }
@@ -557,7 +562,9 @@ body {
   gap: 55px;
   position: absolute;
   top: 276px;
-  left: calc(50.00% - 591px);
+  /* Pastikan ini menggunakan transform agar presisi */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .final .div-2 {
@@ -880,16 +887,16 @@ body {
 .final .portfolio-section {
   position: absolute;
   top: 3158px;
-  left: calc(50.00% - 720px);
-  width: 1440px;
+  left: calc(50.00% - 960px);
+  width: 1920px;
   height: 1051px;
   background-color: #ffffff;
 }
 
 .final .cube {
   position: absolute;
-  top: 143px;
-  left: 1138px;
+  top: 160px;
+  left: 1400px;
   width: 121px;
   height: 121px;
   transform-style: preserve-3d;
@@ -898,8 +905,8 @@ body {
 
 .final .cube-2 {
   position: absolute;
-  top: 284px;
-  left: 119px;
+  top: 280px;
+  left: 360px;
   width: 61px;
   height: 61px;
   transform-style: preserve-3d;
@@ -908,8 +915,8 @@ body {
 
 .final .cube-3 {
   position: absolute;
-  top: 656px;
-  left: 186px;
+  top: 760px;
+  left: 390px;
   width: 182px;
   height: 182px;
   transform-style: preserve-3d;
@@ -918,8 +925,8 @@ body {
 
 .final .cube-4 {
   position: absolute;
-  top: 840px;
-  left: 1196px;
+  top: 820px;
+  left: 1450px;
   width: 66px;
   height: 66px;
   transform-style: preserve-3d;
@@ -928,48 +935,48 @@ body {
 
 .final .star-8 {
   position: absolute;
-  top: 604px;
-  left: 1213px;
+  top: 460px;
+  left: 1480px;
   width: 57px;
   height: 57px;
 }
 
 .final .star-9 {
   position: absolute;
-  top: 629px;
-  left: 182px;
+  top: 610px;
+  left: 450px;
   width: 31px;
   height: 31px;
 }
 
 .final .star-10 {
   position: absolute;
-  top: 495px;
-  left: 1228px;
+  top: 520px;
+  left: 1550px;
   width: 43px;
   height: 43px;
 }
 
 .final .star-11 {
   position: absolute;
-  top: 563px;
-  left: 202px;
+  top: 550px;
+  left: 370px;
   width: 43px;
   height: 43px;
 }
 
 .final .star-12 {
   position: absolute;
-  top: 558px;
-  left: 1211px;
+  top: 580px;
+  left: 1470px;
   width: 26px;
   height: 26px;
 }
 
 .final .star-13 {
   position: absolute;
-  top: 487px;
-  left: 146px;
+  top: 480px;
+  left: 420px;
   width: 66px;
   height: 66px;
 }
@@ -979,10 +986,14 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 224px 356px;
+  padding: 0;
   position: absolute;
   top: 232px;
-  left: 258px;
+  
+  /* LOGIKA CENTER */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
 .final .frame-29 {
@@ -993,9 +1004,11 @@ body {
   align-items: flex-start;
   gap: 16px;
   padding: 23px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  
+  /* PERBAIKAN DI SINI: */
+  position: relative; /* Ubah dari absolute ke relative */
+  /* Hapus top: 0 dan left: 0 karena sudah tidak perlu */
+  
   background-color: var(--palette-1);
   border-radius: 10px;
   border: 3px solid var(--palette-4);
@@ -1079,18 +1092,38 @@ body {
   align-items: center;
   gap: 10px;
   padding: 61px;
-  position: relative;
+  
+  /* PERBAIKAN: Agar tombol play pas di tengah video */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  z-index: 20;
 }
-
 /* Play Button */
 #playBtn {
   cursor: pointer;
   transition: opacity 0.3s ease, transform 0.2s ease;
   z-index: 20;
+  animation: popUp 0.5s ease-out;
+}
+
+/* Animasi Pop-up untuk Play Button */
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 #playBtn:hover {
-  transform: scale(1.05);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .hide-btn {
@@ -1118,7 +1151,10 @@ body {
 .final .portfolio {
   position: absolute;
   top: 98px;
-  left: 592px;
+  /* LOGIKA CENTER */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Pastikan width full agar text-align center bekerja */
   font-weight: 400;
   color: transparent;
   font-size: 64px;
@@ -1134,6 +1170,21 @@ body {
 .final .text-wrapper-18 {
   font-style: italic;
   color: #000000;
+  
+  /* TAMBAHAN PENTING: */
+  position: relative;     /* Agar garis menempel relatif ke teks ini */
+  display: inline-block;  /* Agar lebar garis bisa mengikuti lebar teks */
+}
+
+.final .text-wrapper-18::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0px;           /* Jarak garis dari teks, sesuaikan jika kurang turun */
+  width: 100%;            /* Lebar garis mengikuti lebar kata "SKILLS" */
+  height: 4px;            /* Ketebalan garis */
+  background-color: var(--palette-1); /* Warna Ungu */
+  border-radius: 40px;
 }
 
 /* =========================================
@@ -1142,8 +1193,8 @@ body {
 .final .skills-section {
   position: absolute;
   top: 2023px;
-  left: calc(50.00% - 720px);
-  width: 1440px;
+  left: calc(50.00% - 960px);
+  width: 1920px;
   height: 1135px;
   background-color: #ffffff;
   overflow: hidden;
@@ -1151,7 +1202,7 @@ body {
 
 .final .text-wrapper-19 {
   top: 57px;
-  left: 938px;
+  left: 1150px;
   transform: rotate(-31.00deg);
   -webkit-text-stroke: 1px #1f1926;
   font-weight: 400;
@@ -1167,7 +1218,7 @@ body {
 .final .text-wrapper-20 {
   position: absolute;
   top: 596px;
-  left: -107px;
+  left: 150px;
   transform: rotate(-8.25deg);
   -webkit-text-stroke: 2px #1f1926;
   font-weight: 400;
@@ -1198,7 +1249,10 @@ body {
   padding: 8px 20px;
   position: absolute;
   top: 270px;
-  left: 51px;
+  /* UBAH DARI SINI */
+  left: 50%; 
+  transform: translateX(-50%);
+  /* SAMPAI SINI */
   background-color: #6a00ff1a;
   border-radius: 20px;
   border: 1px solid #000000;
@@ -1246,21 +1300,23 @@ body {
 .final .frame-43 {
   display: flex;
   flex-direction: column;
-  width: 464px;
+  width: auto; /* Ubah width jadi auto agar tidak mepet */
   height: 84px;
-  align-items: flex-start;
+  align-items: center; /* Ubah jadi center */
   justify-content: flex-end;
   gap: 10px;
   padding: 10px 6px;
   position: absolute;
   top: 107px;
-  left: 488px;
+  /* UBAH DARI SINI */
+  left: 50%;
+  transform: translateX(-50%);
+  /* SAMPAI SINI */
 }
 
 .final .SKILLS-expertise {
-  position: absolute;
-  top: 0;
-  left: calc(50.00% - 232px);
+  /* 1. UBAH POSITION JADI RELATIVE */
+  position: relative; /* Sebelumnya absolute */
   font-family: "Fraunces", Helvetica, serif;
   font-weight: 400;
   color: transparent;
@@ -1271,7 +1327,7 @@ body {
   display: flex;
   align-items: baseline;
   gap: 15px;
-  width: 100%;
+  width: auto; /* Pastikan width mengikuti konten */
   justify-content: center;
 }
 
@@ -1296,11 +1352,7 @@ body {
 }
 
 .final .rectangle-10 {
-  position: relative;
-  width: 143px;
-  height: 4px;
-  background-color: var(--palette-1);
-  border-radius: 40px;
+  display: none;
 }
 
 /* =========================================
@@ -1309,17 +1361,17 @@ body {
 .final .about-section {
   position: absolute;
   top: 970px;
-  left: calc(50.00% - 720px);
-  width: 1440px;
+  left: calc(50.00% - 960px);
+  width: 1920px;
   height: 1053px;
   background-color: #ffffff;
   overflow: hidden;
 }
 
 .final .text-wrapper-32 {
-  position: absolute;
+  position: relative;
   top: 244px;
-  left: calc(50.00% - 800px);
+  left: calc(50.00% - 900px);
   font-weight: 400;
   font-style: italic;
   color: #6a00ff0d;
@@ -1332,7 +1384,7 @@ body {
 .final .text-wrapper-33 {
   position: absolute;
   top: -209px;
-  left: calc(50.00% - 939px);
+  left: calc(50.00% - 1000px);
   font-weight: 400;
   font-style: italic;
   color: #6a00ff0d;
@@ -1466,7 +1518,7 @@ body {
 .final .frame-47 {
   position: absolute;
   top: 248px;
-  left: 67px;
+  left: 306px;
   width: 478px;
   height: 515px;
 }
@@ -1477,8 +1529,8 @@ body {
 .final .hero-section {
   position: absolute;
   top: 70px;
-  left: calc(50.00% - 720px);
-  width: 1440px;
+  left: 0;
+  width: 100vw;
   height: 900px;
   background-color: #ededed;
 }
@@ -1486,7 +1538,7 @@ body {
 .final .ellipse-8 {
   position: absolute;
   top: 52px;
-  left: 667px;
+  right: 50px;
   width: 773px;
   height: 783px;
 }
@@ -1494,7 +1546,7 @@ body {
 .final .rectangle-11 {
   position: absolute;
   top: -2px;
-  left: 1012px;
+  right: 300px;
   width: 236px;
   height: 236px;
   background-color: var(--palette-3);
@@ -1504,7 +1556,7 @@ body {
 .final .ellipse-9 {
   position: absolute;
   top: 569px;
-  left: 1167px;
+  right: 120px;
   width: 172px;
   height: 173px;
   background-color: var(--palette-1);
@@ -1514,15 +1566,15 @@ body {
 .final .polygon-2 {
   position: absolute;
   top: 670px;
-  left: 800px;
+  right: 400px;
   width: 237px;
   height: 228px;
 }
 
 .final .star-15 {
   position: absolute;
-  top: 293px;
-  left: 913px;
+  top: 298px;
+  right: 291px;
   width: 292px;
   height: 292px;
 }
@@ -1530,7 +1582,7 @@ body {
 .final .star-16 {
   position: absolute;
   top: 99px;
-  left: 1232px;
+  right: 100px;
   width: 119px;
   height: 119px;
 }
@@ -1680,23 +1732,24 @@ body {
 .final .navbar {
   position: fixed;
   top: 0;
-  left: calc(50.00% - 720px);
-  width: 1440px;
+  left: 0;
+  width: 100vw;
   height: 70px;
   display: flex;
   background-color: #ffffff;
   z-index: 1000;
+  border-bottom: 2px solid var(--palette-4);
 }
 
 .final .frame-49 {
-  display: inline-flex;
+  display: flex;
   margin-top: 13px;
-  width: 1390.6px;
+  width: 100%;
   height: 44px;
-  margin-left: 40px;
+  padding: 0 40px;
   position: relative;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 360px;
 }
 
@@ -1762,13 +1815,12 @@ body {
    FOOTER SECTION (Unified)
    ========================================= */
 .footer-section {
-  width: 100%;
-  max-width: 1440px;
+  width: 100vw;
   height: auto;
   min-height: 350px;
   display: flex;
   background-color: var(--variable-collection-palette-5);
-  margin: 80px auto 0 auto;
+  margin: 80px 0 0 0;
   /* Tambahkan font-family di sini agar footer ikut berubah */
   font-family: "Poppins", Helvetica, sans-serif;
   color: #ffffff;
@@ -1953,6 +2005,95 @@ body {
   letter-spacing: -0.39px;
   line-height: normal;
   margin: 0;
+}
+
+/* =========================================
+   NAVBAR ACTIVE STATE & ANIMATIONS
+   ========================================= */
+
+/* Logo clickable */
+.final .logo {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.final .logo:hover {
+  transform: scale(1.05);
+}
+
+/* Navbar link underline animation */
+.final .navbar-2 a {
+  position: relative;
+  display: inline-block;
+}
+
+.final .navbar-2 a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--palette-1);
+  transition: width 0.3s ease;
+}
+
+.final .navbar-2 a.active::after {
+  width: 100%;
+}
+
+.final .navbar-2 a:hover::after {
+  width: 100%;
+}
+
+/* =========================================
+   SKILL CARDS ANIMATION
+   ========================================= */
+
+/* Skill cards tanpa initial animation */
+.final .video,
+.final .design,
+.final .programmer {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hover effect untuk skill cards - pop-up animation */
+.final .video:hover,
+.final .design:hover,
+.final .programmer:hover {
+  transform: scale(1.03) translateY(-8px);
+}
+
+/* =========================================
+   WORKS CARDS ANIMATION & INTERACTION
+   ========================================= */
+
+/* Work cards tanpa initial animation */
+.final .frame-16,
+.final .frame-19,
+.final .frame-21,
+.final .frame-22,
+.final .frame-24,
+.final .frame-26 {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+/* Hover effect untuk work cards - pop-up animation */
+.final .frame-16:hover,
+.final .frame-19:hover,
+.final .frame-21:hover,
+.final .frame-22:hover,
+.final .frame-24:hover,
+.final .frame-26:hover {
+  transform: scale(1.03) translateY(-8px);
+}
+
+/* =========================================
+   SMOOTH SCROLL
+   ========================================= */
+html {
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 1440px) {
