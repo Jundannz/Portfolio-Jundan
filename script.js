@@ -33,3 +33,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// --- Fungsi Interaktif Video Portfolio (Play/Pause) ---
+function toggleVideo() {
+    const video = document.getElementById('portfolioVideo');
+    const btn = document.getElementById('playBtn');
+
+    if (video && btn) {
+        if (video.paused) {
+            // A. Jika video sedang PAUSE:
+            // 1. Putar video
+            video.play();
+            // 2. Nyalakan suara
+            video.muted = false; 
+            // 3. Sembunyikan tombol
+            btn.classList.add('hide-btn');
+        } else {
+            // B. Jika video sedang PLAY (diklik lagi):
+            // 1. Pause video
+            video.pause();
+            // 2. Munculkan tombol kembali
+            btn.classList.remove('hide-btn');
+        }
+    }
+}
+
+// Opsional: Memastikan tombol muncul lagi jika video selesai (ended)
+const vidElement = document.getElementById('portfolioVideo');
+if (vidElement) {
+    vidElement.addEventListener('ended', () => {
+        document.getElementById('playBtn').classList.remove('hide-btn');
+    });
+}
