@@ -1,3 +1,11 @@
+// ========================================
+// INITIALIZE EMAILJS
+// ========================================
+(function() {
+    // Public Key dari screenshot kamu
+    emailjs.init("dPNSrAiSXY6Z3mNbo"); 
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     // 1. NAVBAR ACTIVE STATE & LOGO HOME
@@ -26,22 +34,17 @@ document.addEventListener('DOMContentLoaded', function() {
         '#contact': document.querySelector('#contact'),
     };
 
-    // Update active state saat scroll
     window.addEventListener('scroll', () => {
         let current = '';
-        
         for (const [hash, section] of Object.entries(sections)) {
             if (section) {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                // Adjusted offset untuk deteksi yang lebih akurat
+                // Adjusted offset agar active state lebih akurat
                 if (window.pageYOffset >= sectionTop - 300) {
                     current = hash;
                 }
             }
         }
-
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (current && link.getAttribute('href') === current) {
@@ -50,26 +53,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Smooth scroll dengan active state pada klik
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetHash = link.getAttribute('href');
             const targetSection = document.querySelector(targetHash);
-            
             if (targetSection) {
-                // Remove active dari semua
                 navLinks.forEach(l => l.classList.remove('active'));
-                // Tambahkan active ke link yang diklik
                 link.classList.add('active');
-                // Smooth scroll
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
     // ========================================
-    // 2. FILTER BUTTONS & WORK CARDS
+    // 2. FILTER BUTTONS
     // ========================================
     
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -77,21 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Hapus status aktif dari semua tombol
-            filterButtons.forEach(btn => {
-                btn.setAttribute('aria-pressed', 'false');
-            });
-
-            // Set status aktif ke tombol yang diklik
+            filterButtons.forEach(btn => btn.setAttribute('aria-pressed', 'false'));
             button.setAttribute('aria-pressed', 'true');
-
-            // Ambil kategori data dari tombol yang diklik
             const filterValue = button.getAttribute('data-filter');
 
-            // Logika Filtering
             filterItems.forEach(item => {
-                if (filterValue === 'all' || item.classList.contains(filterValue)) {
-                    item.style.display = ''; 
+                // Menggunakan 'all-view' sesuai HTML kamu
+                if (filterValue === 'all-view' || item.classList.contains(filterValue)) { 
+                    item.style.display = 'flex'; // Kembalikan ke flex
                     item.classList.remove('hide');
                 } else {
                     item.style.display = 'none';
@@ -102,8 +93,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ========================================
-    // 3. WORK CARDS CLICKABLE
+    // 3. CONTACT FORM SUBMISSION (EMAILJS)
     // ========================================
+    const contactForm = document.getElementById('contact-form');
+    // Jika belum ada ID di HTML, kita coba ambil via class frame-4 di dalam contact section
+    const formTarget = contactForm || document.querySelector('.contact-section .frame-4');
+
+    if (formTarget) {
+        formTarget.addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            const submitBtn = formTarget.querySelector('button[type="submit"]');
+            const btnText = submitBtn ? submitBtn.querySelector('.text-wrapper-3') : null;
+            const originalText = btnText ? btnText.textContent : 'SEND MESSAGE ➔';
+
+            // Ubah tombol jadi loading
+            if(btnText) btnText.textContent = 'SENDING...';
+            if(submitBtn) submitBtn.disabled = true;
+
+            // Service ID dan Template ID dari screenshot kamu
+            const serviceID = 'service_siu5edc';
+            const templateID = 'template_k86p4if';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    // Berhasil
+                    if(btnText) btnText.textContent = 'MESSAGE SENT! ✓';
+                    if(submitBtn) submitBtn.style.backgroundColor = '#3ABEAB'; // Warna hijau palette-3
+                    formTarget.reset(); // Kosongkan form
+
+                    // Kembalikan tombol setelah 3 detik
+                    setTimeout(() => {
+                        if(btnText) btnText.textContent = originalText;
+                        if(submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.style.backgroundColor = ''; // Reset warna
+                        }
+                    }, 3000);
+                }, (err) => {
+                    // Gagal
+                    console.log('FAILED...', err);
+                    if(btnText) btnText.textContent = 'FAILED TO SEND';
+                    if(submitBtn) submitBtn.style.backgroundColor = 'red';
+                    alert('Gagal mengirim pesan. Cek konsol browser untuk detail.');
+                    
+                    setTimeout(() => {
+                        if(btnText) btnText.textContent = originalText;
+                        if(submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.style.backgroundColor = '';
+                        }
+                    }, 3000);
+                });
+        });
+    }
 });
 
 // ========================================
@@ -126,10 +169,10 @@ function toggleVideo() {
     }
 }
 
-// Memastikan tombol muncul lagi jika video selesai
 const vidElement = document.getElementById('portfolioVideo');
 if (vidElement) {
     vidElement.addEventListener('ended', () => {
-        document.getElementById('playBtn').classList.remove('hide-btn');
+        const btn = document.getElementById('playBtn');
+        if(btn) btn.classList.remove('hide-btn');
     });
 }
