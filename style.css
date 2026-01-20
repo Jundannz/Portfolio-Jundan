@@ -12,12 +12,13 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: auto;
   position: relative;
   font-family: "Poppins", Helvetica, sans-serif;
   color: var(--palette-4);
   display: flex;
   flex-direction: column;
+  overflow: visible;
 }
 
 /* Helper Fonts */
@@ -626,6 +627,25 @@ body {
   justify-content: center; flex-wrap: wrap;
 }
 
+/* Filter items - controlled by JavaScript */
+.final .filter-item {
+  display: none;
+}
+
+.final .filter-item.show {
+  display: flex;
+}
+
+/* Default: Show all-view items on page load */
+.final .filter-item.all-view {
+  display: flex;
+}
+
+/* Also allow display style from JavaScript */
+.final .filter-item[style*="display: flex"] {
+  display: flex !important;
+}
+
 /* --- WORK CARDS (Hover & Transitions) --- */
 .final .frame-16, .final .frame-19, .final .frame-21, .final .frame-22, .final .frame-24, .final .frame-26 {
   display: flex; 
@@ -697,7 +717,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center; 
-  min-height: 100vh;
+  min-height: auto;
+  height: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 /* Dekorasi */

@@ -73,20 +73,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const filterItems = document.querySelectorAll('.filter-item');
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.setAttribute('aria-pressed', 'false'));
-            button.setAttribute('aria-pressed', 'true');
-            const filterValue = button.getAttribute('data-filter');
+    // Initialize: Show all-view items on page load
+    filterItems.forEach(item => {
+        if (item.classList.contains('all-view')) {
+            item.classList.add('show');
+        }
+    });
 
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Update button states
+            filterButtons.forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+            this.setAttribute('aria-pressed', 'true');
+            
+            const filterValue = this.getAttribute('data-filter');
+
+            // Update filter items (frame-15 wrappers)
             filterItems.forEach(item => {
-                // Menggunakan 'all-view' sesuai HTML kamu
-                if (filterValue === 'all-view' || item.classList.contains(filterValue)) { 
-                    item.style.display = 'flex'; // Kembalikan ke flex
-                    item.classList.remove('hide');
+                // Remove .show class from all items first
+                item.classList.remove('show');
+                item.style.display = 'none';
+                
+                // Add .show class based on filter value
+                if (filterValue === 'all-view') {
+                    // Show all-view items
+                    if (item.classList.contains('all-view')) {
+                        item.classList.add('show');
+                        item.style.display = 'flex';
+                    }
                 } else {
-                    item.style.display = 'none';
-                    item.classList.add('hide');
+                    // Show items matching the filter (motion, design, code)
+                    if (item.classList.contains(filterValue)) {
+                        item.classList.add('show');
+                        item.style.display = 'flex';
+                    }
                 }
             });
         });

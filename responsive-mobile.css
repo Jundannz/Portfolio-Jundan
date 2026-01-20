@@ -1,128 +1,760 @@
-/* responsive-mobile.css */
+/* responsive-mobile.css - FIXED FILTER ISSUE */
 /* Target: Mobile / HP (Max width 768px) */
 
 @media screen and (max-width: 768px) {
 
-  /* --- GLOBAL MOBILE RESET --- */
+  /* =========================================
+     0. GLOBAL RESET
+     ========================================= */
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   .final {
     width: 100%;
     overflow-x: hidden;
-    min-height: auto;
+    display: block;
+    position: relative;
   }
 
-  h1, h2, h3 { word-wrap: break-word; }
-
-  /* --- NAVBAR MOBILE --- */
+  /* =========================================
+     1. NAVBAR
+     ========================================= */
   .final .navbar {
     height: auto;
-    position: fixed;
-    padding: 10px 0;
+    padding: 15px 0;
   }
 
   .final .frame-49 {
+    padding: 0 20px;
     flex-direction: column;
     gap: 15px;
-    height: auto;
-    padding: 10px;
   }
 
-  /* RESET POSISI ABSOLUTE DESKTOP DI SINI */
+  .final .logo {
+    width: 70px;
+  }
+
   .final .navbar-2 {
-    position: relative; /* Kembalikan ke layout flow */
-    left: auto;
+    position: static;
     transform: none;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
-    width: 100%;
   }
-  
-  .final .text-wrapper-43 { font-size: 14px; }
-  .final .div-wrapper-2 { display: none; }
 
-  /* --- HERO SECTION MOBILE --- */
+  .final .text-wrapper-43 {
+    font-size: 14px;
+  }
+
+  .final .div-wrapper-2 {
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px !important;
+    background-color: var(--palette-1) !important;
+    border-radius: 25px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    transition: transform 0.2s ease, background-color 0.2s ease !important;
+    z-index: 10 !important;
+  }
+
+  .final .div-wrapper-2:hover {
+    transform: translateY(-2px) !important;
+    background-color: #5500cc !important;
+  }
+
+  .final .text-wrapper-41 {
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+
+  /* =========================================
+     2. HERO SECTION
+     ========================================= */
   .final .hero-section {
-    height: auto;
-    padding-top: 150px;
-    padding-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: auto;
+    padding: 100px 20px 60px 20px;
+    margin-top: 70px;
   }
 
   .final .hero-text {
-    position: relative;
-    top: auto; left: auto;
-    width: 90%;
+    width: 100%;
+    margin: 0;
+    position: static;
     text-align: center;
+  }
+
+  .final .frame-48 {
     align-items: center;
-    margin-left: 0; /* Reset margin */
   }
 
-  .final .frame-48 { align-items: center; }
-  .final .visuals-motion { font-size: 48px; line-height: 1.1; text-align: center; }
-
-  /* Sembunyikan dekorasi berat */
-  .final .ellipse-8, .final .rectangle-11, .final .polygon-2,
-  .final .star-15, .final .star-16 {
-    opacity: 0.2; pointer-events: none;
+  .final .text-wrapper-38 {
+    font-size: 18px;
   }
 
-  /* --- ABOUT SECTION MOBILE --- */
-  .final .about-section { height: auto; padding: 50px 0; }
-  .final .text-wrapper-33, .final .text-wrapper-32 { display: none; }
+  .final .visuals-motion {
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: -2px;
+    text-align: center;
+  }
 
-  .final .about-me-wrapper { width: 100%; margin-bottom: 20px; }
-  .final .frame-44 { width: 90%; height: auto; margin: 0 auto; padding: 20px; }
-  .final .frame-45 { flex-direction: column; gap: 20px; width: 100%; }
+  .final .text-wrapper-39,
+  .final .text-wrapper-40 {
+    letter-spacing: -2px;
+  }
 
-  .final .profile-wrapper { width: 250px; height: 250px; }
-  .final .frame-47 { width: 260px; height: 270px; transform: translate(-50%, -50%) rotate(0deg); }
-  .final .i-m-jundan-a-video { font-size: 14px; text-align: center; }
-  .final .vector-4 { width: 100%; }
+  .final .elevating-digital {
+    font-size: 14px;
+    text-align: center;
+    padding: 0 10px;
+  }
 
-  /* --- SKILLS SECTION MOBILE --- */
-  .final .skills-section { height: auto; padding: 50px 0; }
-  .final .frame-43 { margin-bottom: 30px; }
-  .final .SKILLS-expertise { font-size: 32px; }
-  .final .frame-33 { width: 90%; height: auto; flex-direction: column; }
-  .final .video, .final .design, .final .programmer { width: 100%; height: 200px; flex: none; }
+  .final .div-2 {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+  }
 
-  /* --- PORTFOLIO MOBILE --- */
-  .final .portfolio-section { height: auto; padding: 50px 0; }
-  .final .portfolio { font-size: 40px; margin-bottom: 20px; }
-  .final .frame-28 { width: 95%; }
-  .final .frame-29 { width: 100%; height: auto; }
-  .final .rectangle-5 { width: 100%; height: auto; aspect-ratio: 16/9; }
-  .final .cube, .final .cube-2, .final .cube-3, .final .cube-4 { display: none; }
+  .final .button-hero,
+  .final .hero-section .div-wrapper-2 {
+    width: 80%;
+    max-width: 250px;
+    justify-content: center;
+  }
 
-  /* --- WORKS SECTION MOBILE --- */
-  .final .my-works-section { height: auto; padding-bottom: 50px; }
-  .final .frame-12 { margin: 40px 0; }
-  .final .my-works { font-size: 40px; }
-  .final .works { font-size: 40px; }
-  .final .works-grid { width: 90%; }
-  .final .div-2 { flex-wrap: wrap; justify-content: center; }
-  .final .frame-15 { flex-direction: column; }
+  /* Decorations */
+  .final .ellipse-8,
+  .final .rectangle-11,
+  .final .ellipse-9,
+  .final .polygon-2,
+  .final .star-15,
+  .final .star-16 {
+    opacity: 0.2;
+    width: 100px;
+  }
+
+  /* =========================================
+     3. ABOUT SECTION
+     ========================================= */
+  .final .about-section {
+    padding: 60px 20px;
+    overflow: visible;
+  }
+
+  .final .text-wrapper-32,
+  .final .text-wrapper-33 {
+    display: none;
+  }
+
+  .final .about-me-wrapper {
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .final .about-me {
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: -2px;
+  }
+
+  .final .frame-44 {
+    width: 100%;
+    padding: 30px 20px;
+    position: static;
+  }
+
+  .final .frame-45 {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .final .profile-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .final .ellipse-17 {
+    width: 100%;
+    height: 100%;
+  }
+
+  .final .frame-47 {
+    width: 220px;
+    height: 220px;
+  }
+
+  .final .frame-46 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .final .media-creative {
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: -1px;
+    justify-content: center;
+  }
+
+  .final .i-m-jundan-a-video {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .final .vector-4 {
+    width: 80%;
+    margin: 15px auto;
+  }
+
+  /* =========================================
+     4. SKILLS SECTION
+     ========================================= */
+  .final .skills-section {
+    padding: 60px 20px;
+  }
+
+  .final .text-wrapper-19,
+  .final .text-wrapper-20,
+  .final .rectangle-6 {
+    display: none;
+  }
+
+  .final .frame-43 {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .final .SKILLS-expertise {
+    font-size: 32px;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .final .text-wrapper-31 {
+    font-size: 32px;
+  }
+
+  .final .frame-33 {
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 20px !important;
+    gap: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    max-width: 100% !important;
+    background-color: #6a00ff1a !important;
+    border-radius: 20px !important;
+    border: 1px solid #000000 !important;
+  }
+
+  .final .video,
+  .final .design,
+  .final .programmer {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 0 0 auto !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .final .rectangle-7,
+  .final .rectangle-8,
+  .final .rectangle-9 {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    object-fit: contain !important;
+    aspect-ratio: auto !important;
+    border-radius: 15px !important;
+  }
+
+  /* =========================================
+     5. PORTFOLIO SECTION
+     ========================================= */
+  .final .portfolio-section {
+    padding: 60px 20px;
+  }
+
+  .final .portfolio {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .final .frame-28 {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .final .frame-29 {
+    width: 100%;
+  }
+
+  .final .frame-30 {
+    padding: 10px 15px;
+    height: auto;
+  }
+
+  .final .text-wrapper-16 {
+    font-size: 14px;
+  }
+
+  .final .frame-31 {
+    gap: 3px;
+  }
+
+  .final .ellipse-4,
+  .final .ellipse-5,
+  .final .ellipse-6 {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+  }
+
+  .final .rectangle-5 {
+    width: 100%;
+    height: auto;
+  }
+
+  #playBtn.frame-32 {
+    width: 80px;
+    height: 80px;
+    top: 55%;
+  }
+
+  #playBtn .polygon {
+    width: 25px;
+  }
+
+  /* Hide decorations */
+  .final .cube,
+  .final .cube-2,
+  .final .cube-3,
+  .final .cube-4,
+  .final .star-8,
+  .final .star-9,
+  .final .star-10,
+  .final .star-11,
+  .final .star-12,
+  .final .star-13 {
+    display: none;
+  }
+
+  /* =========================================
+     6. MY WORKS SECTION (FIXED)
+     ========================================= */
+  .final .my-works-section {
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final .grid-web {
+    opacity: 0.3;
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .final .grid-web-2 {
+    top: 700px;
+  }
+
+  .final .grid-web-3 {
+    top: 1600px;
+  }
+
+  .final .frame-12 {
+    margin-bottom: 30px;
+  }
+
+  .final .my-works {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .final .text-wrapper-8,
+  .final .works {
+    font-size: 40px;
+  }
+
+  .final .works-wrapper {
+    height: 40px;
+  }
+
+  .final .frame-13 {
+    width: 150%;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+  }
+
+  .final .works-grid {
+    width: 100%;
+  }
+
+  .final .div-2 {
+    flex-wrap: wrap !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    justify-content: center !important;
+    display: flex !important;
+    width: 100% !important;
+  }
+
+  .final .filter-btn {
+    padding: 10px 20px !important;
+    font-size: 16px !important;
+    display: inline-block !important;
+    flex: 0 0 auto !important;
+  }
+
+  .final .text-wrapper-10,
+  .final .text-wrapper-11 {
+    font-size: 16px;
+  }
+
+  .final .frame-14 {
+    gap: 25px !important;
+  }
+
+  .final .frame-15 {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* --- LOGIKA FILTER FIX START --- */
   
-  .final .frame-16, .final .frame-19, .final .frame-21, 
-  .final .frame-22, .final .frame-24, .final .frame-26 {
-    width: 100%; height: auto;
+  /* 1. Sembunyikan SEMUA item secara default di mobile */
+  .final .filter-item {
+    display: none !important;
   }
-  .final .rectangle-3, .final .rectangle-4 { width: 100%; height: auto; }
 
-  /* --- CONTACT SECTION MOBILE --- */
-  .final .contact-section { height: auto; padding: 50px 0; }
-  .final .let-s-collaborate { font-size: 36px; margin-bottom: 30px; }
-  .final .frame { width: 90%; height: auto; margin: 0 auto; }
-  .final .div { width: 100%; flex-direction: column; }
-  .final .frame-wrapper { width: 100%; border-radius: 15px 15px 0 0; padding: 20px; }
-  .final .frame-4, .final .frame-6 { width: 100%; }
-  .final .frame-5 { flex-direction: column; gap: 10px; }
-  .final .frame-8 { width: 100%; height: auto; border-radius: 0 0 15px 15px; padding: 30px 20px; }
-  .final .text-wrapper-5 { font-size: 16px; }
+  /* 2. Hanya tampilkan item yang punya class 'show' (ditambahkan oleh JavaScript) */
+  .final .filter-item.show {
+    display: flex !important;
+  }
+  
+  /* 3. CATATAN: Aturan lama yang memaksa .all-view muncul telah dihapus 
+     agar tidak bertabrakan dengan filter lain */
 
-  /* --- FOOTER MOBILE --- */
-  .footer-section .frame { flex-direction: column; padding: 0 20px; gap: 40px; }
-  .footer-section .navbar { flex-wrap: wrap; justify-content: center; }
+  /* --- LOGIKA FILTER FIX END --- */
+
+  .final .frame-16,
+  .final .frame-19,
+  .final .frame-21,
+  .final .frame-22,
+  .final .frame-24,
+  .final .frame-26 {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .final .text-wrapper-12 {
+    font-size: 20px;
+  }
+
+  .final .text-wrapper-14,
+  .final .p {
+    font-size: 14px;
+  }
+
+  .final .frame-27 {
+    margin-top: 30px;
+  }
+
+  .final .text-wrapper-15 {
+    font-size: 24px;
+  }
+
+  /* Hide decorations */
+  .final .star-4,
+  .final .star-5,
+  .final .star-6,
+  .final .star-7 {
+    display: none;
+  }
+
+  /* =========================================
+     7. CONTACT SECTION
+     ========================================= */
+  .final .contact-section {
+    padding: 60px 20px;
+  }
+
+  .final .let-s-collaborate {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .final .span,
+  .final .text-wrapper-6,
+  .final .text-wrapper-7 {
+    letter-spacing: -1px;
+  }
+
+  .final .frame {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    position: static;
+    top: auto;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+    padding-bottom: 0;
+    border-radius: 0;
+  }
+
+  .final .frame-2 {
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .final .text-wrapper {
+    font-size: 14px;
+  }
+
+  .final .ellipse,
+  .final .ellipse-2,
+  .final .ellipse-3 {
+    width: 10px;
+    height: 10px;
+  }
+
+  .final .div {
+    width: 100%;
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+  }
+
+  .final .frame-wrapper {
+    width: 100%;
+    padding: 25px 20px;
+    border-radius: 12px 12px 0 0;
+    border: 3px solid var(--palette-4);
+    border-bottom: none;
+    background-color: #ffffff;
+    min-width: auto;
+    flex: none;
+  }
+
+  .final .frame-4 {
+    gap: 15px;
+  }
+
+  .final .frame-5 {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .final .frame-6 {
+    width: 100%;
+  }
+
+  .final .text-wrapper-2 {
+    font-size: 14px;
+  }
+
+  .final .rectangle {
+    height: 40px;
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .final .rectangle-2 {
+    height: 100px;
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .final .div-wrapper {
+    width: 100%;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .final .text-wrapper-3 {
+    font-size: 14px;
+  }
+
+  .final .frame-8 {
+    width: 100%;
+    padding: 25px 20px;
+    border-radius: 0 0 12px 12px;
+    border: 3px solid var(--palette-4);
+    border-top: none;
+    background-color: #ffffff;
+  }
+
+  .final .frame-9 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .final .text-wrapper-4 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .final .frame-10 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .final .frame-11,
+  .final .frame-10 .frame-3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    margin-left: 0;
+    border-radius: 0;
+    background-color: transparent;
+    transition: all 0.2s ease;
+  }
+
+  .final .frame-11:hover,
+  .final .frame-10 .frame-3:hover {
+    transform: translateX(5px);
+    background-color: transparent;
+  }
+
+  .final .frame-11:hover .text-wrapper-5,
+  .final .frame-10 .frame-3:hover .text-wrapper-5 {
+    color: var(--palette-1);
+  }
+
+  .final .img-2 {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .final .text-wrapper-5 {
+    font-size: 13px;
+    word-break: break-word;
+  }
+
+  /* Hide decorations */
+  .final .vector,
+  .final .star,
+  .final .img,
+  .final .star-2,
+  .final .star-3,
+  .final .line {
+    display: none;
+  }
+
+  /* =========================================
+     8. FOOTER
+     ========================================= */
+  .footer-section {
+    padding: 40px 20px;
+  }
+
+  .footer-section .frame {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0;
+  }
+
+  .footer-section .div,
+  .footer-section .frame-2 {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section .logo-jundannz {
+    width: 100px;
+  }
+
+  .footer-section .text-wrapper {
+    font-size: 13px;
+  }
+
+  .footer-section .div-wrapper {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .footer-section .navbar {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    background: transparent;
+    box-shadow: none;
+    position: static;
+    padding: 0;
+  }
+
+  .footer-section .text-wrapper-3 {
+    font-size: 13px;
+  }
+
+  .footer-section .frame-3 {
+    justify-content: center !important;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-section .img {
+    width: 28px;
+    height: 28px;
+    position: static;
+  }
+
+  .footer-section .frame-4 {
+    text-align: center;
+  }
+
+  .footer-section .text-wrapper-4,
+  .footer-section .p {
+    font-size: 11px;
+    text-align: center !important;
+  }
 }
