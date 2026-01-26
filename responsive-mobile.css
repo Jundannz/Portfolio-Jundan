@@ -1,4 +1,4 @@
-/* responsive-mobile.css - FIXED FILTER ISSUE */
+/* responsive-mobile.css - FINAL FIXED VERSION */
 /* Target: Mobile / HP (Max width 768px) */
 
 @media screen and (max-width: 768px) {
@@ -22,6 +22,11 @@
     width: 100%;
   }
 
+  /* Kunci scroll saat menu terbuka */
+  body.no-scroll {
+    overflow: hidden;
+  }
+
   .final {
     width: 100%;
     overflow-x: hidden;
@@ -30,57 +35,137 @@
   }
 
   /* =========================================
-     1. NAVBAR
+     1. NAVBAR (MODERN HAMBURGER STYLE)
      ========================================= */
   .final .navbar {
-    height: auto;
-    padding: 15px 0;
+    height: 70px;
+    padding: 0;
+    display: flex;
+    align-items: center;
   }
 
   .final .frame-49 {
     padding: 0 20px;
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
   }
 
+  /* Logo adjustment */
   .final .logo {
-    width: 70px;
+    width: 60px;
+    z-index: 1001; /* Di atas menu overlay */
+    position: relative; /* WAJIB ADA: Agar z-index berfungsi dan bisa diklik */
   }
 
+  /* HAMBURGER ICON STYLE */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--palette-4);
+    border-radius: 3px;
+  }
+
+  /* Animasi X saat aktif */
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* MENU FULLSCREEN OVERLAY (GLASSMORPHISM STYLE) */
   .final .navbar-2 {
-    position: static;
-    transform: none;
-    flex-wrap: wrap;
-    gap: 20px;
+    position: fixed;
+    top: 0;
+    left: -100%; /* Sembunyi di kiri */
+    width: 100%;
+    height: 100vh;
+    
+    background-color: rgba(255, 255, 255, 0.55); /* Putih transparan */
+    backdrop-filter: blur(15px); /* Efek blur */
+    -webkit-backdrop-filter: blur(15px); /* Support iPhone */
+
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
+    
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
   }
 
+  .final .navbar-2.active {
+    left: 0; /* Muncul */
+  }
+
+  /* Link Styles di Menu Mobile */
   .final .text-wrapper-43 {
-    font-size: 14px;
+    font-size: 24px;
+    font-weight: 600;
   }
 
-  .final .div-wrapper-2 {
+  /* --- BUTTON CONTACT ME (FIXED SELECTOR) --- */
+  /* Menggunakan ID #contact-btn-nav agar TIDAK merusak tombol View Works */
+  #contact-btn-nav {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1002;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    
+    /* Reset style tombol mobile */
     justify-content: center;
     gap: 10px;
-    padding: 10px 20px !important;
+    padding: 10px 25px !important;
     background-color: var(--palette-1) !important;
     border-radius: 25px !important;
     display: inline-flex !important;
     align-items: center !important;
     text-decoration: none !important;
-    transition: transform 0.2s ease, background-color 0.2s ease !important;
-    z-index: 10 !important;
+    width: auto !important;
   }
 
-  .final .div-wrapper-2:hover {
-    transform: translateY(-2px) !important;
-    background-color: #5500cc !important;
+  /* Muncul saat menu aktif */
+  #contact-btn-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.2s;
   }
 
+  /* Text di dalam tombol contact */
   .final .text-wrapper-41 {
     color: #ffffff !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-weight: 600 !important;
+  }
+
+  /* Fix Hover Contact Button Mobile */
+  #contact-btn-nav:hover,
+  #contact-btn-nav:active, 
+  #contact-btn-nav:focus {
+    transform: translateX(-50%) translateY(-2px) !important; 
+    background-color: var(--palette-1) !important;
   }
 
   /* =========================================
@@ -132,8 +217,13 @@
     align-items: center;
   }
 
+  /* Tombol View Works & Contact (Hero) */
   .final .button-hero,
   .final .hero-section .div-wrapper-2 {
+    position: static !important; /* Pastikan tidak fixed */
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     width: 80%;
     max-width: 250px;
     justify-content: center;
@@ -371,7 +461,7 @@
   }
 
   /* =========================================
-     6. MY WORKS SECTION (FIXED)
+     6. MY WORKS SECTION
      ========================================= */
   .final .my-works-section {
     padding: 60px 20px;
@@ -455,22 +545,14 @@
     gap: 20px !important;
   }
 
-  /* --- LOGIKA FILTER FIX START --- */
-  
-  /* 1. Sembunyikan SEMUA item secara default di mobile */
+  /* --- LOGIKA FILTER FIX --- */
   .final .filter-item {
     display: none !important;
   }
 
-  /* 2. Hanya tampilkan item yang punya class 'show' (ditambahkan oleh JavaScript) */
   .final .filter-item.show {
     display: flex !important;
   }
-  
-  /* 3. CATATAN: Aturan lama yang memaksa .all-view muncul telah dihapus 
-     agar tidak bertabrakan dengan filter lain */
-
-  /* --- LOGIKA FILTER FIX END --- */
 
   .final .frame-16,
   .final .frame-19,

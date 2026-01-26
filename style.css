@@ -952,3 +952,42 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Tambahkan di style.css paling bawah */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--palette-4); /* Mengambil warna teks utama */
+  border-radius: 3px;
+}
+
+/* =========================================
+   LOGO CLICK ANIMATION (FIX STICKY HOVER)
+   ========================================= */
+
+/* Definisi animasi membesar lalu mengecil */
+@keyframes logoPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); } /* Membesar 15% */
+  100% { transform: scale(1); }   /* Kembali normal */
+}
+
+/* Class yang akan ditempel via JS saat diklik */
+.final .logo.animate-pop {
+  animation: logoPop 0.3s ease-out forwards;
+}
+
+/* Matikan efek hover default di layar sentuh agar tidak bentrok */
+@media (hover: none) {
+  .final .logo:hover {
+    transform: none; 
+  }
+}

@@ -1,200 +1,135 @@
-// ========================================
-// INITIALIZE EMAILJS
-// ========================================
 (function() {
-    // Public Key dari screenshot kamu
     emailjs.init("dPNSrAiSXY6Z3mNbo"); 
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
-    // ========================================
-    // 1. NAVBAR ACTIVE STATE & LOGO HOME
-    // ========================================
-    
-    // Logo klik untuk kembali ke hero
-    const logo = document.querySelector('.final .logo');
-    if (logo) {
-        logo.addEventListener('click', (e) => {
-            e.preventDefault();
-            const heroSection = document.querySelector('.hero-section');
-            if (heroSection) {
-                heroSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-        logo.style.cursor = 'pointer';
+    const hamburger = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const contactBtnNav = document.getElementById('contact-btn-nav');
+    const navSpyLinks = document.querySelectorAll('.final .navbar-2 a'); 
+    const sections = document.querySelectorAll('section'); 
+
+    // 1. Unified Menu Closer
+    function closeMenu() {
+        hamburger?.classList.remove('active');
+        mobileMenu?.classList.remove('active');
+        contactBtnNav?.classList.remove('active');
+        document.body.classList.remove('no-scroll');
     }
 
-    // Navbar active state berdasarkan scroll position
-    const navLinks = document.querySelectorAll('.final .navbar-2 a');
-    const sections = {
-        '#about': document.querySelector('#about'),
-        '#skills': document.querySelector('#skills'),
-        '#portfolio': document.querySelector('#portfolio'),
-        '#works': document.querySelector('#works'),
-        '#contact': document.querySelector('#contact'),
-    };
-
+    // 2. Optimized Scroll Spy
     window.addEventListener('scroll', () => {
         let current = '';
-        for (const [hash, section] of Object.entries(sections)) {
-            if (section) {
-                const sectionTop = section.offsetTop;
-                // Adjusted offset agar active state lebih akurat
-                if (window.pageYOffset >= sectionTop - 300) {
-                    current = hash;
-                }
+        sections.forEach(section => {
+            if (window.scrollY >= (section.offsetTop - 350)) {
+                current = section.getAttribute('id');
             }
-        }
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (current && link.getAttribute('href') === current) {
-                link.classList.add('active');
-            }
+        });
+        navSpyLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href').includes(current));
         });
     });
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetHash = link.getAttribute('href');
-            const targetSection = document.querySelector(targetHash);
+    // 3. Unified Smooth Scroll (Handle all including logo & back to top)
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href^="#"]');
+        const logo = e.target.closest('.logo');
+
+        if (anchor || logo) {
+            const targetId = anchor ? anchor.getAttribute('href') : '#hero';
+            const targetSection = document.querySelector(targetId);
+            
             if (targetSection) {
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
+                e.preventDefault();
+                closeMenu();
+                
+                if (logo) {
+                    logo.classList.add('animate-pop');
+                    setTimeout(() => logo.classList.remove('animate-pop'), 300);
+                }
+
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
-        });
+        }
     });
 
-    // ========================================
-    // 2. FILTER BUTTONS
-    // ========================================
-    
+    // 4. Hamburger Toggle
+    hamburger?.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        contactBtnNav?.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+
+    // 5. Improved Filter Logic (Remove Inline Styles redundancy)
     const filterButtons = document.querySelectorAll('.filter-btn');
     const filterItems = document.querySelectorAll('.filter-item');
 
-    // Initialize: Show all-view items on page load
-    filterItems.forEach(item => {
-        if (item.classList.contains('all-view')) {
-            item.classList.add('show');
-        }
-    });
-
     filterButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Update button states
+        button.addEventListener('click', function() {
             filterButtons.forEach(btn => btn.setAttribute('aria-pressed', 'false'));
             this.setAttribute('aria-pressed', 'true');
             
             const filterValue = this.getAttribute('data-filter');
 
-            // Update filter items (frame-15 wrappers)
             filterItems.forEach(item => {
-                // Remove .show class from all items first
-                item.classList.remove('show');
-                item.style.display = 'none';
+                const isAll = filterValue === 'all-view' && item.classList.contains('all-view');
+                const isMatch = item.classList.contains(filterValue);
                 
-                // Add .show class based on filter value
-                if (filterValue === 'all-view') {
-                    // Show all-view items
-                    if (item.classList.contains('all-view')) {
-                        item.classList.add('show');
-                        item.style.display = 'flex';
-                    }
+                if (isAll || isMatch) {
+                    item.style.display = 'flex';
+                    setTimeout(() => item.classList.add('show'), 10);
                 } else {
-                    // Show items matching the filter (motion, design, code)
-                    if (item.classList.contains(filterValue)) {
-                        item.classList.add('show');
-                        item.style.display = 'flex';
-                    }
+                    item.classList.remove('show');
+                    item.style.display = 'none';
                 }
             });
         });
     });
 
-    // ========================================
-    // 3. CONTACT FORM SUBMISSION (EMAILJS)
-    // ========================================
+    // 6. Contact Form (Cleaned up)
     const contactForm = document.getElementById('contact-form');
-    // Jika belum ada ID di HTML, kita coba ambil via class frame-4 di dalam contact section
-    const formTarget = contactForm || document.querySelector('.contact-section .frame-4');
+    contactForm?.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        const btnText = btn.querySelector('.text-wrapper-3');
+        const originalText = btnText.textContent;
 
-    if (formTarget) {
-        formTarget.addEventListener('submit', function(event) {
-            event.preventDefault(); // Mencegah reload halaman
+        btnText.textContent = 'SENDING...';
+        btn.disabled = true;
 
-            const submitBtn = formTarget.querySelector('button[type="submit"]');
-            const btnText = submitBtn ? submitBtn.querySelector('.text-wrapper-3') : null;
-            const originalText = btnText ? btnText.textContent : 'SEND MESSAGE ➔';
-
-            // Ubah tombol jadi loading
-            if(btnText) btnText.textContent = 'SENDING...';
-            if(submitBtn) submitBtn.disabled = true;
-
-            // Service ID dan Template ID dari screenshot kamu
-            const serviceID = 'service_siu5edc';
-            const templateID = 'template_k86p4if';
-
-            emailjs.sendForm(serviceID, templateID, this)
-                .then(() => {
-                    // Berhasil
-                    if(btnText) btnText.textContent = 'MESSAGE SENT! ✓';
-                    if(submitBtn) submitBtn.style.backgroundColor = '#3ABEAB'; // Warna hijau palette-3
-                    formTarget.reset(); // Kosongkan form
-
-                    // Kembalikan tombol setelah 3 detik
-                    setTimeout(() => {
-                        if(btnText) btnText.textContent = originalText;
-                        if(submitBtn) {
-                            submitBtn.disabled = false;
-                            submitBtn.style.backgroundColor = ''; // Reset warna
-                        }
-                    }, 3000);
-                }, (err) => {
-                    // Gagal
-                    console.log('FAILED...', err);
-                    if(btnText) btnText.textContent = 'FAILED TO SEND';
-                    if(submitBtn) submitBtn.style.backgroundColor = 'red';
-                    alert('Gagal mengirim pesan. Cek konsol browser untuk detail.');
-                    
-                    setTimeout(() => {
-                        if(btnText) btnText.textContent = originalText;
-                        if(submitBtn) {
-                            submitBtn.disabled = false;
-                            submitBtn.style.backgroundColor = '';
-                        }
-                    }, 3000);
-                });
-        });
-    }
+        emailjs.sendForm('service_siu5edc', 'template_k86p4if', this)
+            .then(() => {
+                btnText.textContent = 'MESSAGE SENT! ✓';
+                btn.style.backgroundColor = '#3ABEAB';
+                this.reset();
+                setTimeout(() => {
+                    btnText.textContent = originalText;
+                    btn.disabled = false;
+                    btn.style.backgroundColor = '';
+                }, 3000);
+            }, (err) => {
+                btnText.textContent = 'FAILED';
+                btn.style.backgroundColor = 'red';
+                setTimeout(() => {
+                    btnText.textContent = originalText;
+                    btn.disabled = false;
+                    btn.style.backgroundColor = '';
+                }, 3000);
+            });
+    });
 });
 
-// ========================================
-// 4. VIDEO PORTFOLIO TOGGLE
-// ========================================
-
+// Video Global Function
 function toggleVideo() {
     const video = document.getElementById('portfolioVideo');
     const btn = document.getElementById('playBtn');
-
-    if (video && btn) {
-        if (video.paused) {
-            video.play();
-            video.muted = false; 
-            btn.classList.add('hide-btn');
-        } else {
-            video.pause();
-            btn.classList.remove('hide-btn');
-        }
+    if (video.paused) {
+        video.play();
+        video.muted = false;
+        btn.classList.add('hide-btn');
+    } else {
+        video.pause();
+        btn.classList.remove('hide-btn');
     }
-}
-
-const vidElement = document.getElementById('portfolioVideo');
-if (vidElement) {
-    vidElement.addEventListener('ended', () => {
-        const btn = document.getElementById('playBtn');
-        if(btn) btn.classList.remove('hide-btn');
-    });
 }
