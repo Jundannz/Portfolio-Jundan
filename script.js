@@ -6,8 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const contactBtnNav = document.getElementById('contact-btn-nav');
-    const navSpyLinks = document.querySelectorAll('.final .navbar-2 a'); 
-    const sections = document.querySelectorAll('section'); 
+    
+    // PERBAIKAN KRITIS: Selector yang lebih spesifik dan robust
+    const navSpyLinks = document.querySelectorAll('.final .navbar-2 a[href^="#"]'); 
+    const sections = document.querySelectorAll('.final section[id]');
+    
+    // Debug logging - akan membantu troubleshooting
+    console.log('=== SCROLL SPY DEBUG ===');
+    console.log('Nav links found:', navSpyLinks.length);
+    console.log('Sections found:', sections.length);
 
     // 1. Unified Menu Closer
     function closeMenu() {
@@ -17,17 +24,55 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('no-scroll');
     }
 
-    // 2. Optimized Scroll Spy
-    window.addEventListener('scroll', () => {
+    // 2. Scroll Spy Function - Update navbar active link
+    function updateActiveNavLink() {
         let current = '';
-        sections.forEach(section => {
-            if (window.scrollY >= (section.offsetTop - 350)) {
+        const navbarHeight = document.querySelector('.final .navbar')?.offsetHeight || 70;
+        const threshold = navbarHeight + 100;
+        const scrollPos = window.scrollY;
+        
+        // Loop dari belakang untuk cari section paling dekat
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            const sectionTop = section.offsetTop;
+            
+            if (scrollPos >= sectionTop - threshold) {
                 current = section.getAttribute('id');
+                break;
             }
-        });
+        }
+        
+        // Update active class on nav links
         navSpyLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href').includes(current));
+            const href = link.getAttribute('href');
+            const targetId = href.replace('#', '');
+            const isActive = targetId === current;
+            
+            link.classList.toggle('active', isActive);
         });
+    }
+    
+    // 2a. Scroll event listener dengan throttle menggunakan requestAnimationFrame
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateActiveNavLink();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true }); // passive untuk performa lebih baik
+    
+    // 2b. Call on page load dengan multiple timing untuk memastikan
+    setTimeout(updateActiveNavLink, 100);
+    setTimeout(updateActiveNavLink, 500);
+    setTimeout(updateActiveNavLink, 1000);
+    
+    // Call setelah semua resources loaded
+    window.addEventListener('load', function() {
+        console.log('Page fully loaded, updating nav...');
+        updateActiveNavLink();
     });
 
     // 3. Unified Smooth Scroll (Handle all including logo & back to top)
@@ -49,6 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 targetSection.scrollIntoView({ behavior: 'smooth' });
+                
+                console.log('Scrolling to:', targetId);
+                
+                // Update active nav link when scroll completes
+                setTimeout(updateActiveNavLink, 800);
             }
         }
     });
@@ -61,33 +111,42 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.toggle('no-scroll');
     });
 
-    // 5. Improved Filter Logic (Remove Inline Styles redundancy)
+    // 5. Improved Filter Logic
     const filterButtons = document.querySelectorAll('.filter-btn');
     const filterItems = document.querySelectorAll('.filter-item');
 
+    function applyFilter(filterValue) {
+        filterButtons.forEach(btn => {
+            btn.setAttribute('aria-pressed', btn.getAttribute('data-filter') === filterValue);
+        });
+        
+        filterItems.forEach(item => {
+            const isAll = filterValue === 'all-view' && item.classList.contains('all-view');
+            const isMatch = item.classList.contains(filterValue);
+            
+            if (isAll || isMatch) {
+                item.style.display = 'flex';
+                setTimeout(() => item.classList.add('show'), 10);
+            } else {
+                item.classList.remove('show');
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Auto-trigger "All" filter on page load
+    if (filterButtons.length > 0) {
+        applyFilter('all-view');
+    }
+
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            filterButtons.forEach(btn => btn.setAttribute('aria-pressed', 'false'));
-            this.setAttribute('aria-pressed', 'true');
-            
             const filterValue = this.getAttribute('data-filter');
-
-            filterItems.forEach(item => {
-                const isAll = filterValue === 'all-view' && item.classList.contains('all-view');
-                const isMatch = item.classList.contains(filterValue);
-                
-                if (isAll || isMatch) {
-                    item.style.display = 'flex';
-                    setTimeout(() => item.classList.add('show'), 10);
-                } else {
-                    item.classList.remove('show');
-                    item.style.display = 'none';
-                }
-            });
+            applyFilter(filterValue);
         });
     });
 
-    // 6. Contact Form (Cleaned up)
+    // 6. Contact Form
     const contactForm = document.getElementById('contact-form');
     contactForm?.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -109,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     btn.style.backgroundColor = '';
                 }, 3000);
             }, (err) => {
+                console.error('Email send error:', err);
                 btnText.textContent = 'FAILED';
                 btn.style.backgroundColor = 'red';
                 setTimeout(() => {
@@ -118,18 +178,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 3000);
             });
     });
+    
+    // === FINAL CHECK ===
+    console.log('Script initialized successfully');
+    console.log('Navbar visible:', !!document.querySelector('.final .navbar'));
+    console.log('Window width:', window.innerWidth);
 });
 
 // Video Global Function
 function toggleVideo() {
     const video = document.getElementById('portfolioVideo');
     const btn = document.getElementById('playBtn');
-    if (video.paused) {
-        video.play();
-        video.muted = false;
-        btn.classList.add('hide-btn');
-    } else {
-        video.pause();
-        btn.classList.remove('hide-btn');
+    if (video && btn) {
+        if (video.paused) {
+            video.play();
+            video.muted = false;
+            btn.classList.add('hide-btn');
+        } else {
+            video.pause();
+            btn.classList.remove('hide-btn');
+        }
     }
 }

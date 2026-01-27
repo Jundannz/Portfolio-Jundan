@@ -1,58 +1,1182 @@
-/* responsive-tablet.css */
-/* Target: Tablet / iPad Portrait & Landscape (Max width 1024px) */
+/* responsive-tablet.css - COMPLETE REDESIGN */
+/* Target: Tablet / iPad (769px to 1024px) */
 
-@media screen and (max-width: 1024px) {
-  
-  .final { width: 100%; overflow-x: hidden; }
+@media screen and (min-width: 769px) and (max-width: 1024px) {
 
-  /* --- NAVBAR TABLET RESET --- */
-  .final .navbar { height: auto; padding: 10px 0; }
-  
-  .final .frame-49 {
-    gap: 20px; 
-    justify-content: space-between;
-    padding: 0 30px;
+  /* =========================================
+     0. GLOBAL RESET FOR TABLET
+     ========================================= */
+  * {
+    box-sizing: border-box;
   }
 
-  /* PENTING: Matikan Absolute Centering di tablet juga agar tidak menabrak logo */
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .final {
+    width: 100%;
+    overflow-x: hidden;
+    display: block;
+    position: relative;
+  }
+
+  /* =========================================
+     1. NAVBAR - SAME AS DESKTOP
+     ========================================= */
+  .final .navbar {
+    height: 70px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid var(--palette-4);
+    background-color: #ffffff;
+  }
+
+  .final .frame-49 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 40px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  /* Logo */
+  .final .logo {
+    display: flex;
+    flex-direction: column;
+    width: 85.6px;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 10;
+  }
+
+  .final .logo:hover {
+    transform: scale(1.05);
+  }
+
+  /* DESKTOP NAVBAR - Horizontal Menu */
   .final .navbar-2 {
-    position: relative; 
-    left: auto;
-    transform: none;
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+  }
+
+  .final .navbar-2 a {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+  }
+
+  .final .text-wrapper-43 {
+    font-weight: 600;
+    color: var(--palette-4);
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .final .navbar-2 a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--palette-1);
+    transition: width 0.3s ease;
+  }
+
+  .final .navbar-2 a.active::after {
+    width: 100%;
+  }
+
+  .final .navbar-2 a:hover::after {
+    width: 100%;
+  }
+
+  /* Hide Hamburger on Tablet */
+  .hamburger {
+    display: none;
+  }
+
+  .bar {
+    display: none;
+  }
+
+  /* Contact Button in Navbar - Visible */
+  .final .div-wrapper-2 {
+    display: inline-flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: var(--palette-1);
+    border-radius: 25px;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    z-index: 10;
+  }
+
+  .final .div-wrapper-2:hover {
+    transform: translateY(-2px);
+    background-color: #5500cc;
+  }
+
+  .final .text-wrapper-41 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* =========================================
+     2. HERO SECTION - SAME AS DESKTOP
+     ========================================= */
+  .final .hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 900px;
+    background-color: #ededed;
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Dekorasi Hero - EXACT SAME AS DESKTOP with LOWER OPACITY */
+  .final .ellipse-8 {
+    position: absolute;
+    top: 52px;
+    right: 50px;
+    width: 773px;
+    height: 783px;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+
+  .final .rectangle-11 {
+    position: absolute;
+    top: -2px;
+    right: 300px;
+    width: 236px;
+    height: 236px;
+    background-color: var(--palette-3);
+    transform: rotate(-15.76deg);
+    pointer-events: none;
+    opacity: 0.25;
+  }
+
+  .final .ellipse-9 {
+    position: absolute;
+    top: 569px;
+    right: 120px;
+    width: 172px;
+    height: 173px;
+    background-color: var(--palette-1);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .final .polygon-2 {
+    position: absolute;
+    top: 670px;
+    right: 400px;
+    width: 237px;
+    height: 228px;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+
+  .final .star-15 {
+    position: absolute;
+    top: 298px;
+    right: 291px;
+    width: 292px;
+    height: 292px;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+
+  .final .star-16 {
+    position: absolute;
+    top: 99px;
+    right: 100px;
+    width: 119px;
+    height: 119px;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+
+  /* Hero Text Content - SAME AS DESKTOP */
+  .final .hero-text {
+    display: flex;
+    flex-direction: column;
+    width: 629px;
+    align-items: flex-start;
+    gap: 22px;
+    position: relative;
+    margin-left: 100px;
+    z-index: 10;
+    padding: 0;
+  }
+
+  .final .frame-48 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .final .text-wrapper-38 {
+    font-weight: 500;
+    font-style: italic;
+    color: var(--palette-4);
+    font-size: 22px;
+  }
+
+  .final .visuals-motion {
+    font-weight: 500;
+    color: transparent;
+    font-size: 96px;
+    letter-spacing: -7.68px;
+    line-height: 81.6px;
+  }
+
+  .final .text-wrapper-39 {
+    color: #6a00ff;
+    letter-spacing: -7.37px;
+  }
+
+  .final .text-wrapper-40 {
+    color: #1f1926;
+    letter-spacing: -7.37px;
+  }
+
+  .final .elevating-digital {
+    font-weight: 400;
+    color: var(--palette-4);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .final .hero-text .div-2 {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+
+  .final .button-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--palette-1);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .final .button-hero:hover {
+    background-color: var(--palette-1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(106, 0, 255, 0.3);
+  }
+
+  .final .button-hero:hover .text-wrapper-42 {
+    color: #ffffff;
+  }
+
+  .final .text-wrapper-42 {
+    font-weight: 600;
+    color: var(--palette-1);
+    font-size: 16px;
+    transition: color 0.2s ease;
+  }
+
+  /* =========================================
+     3. ABOUT SECTION - TABLET
+     ========================================= */
+  .final .about-section {
+    position: relative;
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Dekorasi About - Reduced */
+  .final .text-wrapper-32 {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 250px;
+    opacity: 0.08;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .final .text-wrapper-33 {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 250px;
+    opacity: 0.08;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .final .about-me-wrapper {
+    order: 1;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .final .about-me {
+    font-weight: 400;
+    font-size: 48px;
+    text-align: center;
+    letter-spacing: -2px;
+    margin: 0;
+  }
+
+  .final .frame-44 {
+    order: 2;
+    position: relative;
+    z-index: 2;
+    width: 95%;
+    max-width: 900px;
+    background-color: #f7f0ff;
+    border-radius: 20px;
+    border: 1px solid var(--palette-4);
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .final .frame-45 {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .final .profile-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    flex: 0 0 auto;
+  }
+
+  .final .frame-47 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 340px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .final .frame-46 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .final .media-creative {
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: -1px;
+    margin: 0;
+  }
+
+  .final .i-m-jundan-a-video {
+    font-weight: 400;
+    color: var(--palette-4);
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: -0.5px;
+    margin: 15px 0;
+    line-height: 1.5;
+  }
+
+  .final .vector-4 {
+    width: 70%;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  /* =========================================
+     4. SKILLS SECTION - TABLET
+     ========================================= */
+  .final .skills-section {
+    position: relative;
+    width: 100%;
+    padding: 80px 20px 120px;
+    background-color: #ffffff;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Dekorasi Skills - Hidden/Reduced */
+  .final .text-wrapper-19,
+  .final .text-wrapper-20 {
+    display: none;
+  }
+
+  .final .rectangle-6 {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 5px;
+    background-color: var(--palette-4);
+    border-radius: 40px;
+    z-index: 0;
+  }
+
+  .final .frame-43 {
+    order: 1;
+    position: relative;
+    margin-bottom: 40px;
+    z-index: 2;
+    text-align: center;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .final .SKILLS-expertise {
+    font-weight: 400;
+    font-size: 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .final .frame-33 {
+    order: 2;
+    position: relative;
+    z-index: 2;
+    width: 95%;
+    max-width: 1000px;
+    height: auto;
+    min-height: 320px;
+    background-color: #6a00ff1a;
+    border-radius: 20px;
+    border: 1px solid #000000;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .final .frame-33 > .video,
+  .final .frame-33 > .design,
+  .final .frame-33 > .programmer {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .final .frame-33 > .video:hover,
+  .final .frame-33 > .design:hover,
+  .final .frame-33 > .programmer:hover {
+    transform: scale(1.05) translateY(-5px);
+  }
+
+  .final .rectangle-7,
+  .final .rectangle-8,
+  .final .rectangle-9 {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  /* =========================================
+     5. PORTFOLIO SECTION - TABLET
+     ========================================= */
+  .final .portfolio-section {
+    position: relative;
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Dekorasi Portfolio - Reduced/Hidden */
+  .final .cube,
+  .final .cube-2,
+  .final .cube-3,
+  .final .cube-4 {
+    opacity: 0.3;
+  }
+
+  .final .cube {
+    position: absolute;
+    top: 100px;
+    left: 60%;
+    width: 120px;
+  }
+
+  .final .cube-2 {
+    position: absolute;
+    top: 200px;
+    left: 10%;
+    width: 50px;
+  }
+
+  .final .cube-3 {
+    position: absolute;
+    bottom: 30px;
+    left: 15%;
+    width: 150px;
+  }
+
+  .final .cube-4 {
+    position: absolute;
+    bottom: 40px;
+    right: 15%;
+    width: 50px;
+  }
+
+  .final .star-8,
+  .final .star-9,
+  .final .star-10,
+  .final .star-11,
+  .final .star-12,
+  .final .star-13 {
+    opacity: 0.4;
+  }
+
+  .final .portfolio {
+    order: 1;
+    position: relative;
+    margin-bottom: 40px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+
+  .final .frame-28 {
+    order: 2;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    max-width: 800px;
+  }
+
+  .final .frame-29 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 23px;
+    background-color: var(--palette-1);
+    border-radius: 10px;
+    border: 3px solid var(--palette-4);
+    box-shadow: 9px 9px 0px #1f1926;
+    position: relative;
+  }
+
+  .final .frame-30 {
+    display: flex;
+    width: 100%;
+    height: 53px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    background-color: #1f19264c;
+    border-radius: 10px;
+    border: 2px solid var(--palette-4);
+  }
+
+  .final .frame-31 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .final .ellipse-4,
+  .final .ellipse-5,
+  .final .ellipse-6 {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+  }
+
+  .final .ellipse-4 {
+    background-color: var(--palette-2);
+  }
+
+  .final .ellipse-5 {
+    background-color: #ffd672;
+  }
+
+  .final .ellipse-6 {
+    background-color: var(--palette-3);
+  }
+
+  .final .text-wrapper-16 {
+    color: #ffffff;
+    font-size: 20px;
+  }
+
+  .final .rectangle-5 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .final .frame-32 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    z-index: 20;
+  }
+
+  .final .star-14 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .final .polygon {
+    width: 45px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* =========================================
+     6. MY WORKS SECTION - TABLET
+     ========================================= */
+  .final .my-works-section {
+    position: relative;
+    width: 100%;
+    padding: 60px 20px 80px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Grid Background - Visible */
+  .final .grid-web {
+    opacity: 0.3;
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .final .grid-web-2 {
+    top: 700px;
+  }
+
+  .final .grid-web-3 {
+    top: 1600px;
+  }
+
+  /* Works Title */
+  .final .frame-12 {
+    order: 1;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .final .my-works {
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .final .works-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .final .frame-13 {
+    position: absolute;
+    bottom: -10px;
+    right: -15px;
+    width: 70px;
+    height: auto;
+    opacity: 0.7;
+  }
+
+  /* Stars Decoration - Hidden */
+  .final .star-4,
+  .final .star-5,
+  .final .star-6,
+  .final .star-7 {
+    display: none;
+  }
+
+  /* Filter Buttons */
+  .final .works-grid {
+    order: 2;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
     gap: 25px;
   }
 
-  /* --- HERO --- */
-  .final .hero-section { min-height: 800px; padding-bottom: 50px; }
-  .final .hero-text {
-    position: relative;
-    top: 150px; 
-    left: 50px;
-    width: 80%;
+  .final .div-2 {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
   }
-  .final .visuals-motion { font-size: 72px; line-height: 1.1; }
-  .final .star-15, .final .ellipse-8, .final .polygon-2 { opacity: 0.5; transform: scale(0.7); }
 
-  /* --- ABOUT --- */
-  .final .about-section { padding-bottom: 100px; display: flex; flex-direction: column; align-items: center; }
-  .final .frame-44 { width: 90%; margin: 0 auto !important; padding: 40px; }
-  .final .frame-45 { gap: 40px; flex-direction: column; text-align: center; }
-  .final .text-wrapper-32, .final .text-wrapper-33 { font-size: 300px; line-height: normal; }
+  .final .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 2px solid var(--palette-4);
+    box-shadow: 6px 6px 0px #1f1926;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--palette-4);
+    background-color: #fff;
+  }
 
-  /* --- SKILLS --- */
-  .final .skills-section { padding-bottom: 100px; }
-  .final .frame-33 { width: 90%; height: auto; flex-wrap: wrap; gap: 20px; }
-  .final .video, .final .design, .final .programmer { flex: 1 1 45%; height: 300px; }
-  .final .text-wrapper-19, .final .text-wrapper-20 { display: none; }
+  .final .all-button[aria-pressed="true"] {
+    background-color: var(--palette-1);
+    color: #fff;
+  }
 
-  /* --- WORKS --- */
-  .final .works-grid { width: 90%; gap: 30px; }
-  .final .frame-15 { flex-wrap: wrap; justify-content: center; }
+  .final .motion-button[aria-pressed="true"] {
+    background-color: var(--palette-3);
+  }
 
-  /* --- CONTACT --- */
-  .final .contact-section { padding-bottom: 100px; }
-  .final .frame { width: 90%; height: auto; top: 150px; }
-  .final .div { width: 100%; flex-direction: column; align-items: center; }
-  .final .frame-wrapper, .final .frame-8 { width: 100%; border-radius: 15px; }
-  .final .frame-8 { border-top: none; }
+  .final .design-button[aria-pressed="true"] {
+    background-color: var(--palette-2);
+  }
+
+  .final .code-button[aria-pressed="true"] {
+    background-color: var(--variable-collection-palette-5);
+  }
+
+  .final .filter-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .final .filter-btn:active {
+    transform: translateY(0);
+  }
+
+  .final .text-wrapper-10,
+  .final .text-wrapper-11 {
+    font-weight: 500;
+    color: inherit;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  /* Works Grid - EXACT MATCH DESKTOP */
+  .final .frame-14 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .final .frame-15 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    justify-items: center;
+  }
+
+  /* Filter Item Visibility */
+  .final .filter-item {
+    display: none !important;
+  }
+
+  .final .filter-item.show {
+    display: flex !important;
+  }
+
+  /* Work Card Styling - EXACT MATCH DESKTOP */
+  .final .frame-16,
+  .final .frame-19,
+  .final .frame-21,
+  .final .frame-22,
+  .final .frame-24,
+  .final .frame-26 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 272px;
+    height: 320px;
+    padding: 18px 23px;
+    gap: 15px;
+    align-items: center;
+    border-radius: 17px;
+    border: 2px solid var(--palette-4);
+    box-shadow: 10px 10px 0px #1f1926;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    text-decoration: none;
+  }
+
+  .final .frame-16:hover,
+  .final .frame-19:hover,
+  .final .frame-21:hover,
+  .final .frame-22:hover,
+  .final .frame-24:hover,
+  .final .frame-26:hover {
+    transform: scale(1.03);
+    box-shadow: 15px 15px 0px #1f1926;
+    z-index: 5;
+  }
+
+  .final .frame-16 {
+    background-color: var(--palette-2);
+  }
+
+  .final .frame-19 {
+    background-color: var(--palette-3);
+  }
+
+  .final .frame-21 {
+    background-color: var(--variable-collection-palette-5);
+  }
+
+  .final .frame-22 {
+    background-color: #e7ddff;
+  }
+
+  .final .frame-24 {
+    background-color: #e7fffb;
+  }
+
+  .final .frame-26 {
+    background-color: var(--variable-collection-palette-7);
+  }
+
+  .final .rectangle-3,
+  .final .rectangle-4 {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .final .frame-17 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .final .text-wrapper-12 {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    color: var(--palette-4);
+    line-height: 1.2;
+  }
+
+  .final .text-wrapper-14,
+  .final .p {
+    font-size: 13px;
+    text-align: center;
+    color: var(--palette-4);
+    line-height: 1.3;
+  }
+
+  .final .frame-25 {
+    display: flex;
+    gap: 5px;
+    margin-top: auto;
+    justify-content: center;
+    width: auto;
+    flex-wrap: wrap;
+  }
+
+  .final .frame-18,
+  .final .frame-20,
+  .final .frame-23 {
+    padding: 4px 12px;
+    border-radius: 50px;
+    border: 2px solid var(--palette-4);
+    height: 24px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+  }
+
+  .final .frame-18 {
+    background-color: var(--palette-3);
+  }
+
+  .final .frame-20 {
+    background-color: var(--palette-2);
+  }
+
+  .final .frame-23 {
+    background-color: var(--variable-collection-palette-5);
+  }
+
+  .final .text-wrapper-13 {
+    font-size: 12px;
+    color: var(--palette-4);
+  }
+
+  /* =========================================
+     7. CONTACT SECTION - TABLET
+     ========================================= */
+  .final .contact-section {
+    position: relative;
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .final .frame {
+    position: relative;
+    z-index: 2;
+    width: 95%;
+    max-width: 1240px;
+    height: auto;
+    padding-bottom: 20px;
+    background-color: var(--variable-collection-palette-5);
+    border-radius: 15px;
+    border: 3px solid var(--palette-4);
+    box-shadow: 7px 7px 0px #1f1926;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .final .frame-wrapper {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 0px 0px 0px 15px;
+    border: 3px solid var(--palette-4);
+    padding: 40px;
+    min-width: 350px;
+  }
+
+  .final .div {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .final .contact-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .final .contact-form-group label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1f1926;
+  }
+
+  .final .contact-form-group input,
+  .final .contact-form-group textarea {
+    padding: 12px 15px;
+    border: 1px solid #e0d0ff;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+  }
+
+  .final .contact-form-group input:focus,
+  .final .contact-form-group textarea:focus {
+    outline: none;
+    border-color: var(--palette-1);
+  }
+
+  .final .contact-form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .final .frame-4 { width: 100%; display: flex; flex-direction: column; gap: 20px; }
+  .final .frame-5 { display: flex; gap: 20px; }
+  .final .frame-6 { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .final .text-wrapper-2 { font-size: 20px; color: var(--palette-4); }
+
+  .final .rectangle { width: 100%; height: 53px; border: 2px solid var(--palette-4); border-radius: 8px; padding: 12px; font-size: 16px; }
+  .final .rectangle-2 { width: 100%; height: 140px; border: 2px solid var(--palette-4); border-radius: 8px; padding: 12px; font-size: 16px; resize: vertical; }
+
+  .final .div-wrapper {
+    background-color: var(--palette-1);
+    padding: 10px 16px; border-radius: 8px; border: 2px solid var(--palette-4);
+    color: #fff; cursor: pointer; transition: all 0.2s; width: fit-content;
+  }
+  .final .div-wrapper:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.2); transform: translateY(-2px); }
+  .final .text-wrapper-3 { color: #fff; font-size: 20px; }
+
+  .final .frame-9 { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+  .final .text-wrapper-4 { font-size: 32px; font-weight: 500; margin: 0; color: var(--palette-4); }
+  .final .frame-10 { display: flex; flex-direction: column; gap: 10px; }
+
+  .final .frame-8 {
+    width: 400px;
+    background-color: #ffffff;
+    border-radius: 0px 0px 15px 0px;
+    border: 3px solid var(--palette-4);
+    border-left: none;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* =========================================
+     8. FOOTER - TABLET
+     ========================================= */
+  .final .footer {
+    width: 100%;
+    padding: 40px 20px;
+    background-color: #1f1926;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .final .footer a {
+    color: var(--palette-1);
+    text-decoration: none;
+  }
+
+  .final .footer a:hover {
+    text-decoration: underline;
+  }
+
+}/* PERBAIKAN KRITIS UNTUK TABLET SCROLL SPY */
+/* Tambahkan ini di akhir file responsive-tablet.css atau sebagai override */
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  
+  /* Force show navbar underline dengan specificity tinggi */
+  .final .navbar-2 li a.active::after,
+  .final .navbar-2 a.active::after {
+    width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Pastikan transition bekerja */
+  .final .navbar-2 a::after {
+    transition: width 0.3s ease !important;
+  }
+  
 }
