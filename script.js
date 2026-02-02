@@ -1,6 +1,6 @@
 (function() {
     // Inisialisasi EmailJS
-    emailjs.init("dPNSrAiSXY6Z3mNbo");
+    emailjs.init("rqp74mxmpwl7hXkhu");
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== ELEMENT REFERENCES =====
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navMenu = document.getElementById('mobile-menu');
-    const contactBtnNav = document.getElementById('contact-btn-nav');
+    // UPDATED: Referensi ke tombol Store
+    const contactBtnNav = document.getElementById('store-btn-nav');
     const body = document.body;
     
     // Create overlay element
@@ -61,20 +62,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Menangkap SEMUA link yang berawalan '#' (Navbar, Hero, Footer, Back to Top)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault(); 
             
             const targetId = this.getAttribute('href');
             
             // Cek apakah link ini berada di dalam navigasi mobile / tombol contact nav
             // Jika ya, tutup menu (tanpa delay scroll)
-            const isMobileMenuLink = this.closest('.navbar-2') || this.id === 'contact-btn-nav';
+            // UPDATED: Cek ID store-btn-nav
+            const isMobileMenuLink = this.closest('.navbar-2') || this.id === 'store-btn-nav';
             
             if (isMobileMenuLink && navMenu.classList.contains('active')) {
-                closeMenu();
+                // Untuk tombol store, biar logika modal yang handle close menu
+                if (this.id !== 'store-btn-nav') {
+                    closeMenu();
+                }
             }
 
-            // Langsung eksekusi scroll
-            smoothScrollTo(targetId);
+            // Langsung eksekusi scroll HANYA JIKA bukan tombol store (href="#")
+            if (targetId !== '#') {
+                e.preventDefault(); 
+                smoothScrollTo(targetId);
+            }
         });
     });
 
@@ -219,7 +226,48 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
-    console.log('✓ All systems operational (Instant Scroll)');
+    // ===== STORE MODAL LOGIC (NEW) =====
+    const storeBtn = document.getElementById('store-btn-nav');
+    const storeModal = document.getElementById('store-modal');
+    const closeModalBtn = document.querySelector('.close-modal');
+
+    // Function to open modal
+    if (storeBtn && storeModal) {
+        storeBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah link pindah halaman
+            storeModal.classList.add('active');
+            
+            // Jika di mobile menu sedang terbuka, tutup menu hamburger
+            if (navMenu && navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    }
+
+    // Function to close modal (Click X button)
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function() {
+            storeModal.classList.remove('active');
+        });
+    }
+
+    // Close modal when clicking OUTSIDE the content
+    if (storeModal) {
+        storeModal.addEventListener('click', function(e) {
+            if (e.target === storeModal) {
+                storeModal.classList.remove('active');
+            }
+        });
+    }
+
+    // Close modal with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && storeModal.classList.contains('active')) {
+            storeModal.classList.remove('active');
+        }
+    });
+
+    console.log('✓ All systems operational (Instant Scroll & Modal)');
 });
 
 // ===== GLOBAL VIDEO TOGGLE =====

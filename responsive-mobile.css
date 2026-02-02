@@ -229,8 +229,8 @@
     -webkit-backdrop-filter: blur(2px);
   }
 
-  /* ===== CONTACT BUTTON IN MENU (FIXED) ===== */
-  #contact-btn-nav {
+  /* ===== STORE BUTTON IN MENU (FIXED) ===== */
+  #store-btn-nav {
     position: fixed;
     bottom: 15vh; 
     left: 50%;
@@ -259,7 +259,7 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  #contact-btn-nav.active {
+  #store-btn-nav.active {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
@@ -277,7 +277,7 @@
     }
   }
 
-  #contact-btn-nav:active {
+  #store-btn-nav:active {
     transform: translateX(-50%) scale(0.95) !important;
     box-shadow: 0 4px 12px rgba(106, 0, 255, 0.3) !important;
   }

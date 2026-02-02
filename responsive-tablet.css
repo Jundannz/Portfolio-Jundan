@@ -111,10 +111,12 @@
     transition: width 0.3s ease;
   }
 
+  .final .navbar-2 li a.active::after,
   .final .navbar-2 a.active::after {
     width: 100%;
   }
 
+  .final .navbar-2 li a:hover::after,
   .final .navbar-2 a:hover::after {
     width: 100%;
   }
@@ -779,9 +781,16 @@
     margin: 0;
     display: flex;
     align-items: baseline;
-    gap: 10px;
+    gap: 2px;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* Slightly enlarge the "works" label and keep it aligned on tablet */
+  .final .text-wrapper-9,
+  .final .works {
+    font-size: 48px;
+    margin-left: 2px;
   }
 
   .final .works-wrapper {
@@ -791,11 +800,13 @@
 
   .final .frame-13 {
     position: absolute;
-    bottom: -10px;
-    right: -15px;
-    width: 70px;
+    top: 45%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    width: 150%;
     height: auto;
-    opacity: 0.7;
+    opacity: 0.8;
+    z-index: 1;
   }
 
   /* Stars Decoration - Hidden */
@@ -1161,22 +1172,4 @@
     text-decoration: underline;
   }
 
-}/* PERBAIKAN KRITIS UNTUK TABLET SCROLL SPY */
-/* Tambahkan ini di akhir file responsive-tablet.css atau sebagai override */
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  
-  /* Force show navbar underline dengan specificity tinggi */
-  .final .navbar-2 li a.active::after,
-  .final .navbar-2 a.active::after {
-    width: 100% !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Pastikan transition bekerja */
-  .final .navbar-2 a::after {
-    transition: width 0.3s ease !important;
-  }
-  
 }
