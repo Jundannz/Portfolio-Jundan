@@ -1,18 +1,15 @@
-/* responsive-mobile.css - FINAL FIXED VERSION (Button & Scroll Fixed) */
-/* Target: Mobile / HP (Max width 768px) */
+/* For Mobile / HP (Max width 768px) */
 
 @media screen and (max-width: 768px) {
 
-  /* =========================================
-     0. GLOBAL RESET
-     ========================================= */
+  /* Global style */
   * {
     box-sizing: border-box;
   }
 
   html {
     overflow-x: hidden;
-    scroll-behavior: smooth !important; /* Paksa smooth scroll CSS */
+    scroll-behavior: smooth !important;
   }
 
   body {
@@ -23,7 +20,7 @@
   }
 
   body.no-scroll, body.menu-open {
-    overflow: hidden !important; /* Kunci scroll saat menu terbuka */
+    overflow: hidden !important;
   }
 
   .final {
@@ -33,9 +30,7 @@
     position: relative;
   }
 
-  /* =========================================
-     1. NAVBAR
-     ========================================= */
+  /* Navbar */
   
   .final .navbar {
     position: fixed;
@@ -68,7 +63,7 @@
     justify-content: center;
     cursor: pointer;
     transition: transform 0.2s ease;
-    z-index: 1005; /* Paling atas */
+    z-index: 1005;
   }
 
   .final .logo:active {
@@ -81,7 +76,7 @@
     object-fit: cover;
   }
 
-  /* ===== HAMBURGER BUTTON ===== */
+  /* Hamburger */
   .final .hamburger {
     display: flex; 
     flex-direction: column;
@@ -90,7 +85,7 @@
     gap: 6px; 
     
     cursor: pointer;
-    z-index: 1005; /* Di atas overlay sidebar */
+    z-index: 1005;
     background: transparent;
     border: none;
     padding: 0;
@@ -129,7 +124,7 @@
     transform: translateY(-9px) rotate(-45deg);
   }
   
-  /* ===== SIDEBAR MENU (Transparent Blur) ===== */
+  /* Sidebar */
   .final .navbar-2 {
     position: fixed !important;
     top: 0 !important;
@@ -229,14 +224,13 @@
     -webkit-backdrop-filter: blur(2px);
   }
 
-  /* ===== STORE BUTTON IN MENU (FIXED) ===== */
+  /* Store */
   #store-btn-nav {
     position: fixed;
     bottom: 15vh; 
     left: 50%;
     transform: translateX(-50%);
     
-    /* Z-index harus di atas sidebar background */
     z-index: 1000 !important; 
     
     display: inline-flex !important;
@@ -288,9 +282,7 @@
     font-weight: 600 !important;
   }
 
-  /* =========================================
-     2. HERO SECTION
-     ========================================= */
+  /* Hero */
   .final .hero-section {
     min-height: auto;
     padding: 100px 20px 60px 20px;
@@ -348,7 +340,6 @@
     justify-content: center;
   }
 
-  /* Decorations */
   .final .ellipse-8,
   .final .rectangle-11,
   .final .ellipse-9,
@@ -359,9 +350,7 @@
     width: 100px;
   }
 
-  /* =========================================
-     3. ABOUT SECTION
-     ========================================= */
+  /* About section */
   .final .about-section {
     padding: 60px 20px;
     overflow: visible;
@@ -434,9 +423,7 @@
     margin: 15px auto;
   }
 
-  /* =========================================
-     4. SKILLS SECTION
-     ========================================= */
+  /* Skills */
   .final .skills-section {
     padding: 60px 20px;
   }
@@ -506,9 +493,7 @@
     border-radius: 15px !important;
   }
 
-  /* =========================================
-     5. PORTFOLIO SECTION
-     ========================================= */
+  /* Portfolio */
   .final .portfolio-section {
     padding: 60px 20px;
   }
@@ -565,7 +550,6 @@
     width: 25px;
   }
 
-  /* Hide decorations */
   .final .cube,
   .final .cube-2,
   .final .cube-3,
@@ -579,9 +563,7 @@
     display: none;
   }
 
-  /* =========================================
-     6. MY WORKS SECTION
-     ========================================= */
+  /* Works */
   .final .my-works-section {
     padding: 60px 20px;
     position: relative;
@@ -664,7 +646,6 @@
     gap: 20px !important;
   }
 
-  /* --- LOGIKA FILTER FIX --- */
   .final .filter-item {
     display: none !important;
   }
@@ -701,7 +682,6 @@
     font-size: 24px;
   }
 
-  /* Hide decorations */
   .final .star-4,
   .final .star-5,
   .final .star-6,
@@ -709,9 +689,7 @@
     display: none;
   }
 
-  /* =========================================
-     7. CONTACT SECTION
-     ========================================= */
+  /* Contact section */
   .final .contact-section {
     padding: 60px 20px;
   }
@@ -880,7 +858,6 @@
     word-break: break-word;
   }
 
-  /* Hide decorations */
   .final .vector,
   .final .star,
   .final .img,
@@ -890,9 +867,7 @@
     display: none;
   }
 
-  /* =========================================
-     8. FOOTER
-     ========================================= */
+  /* Footer */
   .footer-section {
     padding: 40px 20px;
   }

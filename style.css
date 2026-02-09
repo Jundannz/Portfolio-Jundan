@@ -1,6 +1,4 @@
-/* =========================================
-   RESET & GLOBAL
-   ========================================= */
+/* Global  */
 body {
   margin: 0;
   font-family: "Poppins", Helvetica, sans-serif;
@@ -21,7 +19,6 @@ body {
   overflow: visible;
 }
 
-/* Helper Fonts */
 .final .works,
 .final .text-wrapper-9,
 .final .text-wrapper-18,
@@ -29,9 +26,7 @@ body {
   font-family: "Fraunces", Helvetica, serif;
 }
 
-/* =========================================
-   NAVBAR (Main)
-   ========================================= */
+/* Navbar */
 .final .navbar {
   position: fixed;
   top: 0;
@@ -53,7 +48,7 @@ body {
   padding: 0 40px;
   align-items: center;
   justify-content: space-between;
-  position: relative; /* Penting untuk konteks absolute children */
+  position: relative;
 }
 
 .final .logo {
@@ -63,12 +58,11 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: transform 0.2s ease;
-  z-index: 10; /* Agar logo tetap di atas */
+  z-index: 10;
 }
 .final .logo:hover { transform: scale(1.05); }
 .final .logo-jundannz { width: 100%; height: auto; object-fit: cover; }
 
-/* --- NAVIGASI TENGAH (Good Absolute) --- */
 .final .navbar-2 {
   display: flex;
   align-items: center;
@@ -76,8 +70,6 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  
-  /* Absolute Centering */
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -133,9 +125,7 @@ body {
   font-weight: 600;
 }
 
-/* =========================================
-   HERO SECTION
-   ========================================= */
+/* Hero */
 .final .hero-section {
   position: relative;
   width: 100%;
@@ -146,7 +136,6 @@ body {
   align-items: center;
 }
 
-/* DEKORASI (Good Absolute) */
 .final .ellipse-8 { position: absolute; top: 52px; right: 50px; width: 773px; height: 783px; pointer-events: none; }
 .final .rectangle-11 { position: absolute; top: -2px; right: 300px; width: 236px; height: 236px; background-color: var(--palette-3); transform: rotate(-15.76deg); pointer-events: none; }
 .final .ellipse-9 { position: absolute; top: 569px; right: 120px; width: 172px; height: 173px; background-color: var(--palette-1); border-radius: 50%; pointer-events: none; }
@@ -154,7 +143,6 @@ body {
 .final .star-15 { position: absolute; top: 298px; right: 291px; width: 292px; height: 292px; pointer-events: none; }
 .final .star-16 { position: absolute; top: 99px; right: 100px; width: 119px; height: 119px; pointer-events: none; }
 
-/* KONTEN UTAMA */
 .final .hero-text {
   display: flex;
   flex-direction: column;
@@ -202,7 +190,6 @@ body {
   gap: 20px;
 }
 
-/* --- Contact Me Button Animation --- */
 .final .button-hero {
   display: inline-flex;
   align-items: center;
@@ -224,9 +211,7 @@ body {
 .final .text-wrapper-42 { font-weight: 600; color: var(--palette-1); font-size: 16px; transition: color 0.2s ease;}
 
 
-/* =========================================
-   ABOUT SECTION
-   ========================================= */
+/* About section */
 .final .about-section {
   position: relative;
   width: 100%;
@@ -238,7 +223,6 @@ body {
   overflow: hidden; 
 }
 
-/* Dekorasi */
 .final .text-wrapper-32 {
   position: absolute; top: 244px; left: 50%; transform: translateX(-50%);
   font-weight: 400; font-style: italic; color: #6a00ff0d; font-size: 650px;
@@ -335,9 +319,7 @@ body {
 .final .vector-4 { width: 80%; height: auto; }
 
 
-/* =========================================
-   SKILLS SECTION
-   ========================================= */
+/* Skills section */
 .final .skills-section {
   position: relative;
   width: 100%;
@@ -349,7 +331,6 @@ body {
   align-items: center;
 }
 
-/* Dekorasi */
 .final .text-wrapper-19 {
   position: absolute; top: 57px; right: -200px; 
   transform: rotate(-31deg);
@@ -433,9 +414,7 @@ body {
 }
 
 
-/* =========================================
-   PORTFOLIO SECTION
-   ========================================= */
+/* Portfolio section */
 .final .portfolio-section {
   position: relative;
   width: 100%;
@@ -446,7 +425,6 @@ body {
   align-items: center;
 }
 
-/* Dekorasi */
 .final .cube { position: absolute; top: 160px; left: 72%; transform: rotateX(-15deg) rotateY(15deg); width: 200px; pointer-events: none; }
 .final .cube-2 { position: absolute; top: 280px; left: 20%; width: 61px; pointer-events: none; }
 .final .cube-3 { position: absolute; bottom: 40px; left: 19%; width: 282px; pointer-events: none; }
@@ -555,9 +533,7 @@ body {
 .hide-btn { opacity: 0; pointer-events: none; }
 
 
-/* =========================================
-   MY WORKS SECTION
-   ========================================= */
+/* Works section */
 .final .my-works-section {
   position: relative;
   width: 100%;
@@ -569,7 +545,6 @@ body {
   align-items: center;
 }
 
-/* Dekorasi */
 .final .grid-web {
   position: absolute; top: 280px; left: 50%; transform: translateX(-50%);
   width: 1240px; height: 1179px; object-fit: cover; opacity: 0.5; pointer-events: none;
@@ -627,7 +602,6 @@ body {
   justify-content: center; flex-wrap: wrap;
 }
 
-/* Filter items - controlled by JavaScript */
 .final .filter-item {
   display: none;
 }
@@ -636,17 +610,14 @@ body {
   display: flex;
 }
 
-/* Default: Show all-view items on page load */
 .final .filter-item.all-view {
   display: flex;
 }
 
-/* Also allow display style from JavaScript */
 .final .filter-item[style*="display: flex"] {
   display: flex !important;
 }
 
-/* --- WORK CARDS (Hover & Transitions) --- */
 .final .frame-16, .final .frame-19, .final .frame-21, .final .frame-22, .final .frame-24, .final .frame-26 {
   display: flex; 
   flex-direction: column;
@@ -666,10 +637,9 @@ body {
   text-decoration: none;
 }
 
-/* State Hover pada Card */
 .final .frame-16:hover, .final .frame-19:hover, .final .frame-21:hover, 
 .final .frame-22:hover, .final .frame-24:hover, .final .frame-26:hover {
-  transform: scale(1.03); /* Pop Up Scaling */
+  transform: scale(1.03);
   box-shadow: 15px 15px 0px #1f1926;
   z-index: 5;
 }
@@ -705,9 +675,7 @@ body {
 .final .text-wrapper-15 { font-weight: 600; font-size: 32px; color: var(--palette-4); }
 
 
-/* =========================================
-   CONTACT SECTION
-   ========================================= */
+/* Contact secrion */
 .final .contact-section {
   position: relative;
   width: 100%;
@@ -723,7 +691,6 @@ body {
   overflow: visible;
 }
 
-/* Dekorasi */
 .final .vector { position: absolute; bottom: 100px; right: 10%; width: 246px; pointer-events: none; }
 .final .star { position: absolute; top: 220px; right: 13%; width: 167px; pointer-events: none; }
 .final .img { position: absolute; bottom: 120px; left: 14%; width: 132px; pointer-events: none; }
@@ -731,7 +698,6 @@ body {
 .final .star-3 { position: absolute; top: 500px; left: 16%; width: 23px; pointer-events: none; }
 .final .line { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); width: 516px; height: 5px; pointer-events: none; }
 
-/* Konten */
 .final .let-s-collaborate {
   position: relative; 
   margin-bottom: 50px;
@@ -838,30 +804,25 @@ body {
 .final .text-wrapper-4 { font-size: 32px; font-weight: 500; margin: 0; color: var(--palette-4); }
 .final .frame-10 { display: flex; flex-direction: column; gap: 10px; }
 
-/* === [NEW] CONTACT INFO HOVER ANIMATION === */
 .final .frame-8 .frame-11,
 .final .frame-8 .frame-10 .frame-3 { 
   display: flex; 
   align-items: center; 
   gap: 10px; 
   text-decoration: none; 
-  
-  /* Animasi */
   transition: all 0.3s ease;
-  padding: 5px 10px; /* Spasi untuk background */
+  padding: 5px 10px;
   border-radius: 8px;
   cursor: pointer;
-  margin-left: -10px; /* Kompensasi padding */
+  margin-left: -10px;
 }
 
-/* Hover Effect: Geser + Background Ungu Tipis */
 .final .frame-8 .frame-11:hover,
 .final .frame-8 .frame-10 .frame-3:hover {
   transform: translateX(10px);
   background-color: rgba(106, 0, 255, 0.05);
 }
 
-/* Hover Effect: Text Color */
 .final .frame-8 .frame-11:hover .text-wrapper-5,
 .final .frame-8 .frame-10 .frame-3:hover .text-wrapper-5 {
   color: var(--palette-1);
@@ -871,9 +832,7 @@ body {
 .final .text-wrapper-5 { font-size: 18px; color: var(--palette-4); text-decoration: none; transition: color 0.3s ease; }
 
 
-/* =========================================
-   FOOTER
-   ========================================= */
+/* Footer */
 .footer-section {
   width: 100%;
   padding: 50px 0;
@@ -899,7 +858,6 @@ body {
 .footer-section .logo-jundannz { width: 140px; height: auto; }
 .footer-section .text-wrapper { color: #ffffff; font-size: 14px; margin: 0; }
 
-/* === [NEW] BACK TO TOP BUTTON ANIMATION === */
 .footer-section .div-wrapper {
   border: 1px solid #fff; 
   border-radius: 50px; 
@@ -908,22 +866,20 @@ body {
   text-decoration: none; 
   display: inline-block; 
   width: fit-content;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Pop effect */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 0 0 rgba(0,0,0,0);
 }
 
 .footer-section .div-wrapper:hover {
-  background-color: #ffffff;      /* Putih Solid */
-  transform: translateY(-5px);    /* Naik ke atas */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Shadow */
+  background-color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Text inside Back To Top */
 .footer-section .div-wrapper .text-wrapper-2 {
   transition: color 0.3s ease;
 }
 
-/* Ubah text jadi ungu saat hover */
 .footer-section .div-wrapper:hover .text-wrapper-2 {
   color: var(--variable-collection-palette-5);
   font-weight: 600;
@@ -948,12 +904,10 @@ body {
   .final .rectangle-6 { display: none; }
 }
 
-/* Smooth Scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Tambahkan di style.css paling bawah */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -965,45 +919,35 @@ html {
   height: 3px;
   margin: 5px auto;
   transition: all 0.3s ease-in-out;
-  background-color: var(--palette-4); /* Mengambil warna teks utama */
+  background-color: var(--palette-4); 
   border-radius: 3px;
 }
 
-/* =========================================
-   LOGO CLICK ANIMATION (FIX STICKY HOVER)
-   ========================================= */
-
-/* Definisi animasi membesar lalu mengecil */
 @keyframes logoPop {
   0% { transform: scale(1); }
-  50% { transform: scale(1.04); } /* Membesar 15% */
-  100% { transform: scale(1); }   /* Kembali normal */
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
 }
 
-/* Class yang akan ditempel via JS saat diklik */
 .final .logo.animate-pop {
   animation: logoPop 0.3s ease-out forwards;
 }
 
-/* Matikan efek hover default di layar sentuh agar tidak bentrok */
 @media (hover: none) {
   .final .logo:hover {
     transform: none; 
   }
 }
 
-/* =========================================
-   STORE MODAL STYLES (NEW)
-   ========================================= */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(31, 25, 38, 0.6); /* Palette-4 with opacity */
+  background-color: rgba(31, 25, 38, 0.6);
   backdrop-filter: blur(5px);
-  z-index: 2000; /* Lebih tinggi dari Navbar */
+  z-index: 2000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1027,7 +971,7 @@ html {
   box-shadow: 10px 10px 0px var(--palette-4);
   position: relative;
   transform: translateY(20px) scale(0.95);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy effect */
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modal-overlay.active .modal-content {
@@ -1125,15 +1069,14 @@ html {
   transition: all 0.2s ease;
 }
 
-/* Specific Store Colors */
 .store-card.sociabuzz:hover {
-  background-color: var(--palette-3); /* Teal */
+  background-color: var(--palette-3);
   box-shadow: 4px 4px 0px var(--palette-4);
   transform: translate(-2px, -2px);
 }
 
 .store-card.payhip:hover {
-  background-color: var(--palette-2); /* Pink */
+  background-color: var(--palette-2);
   box-shadow: 4px 4px 0px var(--palette-4);
   transform: translate(-2px, -2px);
 }

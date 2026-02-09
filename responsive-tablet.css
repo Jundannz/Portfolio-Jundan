@@ -1,11 +1,8 @@
-/* responsive-tablet.css - COMPLETE REDESIGN */
-/* Target: Tablet / iPad (769px to 1024px) */
+/* For Tablet / iPad (769px to 1024px) */
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 
-  /* =========================================
-     0. GLOBAL RESET FOR TABLET
-     ========================================= */
+  /*Global style*/
   * {
     box-sizing: border-box;
   }
@@ -29,9 +26,7 @@
     position: relative;
   }
 
-  /* =========================================
-     1. NAVBAR - SAME AS DESKTOP
-     ========================================= */
+  /* Navbar */
   .final .navbar {
     height: 70px;
     padding: 0;
@@ -73,7 +68,7 @@
     transform: scale(1.05);
   }
 
-  /* DESKTOP NAVBAR - Horizontal Menu */
+  /* desktop navbara */
   .final .navbar-2 {
     display: flex;
     align-items: center;
@@ -121,7 +116,7 @@
     width: 100%;
   }
 
-  /* Hide Hamburger on Tablet */
+  /* Hide Hamburger on tablet */
   .hamburger {
     display: none;
   }
@@ -155,9 +150,7 @@
     font-weight: 600;
   }
 
-  /* =========================================
-     2. HERO SECTION - SAME AS DESKTOP
-     ========================================= */
+  /* Hero section */
   .final .hero-section {
     position: relative;
     width: 100%;
@@ -169,7 +162,6 @@
     overflow: hidden;
   }
 
-  /* Dekorasi Hero - EXACT SAME AS DESKTOP with LOWER OPACITY */
   .final .ellipse-8 {
     position: absolute;
     top: 52px;
@@ -234,7 +226,6 @@
     opacity: 0.2;
   }
 
-  /* Hero Text Content - SAME AS DESKTOP */
   .final .hero-text {
     display: flex;
     flex-direction: column;
@@ -323,9 +314,7 @@
     transition: color 0.2s ease;
   }
 
-  /* =========================================
-     3. ABOUT SECTION - TABLET
-     ========================================= */
+  /* About section */
   .final .about-section {
     position: relative;
     width: 100%;
@@ -337,7 +326,6 @@
     overflow: hidden;
   }
 
-  /* Dekorasi About - Reduced */
   .final .text-wrapper-32 {
     position: absolute;
     top: 150px;
@@ -453,9 +441,7 @@
     margin-top: 10px;
   }
 
-  /* =========================================
-     4. SKILLS SECTION - TABLET
-     ========================================= */
+  /* Skills section */
   .final .skills-section {
     position: relative;
     width: 100%;
@@ -467,7 +453,6 @@
     align-items: center;
   }
 
-  /* Dekorasi Skills - Hidden/Reduced */
   .final .text-wrapper-19,
   .final .text-wrapper-20 {
     display: none;
@@ -555,9 +540,7 @@
     object-fit: cover;
   }
 
-  /* =========================================
-     5. PORTFOLIO SECTION - TABLET
-     ========================================= */
+  /* Portfolio section */
   .final .portfolio-section {
     position: relative;
     width: 100%;
@@ -569,7 +552,6 @@
     overflow: hidden;
   }
 
-  /* Dekorasi Portfolio - Reduced/Hidden */
   .final .cube,
   .final .cube-2,
   .final .cube-3,
@@ -732,9 +714,7 @@
     transform: translate(-50%, -50%);
   }
 
-  /* =========================================
-     6. MY WORKS SECTION - TABLET
-     ========================================= */
+  /* My works */
   .final .my-works-section {
     position: relative;
     width: 100%;
@@ -746,7 +726,6 @@
     overflow: hidden;
   }
 
-  /* Grid Background - Visible */
   .final .grid-web {
     opacity: 0.3;
     width: 100%;
@@ -765,7 +744,6 @@
     top: 1600px;
   }
 
-  /* Works Title */
   .final .frame-12 {
     order: 1;
     position: relative;
@@ -786,7 +764,6 @@
     flex-wrap: wrap;
   }
 
-  /* Slightly enlarge the "works" label and keep it aligned on tablet */
   .final .text-wrapper-9,
   .final .works {
     font-size: 48px;
@@ -809,7 +786,6 @@
     z-index: 1;
   }
 
-  /* Stars Decoration - Hidden */
   .final .star-4,
   .final .star-5,
   .final .star-6,
@@ -885,7 +861,7 @@
     text-align: center;
   }
 
-  /* Works Grid - EXACT MATCH DESKTOP */
+  /* Works Grid */
   .final .frame-14 {
     display: flex;
     flex-direction: column;
@@ -912,7 +888,6 @@
     display: flex !important;
   }
 
-  /* Work Card Styling - EXACT MATCH DESKTOP */
   .final .frame-16,
   .final .frame-19,
   .final .frame-21,
@@ -1041,9 +1016,7 @@
     color: var(--palette-4);
   }
 
-  /* =========================================
-     7. CONTACT SECTION - TABLET
-     ========================================= */
+  /* Contact section */
   .final .contact-section {
     position: relative;
     width: 100%;
@@ -1151,9 +1124,7 @@
     align-items: center;
   }
 
-  /* =========================================
-     8. FOOTER - TABLET
-     ========================================= */
+  /* Footer */
   .final .footer {
     width: 100%;
     padding: 40px 20px;

@@ -1,18 +1,15 @@
 (function() {
-    // Inisialisasi EmailJS
+    // emailjs
     emailjs.init("rqp74mxmpwl7hXkhu");
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ===== ELEMENT REFERENCES =====
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navMenu = document.getElementById('mobile-menu');
-    // UPDATED: Referensi ke tombol Store
     const contactBtnNav = document.getElementById('store-btn-nav');
     const body = document.body;
-    
-    // Create overlay element
+
     let overlay = document.querySelector('.menu-overlay');
     if (!overlay) {
         overlay = document.createElement('div');
@@ -20,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         body.appendChild(overlay);
     }
 
-    // ===== MENU STATE MANAGEMENT =====
+    // menu state
     function openMenu() {
         if (!hamburgerBtn || !navMenu) return;
         
@@ -49,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== GENERIC SMOOTH SCROLL FUNCTION (INSTANT) =====
-    // UPDATED: Tidak ada setTimeout. Scroll langsung jalan.
     function smoothScrollTo(targetId) {
         const targetSection = document.querySelector(targetId);
         if (targetSection) {
@@ -58,26 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== UNIVERSAL SMOOTH SCROLL HANDLER =====
-    // Menangkap SEMUA link yang berawalan '#' (Navbar, Hero, Footer, Back to Top)
+    // Scroll handler
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             
             const targetId = this.getAttribute('href');
-            
-            // Cek apakah link ini berada di dalam navigasi mobile / tombol contact nav
-            // Jika ya, tutup menu (tanpa delay scroll)
-            // UPDATED: Cek ID store-btn-nav
             const isMobileMenuLink = this.closest('.navbar-2') || this.id === 'store-btn-nav';
             
             if (isMobileMenuLink && navMenu.classList.contains('active')) {
-                // Untuk tombol store, biar logika modal yang handle close menu
                 if (this.id !== 'store-btn-nav') {
                     closeMenu();
                 }
             }
-
-            // Langsung eksekusi scroll HANYA JIKA bukan tombol store (href="#")
             if (targetId !== '#') {
                 e.preventDefault(); 
                 smoothScrollTo(targetId);
@@ -85,32 +72,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===== HAMBURGER CLICK HANDLER =====
+    // Hamburger click
     hamburgerBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleMenu();
     });
 
-    // ===== OVERLAY CLICK HANDLER =====
+    // Overlay click
     overlay?.addEventListener('click', () => {
         closeMenu();
     });
 
-    // ===== LOGO CLICK HANDLER (INSTANT) =====
+    // Logo click
     const logo = document.querySelector('.logo');
     logo?.addEventListener('click', (e) => {
         e.preventDefault();
         
-        // Tutup menu jika terbuka
         if (navMenu.classList.contains('active')) {
             closeMenu();
         }
         
-        // Langsung scroll ke hero
         smoothScrollTo('#hero'); 
     });
 
-    // ===== SCROLL SPY (Active Link Highlighter) =====
+    // Highlight active nav link on scroll
     const sections = document.querySelectorAll('.final section[id]');
     const navLinks = document.querySelectorAll('.navbar-2 a[href^="#"]'); 
     const navbarHeight = 70;
@@ -153,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateActiveLink();
 
-    // ===== FILTER BUTTONS =====
+    // Filter btn
     const filterBtns = document.querySelectorAll('.filter-btn');
     const filterItems = document.querySelectorAll('.filter-item');
 
@@ -188,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===== CONTACT FORM HANDLER =====
+    // Form handler
     const contactForm = document.getElementById('contact-form');
     
     contactForm?.addEventListener('submit', function(event) {
@@ -226,32 +211,28 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
-    // ===== STORE MODAL LOGIC (NEW) =====
+    // Store
     const storeBtn = document.getElementById('store-btn-nav');
     const storeModal = document.getElementById('store-modal');
     const closeModalBtn = document.querySelector('.close-modal');
 
-    // Function to open modal
     if (storeBtn && storeModal) {
         storeBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // Mencegah link pindah halaman
+            e.preventDefault();
             storeModal.classList.add('active');
             
-            // Jika di mobile menu sedang terbuka, tutup menu hamburger
             if (navMenu && navMenu.classList.contains('active')) {
                 closeMenu();
             }
         });
     }
 
-    // Function to close modal (Click X button)
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', function() {
             storeModal.classList.remove('active');
         });
     }
 
-    // Close modal when clicking OUTSIDE the content
     if (storeModal) {
         storeModal.addEventListener('click', function(e) {
             if (e.target === storeModal) {
@@ -260,7 +241,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Close modal with ESC key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && storeModal.classList.contains('active')) {
             storeModal.classList.remove('active');
@@ -270,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✓ All systems operational (Instant Scroll & Modal)');
 });
 
-// ===== GLOBAL VIDEO TOGGLE =====
+// Global video toggle function
 window.toggleVideo = function() {
     const video = document.getElementById('portfolioVideo');
     const btn = document.getElementById('playBtn');
