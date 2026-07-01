@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbarHeight = 70;
     const threshold = navbarHeight + 100;
 
-    function updateActiveLink() {
-        const scrollPos = window.scrollY;
+    function updateActiveLink(scrollPos) {
+        if (scrollPos === undefined) scrollPos = getScrollY();
         let currentSection = '';
 
         sections.forEach(section => {
@@ -126,21 +126,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    let scrollTicking = false;
     const scrollProgress = document.getElementById('scroll-progress');
+    let docHeight = 0;
+    let winHeight = 0;
+    let scrollable = 0;
     
     function getScrollY() {
-        if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
-        if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
         const se = document.scrollingElement || document.documentElement;
-        if (se.scrollTop > 0) return se.scrollTop;
-        return document.body.scrollTop || 0;
+        return Math.max(
+            window.scrollY || 0,
+            window.pageYOffset || 0,
+            se.scrollTop || 0,
+            document.documentElement.scrollTop || 0,
+            document.body.scrollTop || 0
+        );
+    }
+
+    function updateDimensions() {
+        docHeight = Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight
+        );
+        winHeight = window.innerHeight;
+        scrollable = Math.max(0, docHeight - winHeight);
     }
 
     function handleScrollUpdate() {
         const scrollY = getScrollY();
         
-        updateActiveLink();
+        updateActiveLink(scrollY);
         
         // Floating navbar
         if (scrollY > 10) {
@@ -150,37 +164,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Scroll Progress
-        if (scrollProgress) {
-            const docHeight = Math.max(
-                document.body.scrollHeight, document.documentElement.scrollHeight,
-                document.body.offsetHeight, document.documentElement.offsetHeight
-            );
-            const winHeight = window.innerHeight;
-            const scrollable = docHeight - winHeight;
-            if (scrollable > 0) {
-                const scrolled = Math.min((scrollY / scrollable) * 100, 100);
-                scrollProgress.style.width = scrolled + '%';
-            }
+        if (scrollProgress && scrollable > 0) {
+            const scrolled = Math.min((scrollY / scrollable) * 100, 100);
+            scrollProgress.style.width = scrolled + '%';
         }
     }
 
-    function onScroll() {
-        if (!scrollTicking) {
-            window.requestAnimationFrame(() => {
-                handleScrollUpdate();
-                scrollTicking = false;
-            });
-            scrollTicking = true;
-        }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', handleScrollUpdate, { passive: true });
+    document.addEventListener('scroll', handleScrollUpdate, { passive: true });
 
     window.addEventListener('resize', () => {
-        requestAnimationFrame(handleScrollUpdate);
+        updateDimensions();
+        handleScrollUpdate();
     }, { passive: true });
 
+    // Initial setup
+    updateDimensions();
     handleScrollUpdate();
 
     // Filter btn

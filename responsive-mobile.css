@@ -10,6 +10,8 @@
   html {
     overflow-x: hidden;
     scroll-behavior: smooth !important;
+    height: auto !important;
+    min-height: 100vh;
   }
 
   body {
@@ -17,6 +19,8 @@
     padding: 0;
     overflow-x: hidden;
     width: 100%;
+    height: auto !important;
+    min-height: 100vh;
   }
 
   body.no-scroll, body.menu-open {
@@ -35,8 +39,10 @@
   .final .navbar {
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: none;
     width: 100%;
     max-width: 100%;
     height: 70px;
@@ -45,7 +51,11 @@
     z-index: 1000;
     border-bottom: 2px solid var(--palette-4);
     border-radius: 0;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                border-radius 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                border 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .final .navbar.floating {
@@ -153,7 +163,7 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 45px !important;
+    gap: 15px !important;
     padding: 0 !important;
     margin: 0 !important;
     list-style: none !important;
@@ -191,26 +201,38 @@
   .final .navbar-2 a {
     text-decoration: none;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    padding: 14px 20px;
+    border-radius: 50px;
+    border: 2px solid var(--palette-4);
+    box-shadow: 4px 4px 0px rgba(31, 25, 38, 1);
+    transition: all 0.2s ease;
+  }
+  
+  .final .navbar-2 li:nth-child(1) a { background-color: var(--palette-3); color: #ffffff; }
+  .final .navbar-2 li:nth-child(2) a { background-color: var(--variable-collection-palette-7); color: var(--palette-4); }
+  .final .navbar-2 li:nth-child(3) a { background-color: var(--palette-2); color: var(--palette-4); }
+  .final .navbar-2 li:nth-child(4) a { background-color: var(--variable-collection-palette-5); color: #ffffff; }
+
+  .final .navbar-2 a.active, .final .navbar-2 a:active {
+    box-shadow: 0px 0px 0px rgba(31, 25, 38, 1);
+    transform: translate(4px, 4px);
+  }
+
+  .final .navbar-2 .text-wrapper-43 {
+    font-size: 18px;
+    font-weight: 600; 
+    color: inherit;
+    transition: none;
     display: inline-block;
+    letter-spacing: normal;
   }
 
-  .final .text-wrapper-43 {
-    font-size: 32px;
-    font-weight: 400; 
-    color: var(--palette-4);
-    transition: all 0.3s ease;
-    display: inline-block;
-    letter-spacing: -0.5px;
-  }
-
-  .final .navbar-2 a.active .text-wrapper-43 {
-    color: var(--palette-1);
-    font-weight: 500;
-  }
-
-  .final .navbar-2 a:active .text-wrapper-43 {
-    transform: scale(1.05);
-    color: var(--palette-1);
+  .final .navbar-2 a::after {
+    display: none !important;
   }
 
   /* Overlay Backdrop */

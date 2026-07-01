@@ -10,6 +10,8 @@
   html {
     overflow-x: hidden;
     scroll-behavior: smooth;
+    height: auto !important;
+    min-height: 100vh;
   }
 
   body {
@@ -17,6 +19,8 @@
     padding: 0;
     overflow-x: hidden;
     width: 100%;
+    height: auto !important;
+    min-height: 100vh;
   }
 
   .final {
@@ -34,15 +38,21 @@
     align-items: center;
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: none;
     width: 100%;
     max-width: 100%;
     z-index: 1000;
     border-bottom: 2px solid var(--palette-4);
     background-color: #ffffff;
     border-radius: 0;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                border-radius 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                border 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .final .navbar.floating {
