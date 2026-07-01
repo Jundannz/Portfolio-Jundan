@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navMenu = document.getElementById('mobile-menu');
     const contactBtnNav = document.getElementById('store-btn-nav');
+    const navbar = document.querySelector('.navbar');
     const body = document.body;
 
     let overlay = document.querySelector('.menu-overlay');
@@ -126,17 +127,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     let scrollTicking = false;
-    window.addEventListener('scroll', () => {
+    const scrollProgress = document.getElementById('scroll-progress');
+    
+    function getScrollY() {
+        if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
+        if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
+        const se = document.scrollingElement || document.documentElement;
+        if (se.scrollTop > 0) return se.scrollTop;
+        return document.body.scrollTop || 0;
+    }
+
+    function handleScrollUpdate() {
+        const scrollY = getScrollY();
+        
+        updateActiveLink();
+        
+        // Floating navbar
+        if (scrollY > 10) {
+            navbar?.classList.add('floating');
+        } else {
+            navbar?.classList.remove('floating');
+        }
+        
+        // Scroll Progress
+        if (scrollProgress) {
+            const docHeight = Math.max(
+                document.body.scrollHeight, document.documentElement.scrollHeight,
+                document.body.offsetHeight, document.documentElement.offsetHeight
+            );
+            const winHeight = window.innerHeight;
+            const scrollable = docHeight - winHeight;
+            if (scrollable > 0) {
+                const scrolled = Math.min((scrollY / scrollable) * 100, 100);
+                scrollProgress.style.width = scrolled + '%';
+            }
+        }
+    }
+
+    function onScroll() {
         if (!scrollTicking) {
             window.requestAnimationFrame(() => {
-                updateActiveLink();
+                handleScrollUpdate();
                 scrollTicking = false;
             });
             scrollTicking = true;
         }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('scroll', onScroll, { passive: true });
+
+    window.addEventListener('resize', () => {
+        requestAnimationFrame(handleScrollUpdate);
     }, { passive: true });
 
-    updateActiveLink();
+    handleScrollUpdate();
 
     // Filter btn
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -247,7 +292,134 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('✓ All systems operational (Instant Scroll & Modal)');
+    // 3D Tilt Effect for Skill Cards
+    const skillCards = document.querySelectorAll('.frame-33 article');
+    
+    skillCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Adjust rotation multipliers (e.g., 10 and -10) to control tilt intensity
+            const rotateX = ((y - centerY) / centerY) * -15; 
+            const rotateY = ((x - centerX) / centerX) * 15;
+            
+            card.style.transform = `perspective(1000px) scale(1.03) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            card.style.transition = 'none';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        });
+        
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'transform 0.1s ease-out';
+        });
+    });
+
+    // Work Modal Logic
+    const workItems = document.querySelectorAll('.filter-item a');
+    const workModal = document.getElementById('work-modal');
+    const closeWorkModalBtn = document.getElementById('close-work-modal');
+    
+    if (workModal) {
+        const workModalTitle = document.getElementById('work-modal-title');
+        const workModalDesc = document.getElementById('work-modal-desc');
+        const workModalImg = document.getElementById('work-modal-img');
+        const workModalIframe = document.getElementById('work-modal-iframe');
+        const workModalVideo = document.getElementById('work-modal-video');
+        const workModalLink = document.getElementById('work-modal-link');
+
+        workItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop from redirecting
+
+                // Get details from clicked card
+                const title = item.querySelector('.text-wrapper-12')?.textContent || 'My Work';
+                const desc = item.querySelector('.text-wrapper-14, p')?.textContent || '';
+                const imgSrc = item.querySelector('img')?.src || '';
+                const link = item.getAttribute('href') || '#';
+                const videoSrc = item.getAttribute('data-video');
+
+                // Populate modal
+                if (workModalTitle) workModalTitle.textContent = title;
+                if (workModalDesc) workModalDesc.textContent = desc;
+                if (workModalLink) workModalLink.href = link;
+
+                // Handle Media (Video vs Iframe vs Image)
+                if (workModalImg) workModalImg.style.display = 'none';
+                if (workModalIframe) workModalIframe.style.display = 'none';
+                if (workModalVideo) {
+                    workModalVideo.style.display = 'none';
+                    workModalVideo.pause();
+                    workModalVideo.src = '';
+                }
+                if (workModalIframe) workModalIframe.src = '';
+
+                if (videoSrc && workModalVideo) {
+                    workModalVideo.src = videoSrc;
+                    workModalVideo.style.display = 'block';
+                } else if (link.includes('instagram.com/p/') || link.includes('instagram.com/reel/') || link.includes('/reel/')) {
+                    const embedLink = link.split('?')[0].replace(/\/$/, '') + '/embed/';
+                    if (workModalIframe) {
+                        workModalIframe.src = embedLink;
+                        workModalIframe.style.display = 'block';
+                    }
+                } else if (link.includes('youtube.com/watch') || link.includes('youtu.be/')) {
+                    let ytId = '';
+                    if (link.includes('youtu.be/')) ytId = link.split('youtu.be/')[1].split('?')[0];
+                    else ytId = new URL(link).searchParams.get('v');
+                    
+                    if (ytId && workModalIframe) {
+                        workModalIframe.src = `https://www.youtube.com/embed/${ytId}`;
+                        workModalIframe.style.display = 'block';
+                    }
+                } else {
+                    if (workModalImg) {
+                        workModalImg.src = imgSrc;
+                        workModalImg.style.display = 'block';
+                    }
+                }
+
+                // Show modal
+                workModal.classList.add('active');
+                if (navMenu && navMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+        });
+
+        // Cleanup helper
+        function cleanupWorkModal() {
+            workModal.classList.remove('active');
+            if (workModalVideo) { workModalVideo.pause(); workModalVideo.src = ''; }
+            if (workModalIframe) { workModalIframe.src = ''; }
+        }
+
+        // Close logic
+        if (closeWorkModalBtn) {
+            closeWorkModalBtn.addEventListener('click', cleanupWorkModal);
+        }
+
+        workModal.addEventListener('click', (e) => {
+            if (e.target === workModal) {
+                cleanupWorkModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && workModal.classList.contains('active')) {
+                cleanupWorkModal();
+            }
+        });
+    }
+
+    console.log('✓ All systems operational (Instant Scroll & Modal & Works)');
 });
 
 // Global video toggle function

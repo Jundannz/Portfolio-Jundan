@@ -35,13 +35,26 @@
   .final .navbar {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: 100%;
     height: 70px;
     display: flex;
     background-color: #ffffff;
     z-index: 1000;
     border-bottom: 2px solid var(--palette-4);
+    border-radius: 0;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .final .navbar.floating {
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 12px;
+    border: 2px solid var(--palette-4);
+    border-bottom: 2px solid var(--palette-4);
+    box-shadow: 4px 4px 0px rgba(31, 25, 38, 0.15);
   }
 
   .final .frame-49 {
