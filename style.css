@@ -64,6 +64,9 @@ body {
   border-radius: 15px;
   border: 2px solid var(--palette-4);
   box-shadow: 4px 4px 0px rgba(31, 25, 38, 0.15);
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .final .frame-49 {
@@ -429,16 +432,17 @@ body {
   position: relative;
   flex: 1;
   height: 100%;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform-style: preserve-3d;
+  perspective: 1000px;
 }
-.final .frame-33 > .video:hover,
-.final .frame-33 > .design:hover,
-.final .frame-33 > .programmer:hover {
+.final .frame-33 > .video:hover > img,
+.final .frame-33 > .design:hover > img,
+.final .frame-33 > .programmer:hover > img {
   transform: scale(1.03) translateY(-8px);
 }
 .final .rectangle-7, .final .rectangle-8, .final .rectangle-9 {
   width: 100%; height: 100%; border-radius: 15px; object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
 }
 
 

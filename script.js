@@ -295,6 +295,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const skillCards = document.querySelectorAll('.frame-33 article');
     
     skillCards.forEach(card => {
+        const img = card.querySelector('img');
+        if (!img) return;
+
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -307,17 +310,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const rotateX = ((y - centerY) / centerY) * -15; 
             const rotateY = ((x - centerX) / centerX) * 15;
             
-            card.style.transform = `perspective(1000px) scale(1.03) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            card.style.transition = 'none';
+            img.style.transform = `scale(1.03) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            // keep the 0.1s transition from mouseenter for smooth interpolation
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-            card.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            img.style.transform = '';
+            img.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
         });
         
         card.addEventListener('mouseenter', () => {
-            card.style.transition = 'transform 0.1s ease-out';
+            img.style.transition = 'transform 0.1s ease-out';
         });
     });
 
