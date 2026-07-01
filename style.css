@@ -1317,3 +1317,44 @@ html {
     font-size: 22px;
   }
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f7;
+  border-left: 2px solid var(--palette-4);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--palette-1);
+  border: 2px solid var(--palette-4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--variable-collection-palette-6);
+}
+
+/* Firefox scrollbar compatibility */
+html {
+  scrollbar-color: var(--palette-1) #f5f5f7;
+  scrollbar-width: auto;
+}
+
+/* Custom Cursor globally (forces on all hover elements, replacing default hand pointer) */
+*, html, body, a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+  cursor: url('assets/svg/custom-cursor-01.svg') 3 1, auto !important;
+}
+
+/* Retain text cursor for inputs for good UX */
+input[type="text"], input[type="email"], input[type="search"], input[type="tel"], input[type="url"], input[type="password"], textarea, [contenteditable="true"] {
+  cursor: text !important;
+}
+
+/* Custom Cursor on Click (Active State) */
+*:active {
+  cursor: url('assets/svg/custom-cursor-02.svg') 3 1, auto !important;
+}

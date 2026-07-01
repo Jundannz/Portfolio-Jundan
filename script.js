@@ -1,10 +1,6 @@
-(function() {
-    // emailjs
-    emailjs.init("rqp74mxmpwl7hXkhu");
-})();
 
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navMenu = document.getElementById('mobile-menu');
     const contactBtnNav = document.getElementById('store-btn-nav');
@@ -21,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // menu state
     function openMenu() {
         if (!hamburgerBtn || !navMenu) return;
-        
+
         hamburgerBtn.classList.add('active');
         navMenu.classList.add('active');
         contactBtnNav?.classList.add('active');
@@ -31,12 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function closeMenu() {
         if (!hamburgerBtn || !navMenu) return;
-        
+
         hamburgerBtn.classList.remove('active');
         navMenu.classList.remove('active');
         contactBtnNav?.classList.remove('active');
         overlay.classList.remove('active');
-        body.classList.remove('menu-open');
+
+        // Delay removing menu-open from body to allow slide-out transition to finish smoothly
+        setTimeout(() => {
+            if (navMenu && !navMenu.classList.contains('active')) {
+                body.classList.remove('menu-open');
+            }
+        }, 500);
     }
 
     function toggleMenu() {
@@ -57,17 +59,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll handler
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            
+
             const targetId = this.getAttribute('href');
             const isMobileMenuLink = this.closest('.navbar-2') || this.id === 'store-btn-nav';
-            
+
             if (isMobileMenuLink && navMenu.classList.contains('active')) {
                 if (this.id !== 'store-btn-nav') {
                     closeMenu();
                 }
             }
-            if (targetId !== '#') {
-                e.preventDefault(); 
+            if (targetId && targetId.startsWith('#') && targetId !== '#') {
+                e.preventDefault();
                 smoothScrollTo(targetId);
             }
         });
@@ -88,17 +90,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const logo = document.querySelector('.logo');
     logo?.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         if (navMenu.classList.contains('active')) {
             closeMenu();
         }
-        
-        smoothScrollTo('#hero'); 
+
+        smoothScrollTo('#hero');
     });
 
     // Highlight active nav link on scroll
     const sections = document.querySelectorAll('.final section[id]');
-    const navLinks = document.querySelectorAll('.navbar-2 a[href^="#"]'); 
+    const navLinks = document.querySelectorAll('.navbar-2 a[href^="#"]');
     const navbarHeight = 70;
     const threshold = navbarHeight + 100;
 
@@ -109,19 +111,20 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
-            
-            if (scrollPos >= sectionTop - threshold && 
+
+            if (scrollPos >= sectionTop - threshold &&
                 scrollPos < sectionTop + sectionHeight - threshold) {
                 currentSection = section.getAttribute('id');
             }
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('active');
             const href = link.getAttribute('href').replace('#', '');
-            
+
             if (href === currentSection) {
-                link.classList.add('active');
+                if (!link.classList.contains('active')) link.classList.add('active');
+            } else {
+                if (link.classList.contains('active')) link.classList.remove('active');
             }
         });
     }
@@ -130,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let docHeight = 0;
     let winHeight = 0;
     let scrollable = 0;
-    
+
     function getScrollY() {
         const se = document.scrollingElement || document.documentElement;
         return Math.max(
@@ -153,16 +156,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleScrollUpdate() {
         const scrollY = getScrollY();
-        
+
         updateActiveLink(scrollY);
-        
+
         // Floating navbar
         if (scrollY > 10) {
             navbar?.classList.add('floating');
         } else {
             navbar?.classList.remove('floating');
         }
-        
+
         // Scroll Progress
         if (scrollProgress && scrollable > 0) {
             const scrolled = Math.min((scrollY / scrollable) * 100, 100);
@@ -196,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
         filterItems.forEach(item => {
             const hasCategory = item.classList.contains(filterValue);
             const isAllView = filterValue === 'all-view';
-            
-            if ((isAllView && item.classList.contains('all-view')) || 
+
+            if ((isAllView && item.classList.contains('all-view')) ||
                 (!isAllView && hasCategory)) {
                 item.classList.add('show');
                 item.style.display = 'flex';
@@ -219,32 +222,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Form handler
     const contactForm = document.getElementById('contact-form');
-    
-    contactForm?.addEventListener('submit', function(event) {
+
+    contactForm?.addEventListener('submit', function (event) {
         event.preventDefault();
-        
+
         const submitBtn = this.querySelector('button[type="submit"]');
         const btnText = submitBtn?.querySelector('.text-wrapper-3');
-        const originalText = btnText?.textContent || 'Send Message';
+        const originalText = btnText?.textContent || 'SEND MESSAGE ➔';
 
         if (!submitBtn || !btnText) return;
 
         submitBtn.disabled = true;
         btnText.textContent = 'SENDING...';
 
-        emailjs.sendForm('service_siu5edc', 'template_k86p4if', this)
-            .then(() => {
-                btnText.textContent = 'MESSAGE SENT! ✓';
-                submitBtn.style.backgroundColor = '#3ABEAB';
-                this.reset();
-                setTimeout(() => {
-                    btnText.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.backgroundColor = '';
-                }, 3000);
+        // Masukkan URL endpoint lengkap dari Formspree di sini
+        const formspreeEndpoint = 'https://formspree.io/f/xdarwgvg';
+
+        fetch(formspreeEndpoint, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    btnText.textContent = 'MESSAGE SENT! ✓';
+                    submitBtn.style.backgroundColor = '#3ABEAB';
+                    this.reset();
+                    setTimeout(() => {
+                        btnText.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.backgroundColor = '';
+                    }, 3000);
+                } else {
+                    response.json().then(data => {
+                        console.error('Formspree error:', data);
+                        throw new Error('Gagal mengirim pesan');
+                    });
+                }
             })
             .catch((error) => {
-                console.error('Email error:', error);
+                console.error('Fetch error:', error);
                 btnText.textContent = 'FAILED - TRY AGAIN';
                 submitBtn.style.backgroundColor = '#ff6b6b';
                 setTimeout(() => {
@@ -261,10 +280,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModalBtn = document.querySelector('.close-modal');
 
     if (storeBtn && storeModal) {
-        storeBtn.addEventListener('click', function(e) {
+        storeBtn.addEventListener('click', function (e) {
             e.preventDefault();
             storeModal.classList.add('active');
-            
+
             if (navMenu && navMenu.classList.contains('active')) {
                 closeMenu();
             }
@@ -272,20 +291,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', function() {
+        closeModalBtn.addEventListener('click', function () {
             storeModal.classList.remove('active');
         });
     }
 
     if (storeModal) {
-        storeModal.addEventListener('click', function(e) {
+        storeModal.addEventListener('click', function (e) {
             if (e.target === storeModal) {
                 storeModal.classList.remove('active');
             }
         });
     }
 
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && storeModal.classList.contains('active')) {
             storeModal.classList.remove('active');
         }
@@ -293,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 3D Tilt Effect for Skill Cards
     const skillCards = document.querySelectorAll('.frame-33 article');
-    
+
     skillCards.forEach(card => {
         const img = card.querySelector('img');
         if (!img) return;
@@ -302,23 +321,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
+
             // Adjust rotation multipliers (e.g., 10 and -10) to control tilt intensity
-            const rotateX = ((y - centerY) / centerY) * -15; 
+            const rotateX = ((y - centerY) / centerY) * -15;
             const rotateY = ((x - centerX) / centerX) * 15;
-            
+
             img.style.transform = `scale(1.03) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             // keep the 0.1s transition from mouseenter for smooth interpolation
         });
-        
+
         card.addEventListener('mouseleave', () => {
             img.style.transform = '';
             img.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
         });
-        
+
         card.addEventListener('mouseenter', () => {
             img.style.transition = 'transform 0.1s ease-out';
         });
@@ -328,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const workItems = document.querySelectorAll('.filter-item a');
     const workModal = document.getElementById('work-modal');
     const closeWorkModalBtn = document.getElementById('close-work-modal');
-    
+
     if (workModal) {
         const workModalTitle = document.getElementById('work-modal-title');
         const workModalDesc = document.getElementById('work-modal-desc');
@@ -345,7 +364,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const title = item.querySelector('.text-wrapper-12')?.textContent || 'My Work';
                 const desc = item.querySelector('.text-wrapper-14, p')?.textContent || '';
                 const imgSrc = item.querySelector('img')?.src || '';
-                const link = item.getAttribute('href') || '#';
+                const link = item.getAttribute('data-link') || item.getAttribute('href') || '#';
                 const videoSrc = item.getAttribute('data-video');
 
                 // Populate modal
@@ -376,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     let ytId = '';
                     if (link.includes('youtu.be/')) ytId = link.split('youtu.be/')[1].split('?')[0];
                     else ytId = new URL(link).searchParams.get('v');
-                    
+
                     if (ytId && workModalIframe) {
                         workModalIframe.src = `https://www.youtube.com/embed/${ytId}`;
                         workModalIframe.style.display = 'block';
@@ -425,10 +444,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Global video toggle function
-window.toggleVideo = function() {
+window.toggleVideo = function () {
     const video = document.getElementById('portfolioVideo');
     const btn = document.getElementById('playBtn');
-    
+
     if (!video || !btn) return;
 
     if (video.paused) {
