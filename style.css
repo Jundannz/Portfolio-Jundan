@@ -215,7 +215,7 @@ body {
   line-height: 1.6;
 }
 
-.final .div-2 {
+.final .div-hero-cta {
   display: flex;
   gap: 20px;
 }
@@ -407,7 +407,6 @@ body {
   gap: 15px;
   margin: 0;
 }
-.final .text-wrapper-29 { color: #000000; }
 .final .text-wrapper-30 { color: #6a00ff; }
 .final .text-wrapper-31 { color: #000000; font-size: 56px; }
 .final .rectangle-10 { display: none; }
@@ -661,38 +660,6 @@ body {
   z-index: 10;
 }
 
-.final .rectangle-5 {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.final .frame-32 {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 212px; height: 212px;
-  cursor: pointer;
-  z-index: 20;
-}
-.final .star-14 { width: 100%; height: 100%; position: absolute; top:0; left:0; }
-.final .polygon { width: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-
-#playBtn {
-  cursor: pointer;
-  transition: opacity 0.3s ease, transform 0.2s ease;
-  z-index: 20;
-  animation: popUp 0.5s ease-out;
-}
-@keyframes popUp {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-#playBtn:hover { transform: translate(-50%, -50%) scale(1.1); }
-.hide-btn { opacity: 0; pointer-events: none; }
-
 /* Easter Egg Terminal Styles */
 .final .easter-egg-container {
   position: absolute;
@@ -837,10 +804,6 @@ body {
 .final .secret-card:active {
   transform: translate(2px, 2px);
   box-shadow: 0px 0px 0px var(--palette-4);
-}
-
-.final .card-icon {
-  font-size: 20px;
 }
 
 .final .card-label {
@@ -1261,16 +1224,6 @@ html {
   border-radius: 3px;
 }
 
-@keyframes logoPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.04); }
-  100% { transform: scale(1); }
-}
-
-.final .logo.animate-pop {
-  animation: logoPop 0.3s ease-out forwards;
-}
-
 @media (hover: none) {
   .final .logo:hover {
     transform: none; 
@@ -1638,7 +1591,7 @@ html {
 }
 
 /* Custom Cursor globally (forces on all hover elements, replacing default hand pointer) */
-*, html, body, a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+*, html, body, a, button, [role="button"], input[type="submit"], input[type="button"] {
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='24' height='24'><polygon points='4.82 1.93 4.81 30.07 13.44 19.38 27.19 19.01 4.82 1.93' fill='%231f1926' stroke='%23ffffff' stroke-linejoin='round'/></svg>") 2 1, auto !important;
 }
 

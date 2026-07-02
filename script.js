@@ -990,20 +990,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('✓ All systems operational (Instant Scroll & Modal & Works)');
 });
-
-// Global video toggle function
-window.toggleVideo = function () {
-    const video = document.getElementById('portfolioVideo');
-    const btn = document.getElementById('playBtn');
-
-    if (!video || !btn) return;
-
-    if (video.paused) {
-        video.play();
-        video.muted = false;
-        btn.classList.add('hide-btn');
-    } else {
-        video.pause();
-        btn.classList.remove('hide-btn');
-    }
-};
