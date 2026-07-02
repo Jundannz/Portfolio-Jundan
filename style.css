@@ -459,6 +459,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 900;
 }
 
 .final .cube { position: absolute; top: 160px; left: 72%; transform: rotateX(-15deg) rotateY(15deg); width: 200px; pointer-events: none; }
@@ -493,13 +494,29 @@ body {
   content: ""; position: absolute; left: 0; bottom: 0px; width: 100%; height: 4px; background-color: var(--palette-1); border-radius: 40px;
 }
 
-.final .frame-28 {
+.final .portfolio-window-wrapper {
   order: 2;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.final .frame-28 {
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Disable pointer events on children when dragging so iframe does not hijack drag */
+.final .frame-28.dragging iframe {
+  pointer-events: none;
 }
 
 .final .frame-29 {
@@ -511,10 +528,19 @@ body {
   gap: 16px;
   padding: 23px;
   background-color: var(--palette-1);
-  border-radius: 10px;
-  border: 3px solid var(--palette-4);
-  box-shadow: 9px 9px 0px #1f1926;
+  border: 4px solid var(--palette-4);
+  border-radius: 20px;
+  box-shadow: 9px 9px 0px var(--palette-4);
+  pointer-events: auto;
   position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Premium Lift effect during dragging */
+.final .frame-28.dragging .frame-29 {
+  box-shadow: 18px 18px 0px #1f1926;
+  transform: scale(1.01);
 }
 
 .final .frame-30 {
@@ -527,14 +553,113 @@ body {
   background-color: #1f19264c;
   border-radius: 10px;
   border: 2px solid var(--palette-4);
+  cursor: grab !important;
+  user-select: none;
+  position: relative;
 }
 
-.final .frame-31 { display: flex; gap: 5px; }
+.final .frame-30 * {
+  cursor: grab !important;
+}
+
+/* Grabbing cursor during drag active */
+.final .frame-28.dragging .frame-30,
+.final .frame-28.dragging .frame-30 * {
+  cursor: grabbing !important;
+}
+
+/* Header spacer classes for sliding animation */
+.final .header-spacer-left {
+  flex: 1 1 0%;
+}
+
+.final .header-spacer-right {
+  flex: 0.08 1 0%;
+  transition: flex-grow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.final .frame-30.reset-active .header-spacer-right {
+  flex-grow: 1;
+  transition: flex-grow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Reset Button Styling absolute on the right */
+.final .reset-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--palette-2);
+  color: var(--palette-4);
+  border: 2px solid var(--palette-4);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 2px 2px 0px var(--palette-4);
+  cursor: pointer !important;
+  user-select: none;
+  opacity: 0;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+  z-index: 11;
+}
+
+.final .reset-btn.visible {
+  display: inline-flex;
+  animation: popInResetAbsolute 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  pointer-events: auto;
+}
+
+@keyframes popInResetAbsolute {
+  0% { opacity: 0; transform: translateY(-50%) scale(0.8); }
+  100% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+.final .reset-btn:hover {
+  transform: translateY(-50%) scale(1.05) translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--palette-4);
+}
+
+.final .reset-btn:active {
+  transform: translateY(-50%) scale(0.95) translate(1px, 1px);
+  box-shadow: 0px 0px 0px var(--palette-4);
+}
+
+.final .reset-btn svg {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.final .reset-btn:hover svg {
+  transform: rotate(-180deg);
+}
+
+.final .frame-31 {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 11;
+}
+
 .final .ellipse-4, .final .ellipse-5, .final .ellipse-6 { width: 20px; height: 20px; border-radius: 10px; border: 1px solid #000000; }
 .final .ellipse-4 { background-color: var(--palette-2); }
 .final .ellipse-5 { background-color: #ffd672; }
 .final .ellipse-6 { background-color: var(--palette-3); }
-.final .text-wrapper-16 { color: #ffffff; font-size: 24px; }
+.final .text-wrapper-16 {
+  color: #ffffff;
+  font-size: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+  line-height: 1.3;
+  padding-bottom: 4px;
+  z-index: 10;
+}
 
 .final .rectangle-5 {
   width: 100%;
@@ -567,6 +692,160 @@ body {
 }
 #playBtn:hover { transform: translate(-50%, -50%) scale(1.1); }
 .hide-btn { opacity: 0; pointer-events: none; }
+
+/* Easter Egg Terminal Styles */
+.final .easter-egg-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0) scale(0.96);
+  z-index: 1;
+  width: 925px;
+  max-width: 95%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.final .easter-egg-container.active {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  pointer-events: auto;
+}
+
+.final .crt-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #0d0813;
+  border: 3px solid var(--palette-4);
+  border-radius: 10px;
+  box-shadow: 6px 6px 0px var(--palette-4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* scanline scan grid lines */
+.final .crt-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.final .terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #1f1926c4;
+  border-bottom: 2px solid var(--palette-4);
+  height: 40px;
+  color: #ffffff;
+}
+
+.final .terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.final .terminal-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--palette-4);
+}
+
+.final .dot-red { background-color: var(--palette-2); } /* green */
+.final .dot-yellow { background-color: #ffd672; } /* yellow */
+.final .dot-green { background-color: var(--palette-3); } /* blue */
+
+.final .terminal-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.final .terminal-body {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Courier New', Courier, monospace;
+  color: #70ffb5; /* retro console green */
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.8);
+}
+
+.final .terminal-outputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.final .terminal-line {
+  margin: 0;
+  text-shadow: 0 0 4px rgba(112, 255, 181, 0.5);
+  word-break: break-all;
+}
+
+.final .interactive-grid {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.final .secret-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #1f1926;
+  border: 2px solid var(--palette-4);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #70ffb5;
+  font-family: inherit;
+  font-size: 14px;
+  box-shadow: 3px 3px 0px var(--palette-4);
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.final .secret-card * {
+  cursor: pointer !important;
+}
+
+.final .secret-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--palette-4);
+  background-color: #272030;
+}
+
+.final .secret-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--palette-4);
+}
+
+.final .card-icon {
+  font-size: 20px;
+}
+
+.final .card-label {
+  font-weight: bold;
+}
 
 
 /* Works section */

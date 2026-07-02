@@ -161,28 +161,73 @@
       <img class="star-12" src="assets/decoration/star-4.svg" alt="" aria-hidden="true" />
       <img class="star-13" src="assets/decoration/star-8.svg" alt="" aria-hidden="true" />
 
-      <div class="frame-28">
-        <div class="frame-29">
-          <div class="frame-30">
-            <div class="frame-31">
-              <div class="ellipse-4" aria-hidden="true"></div>
-              <div class="ellipse-5" aria-hidden="true"></div>
-              <div class="ellipse-6" aria-hidden="true"></div>
+      <!-- Portfolio Window Wrapper (guarantees perfect overlay and sizing) -->
+      <div class="portfolio-window-wrapper">
+        <!-- Easter Egg CRT Terminal -->
+        <div class="easter-egg-container" aria-hidden="true">
+          <div class="crt-screen">
+            <div class="crt-scanlines"></div>
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-green"></span>
+              </div>
+              <span class="terminal-title">jundan_system_diagnostics.sh</span>
+              <div style="width: 32px;"></div>
             </div>
-            <p class="text-wrapper-16">running: showreel_2026.mp4</p>
-          </div>
-
-          <div class="video-wrapper"
-            style="width: 100%; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; position: relative;">
-            <iframe id="portfolioVideoIframe" src="https://www.youtube.com/embed/9V3c33q4P_A?rel=0&showinfo=0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+            <div class="terminal-body">
+              <div class="terminal-outputs" id="terminal-diagnostics">
+                <p class="terminal-line">> jundannz-portfolio-website.html</p>
+                <p class="terminal-line">> OFFSET COORDS: X: <span id="offset-x">0</span>px, Y: <span id="offset-y">0</span>px</p>
+                <p class="terminal-line" id="quote-line">> CLICK BUTTON 10x FOR SECRETS...</p>
+              </div>
+              <div class="interactive-grid">
+                <button class="secret-card" id="floppy-card" aria-label="Click me">
+                  <span class="card-label">Click me! (<span id="click-count">0</span>/10)</span>
+                </button>
+              </div>
+              <div id="dino-game-wrapper" style="display: none; width: 100%; margin-top: 10px;">
+                <canvas id="dino-canvas" width="600" height="150" style="width: 100%; height: auto; display: block; background: #0c0812; border: 2px solid var(--palette-4); border-radius: 4px;"></canvas>
+                <div class="cheat-line-container" style="display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 14px; color: #70ffb5;">
+                  <span>> SECRET:</span>
+                  <input type="text" id="dino-cheat-input" placeholder="e.g. immortal" autocomplete="off" style="background: transparent; border: none; outline: none; color: #70ffb5; font-family: inherit; font-size: 14px; flex: 1; caret-color: #70ffb5;">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
+        <div class="frame-28">
+          <div class="frame-29">
+            <div class="frame-30">
+              <div class="frame-31">
+                <div class="ellipse-4" aria-hidden="true"></div>
+                <div class="ellipse-5" aria-hidden="true"></div>
+                <div class="ellipse-6" aria-hidden="true"></div>
+              </div>
+              <div class="header-spacer-left"></div>
+              <p class="text-wrapper-16">running: showreel_2026.mp4</p>
+              <div class="header-spacer-right"></div>
+              <button id="reset-position-btn" class="reset-btn" aria-label="Reset window position" title="Reset Position">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                </svg>
+                <span>Reset</span>
+              </button>
+            </div>
 
+            <div class="video-wrapper"
+              style="width: 100%; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; position: relative;">
+              <iframe id="portfolioVideoIframe" src="https://www.youtube.com/embed/9V3c33q4P_A?rel=0&showinfo=0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+          </div>
+        </div>
       </div>
+
       <h2 id="portfolio-heading" class="portfolio">
         <span class="text-wrapper-17">port</span><span class="folio">folio</span>
       </h2>

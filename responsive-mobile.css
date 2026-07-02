@@ -583,11 +583,26 @@
   }
 
   .final .text-wrapper-16 {
-    font-size: 14px;
+    font-size: 11px;
+    margin: 0 4px;
+    text-align: center;
+    max-width: 55%;
+    line-height: 1.3;
+    padding-bottom: 2px;
+  }
+
+  .final .reset-btn span {
+    display: none;
+  }
+
+  .final .reset-btn {
+    padding: 6px 8px;
+    right: 15px;
   }
 
   .final .frame-31 {
     gap: 3px;
+    left: 15px;
   }
 
   .final .ellipse-4,
@@ -596,6 +611,48 @@
     width: 12px;
     height: 12px;
     border-radius: 6px;
+  }
+
+  /* Easter Egg Mobile Overrides */
+  .final .easter-egg-container {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    transform: translate(-50%, 0) scale(0.96);
+  }
+
+  .final .easter-egg-container.active {
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  .final .terminal-body {
+    padding: 12px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .final .terminal-header {
+    height: 35px;
+    padding: 6px 12px;
+  }
+
+  .final .terminal-title {
+    font-size: 11px;
+  }
+
+  .final .terminal-dots span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .final .secret-card {
+    padding: 6px 12px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .final .card-icon {
+    font-size: 16px;
   }
 
   .final .rectangle-5 {
