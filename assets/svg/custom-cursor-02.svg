@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="21" height="21">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24">
   <defs>
     <style>
       .cls-1 {
         fill: #fff;
-        stroke: #000;
+        stroke: #1f1926;
         stroke-linecap: square;
         stroke-linejoin: round;
       }

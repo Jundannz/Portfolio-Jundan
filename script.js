@@ -189,26 +189,63 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const filterItems = document.querySelectorAll('.filter-item');
 
+    let filterTimeout = null;
+
     function applyFilter(filterValue) {
+        // Clear any pending transition timeout to handle rapid clicking safely
+        if (filterTimeout) {
+            clearTimeout(filterTimeout);
+            filterTimeout = null;
+        }
+
         filterBtns.forEach(btn => {
             const isActive = btn.getAttribute('data-filter') === filterValue;
             btn.setAttribute('aria-pressed', isActive);
             btn.classList.toggle('active', isActive);
         });
 
-        filterItems.forEach(item => {
-            const hasCategory = item.classList.contains(filterValue);
-            const isAllView = filterValue === 'all-view';
+        const visibleItems = Array.from(filterItems).filter(item => item.classList.contains('show'));
 
-            if ((isAllView && item.classList.contains('all-view')) ||
-                (!isAllView && hasCategory)) {
-                item.classList.add('show');
-                item.style.display = 'flex';
-            } else {
+        if (visibleItems.length > 0) {
+            // First, trigger fade out animation on all visible items
+            visibleItems.forEach(item => {
                 item.classList.remove('show');
-                item.style.display = 'none';
-            }
-        });
+            });
+
+            // Wait for fade out transition (250ms matches the CSS transition duration)
+            filterTimeout = setTimeout(() => {
+                filterItems.forEach(item => {
+                    const hasCategory = item.classList.contains(filterValue);
+                    const isAllView = filterValue === 'all-view';
+
+                    if ((isAllView && item.classList.contains('all-view')) ||
+                        (!isAllView && hasCategory)) {
+                        item.style.display = 'flex';
+                        // Force layout reflow before adding .show class to trigger the transition
+                        void item.offsetWidth;
+                        item.classList.add('show');
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                filterTimeout = null;
+            }, 250);
+        } else {
+            // Initial call (e.g. page load) has no visible elements animating out
+            filterItems.forEach(item => {
+                const hasCategory = item.classList.contains(filterValue);
+                const isAllView = filterValue === 'all-view';
+
+                if ((isAllView && item.classList.contains('all-view')) ||
+                    (!isAllView && hasCategory)) {
+                    item.style.display = 'flex';
+                    void item.offsetWidth;
+                    item.classList.add('show');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
     }
 
     if (filterBtns.length > 0) applyFilter('all-view');
@@ -346,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Work Modal Logic
     const workItems = document.querySelectorAll('.filter-item a');
     const workModal = document.getElementById('work-modal');
-    const closeWorkModalBtn = document.getElementById('close-work-modal');
+
 
     if (workModal) {
         const workModalTitle = document.getElementById('work-modal-title');
@@ -422,10 +459,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (workModalIframe) { workModalIframe.src = ''; }
         }
 
-        // Close logic
-        if (closeWorkModalBtn) {
-            closeWorkModalBtn.addEventListener('click', cleanupWorkModal);
-        }
+
 
         workModal.addEventListener('click', (e) => {
             if (e.target === workModal) {

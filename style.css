@@ -330,10 +330,10 @@ body {
 }
 
 .final .media-creative {
-  font-weight: 400;
-  font-size: 30px;
-  letter-spacing: -3.00px;
-  margin: 0;
+  font-weight: 500;
+  font-size: 38px;
+  letter-spacing: -1.5px;
+  margin: 0 0 15px 0;
 }
 .final .text-wrapper-34 { color: #6a00ff; font-style: italic; }
 .final .text-wrapper-35 { color: #1f1926; font-style: italic; }
@@ -341,10 +341,14 @@ body {
 .final .i-m-jundan-a-video {
   font-weight: 400;
   color: var(--palette-4);
-  font-size: 22px;
+  font-size: 26px;
   text-align: justify;
-  letter-spacing: -1.10px;
-  margin: 20px 0;
+  letter-spacing: -0.4px;
+  margin: 0 0 24px 0;
+  line-height: 1.65;
+}
+.final .i-m-jundan-a-video:last-of-type {
+  margin-bottom: 0;
 }
 .final .vector-4 { width: 80%; height: auto; }
 
@@ -614,15 +618,33 @@ body {
 .final .filter-btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 8px 16px; border-radius: 6px; border: 2px solid var(--palette-4);
-  box-shadow: 6px 6px 0px #1f1926; cursor: pointer; transition: all 0.2s;
+  box-shadow: 6px 6px 0px #1f1926; cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.2s ease, 
+              color 0.2s ease;
   color: var(--palette-4); background-color: #fff;
 }
 .final .all-button[aria-pressed="true"] { background-color: var(--palette-1); color: #fff; }
 .final .motion-button[aria-pressed="true"] { background-color: var(--palette-3); }
 .final .design-button[aria-pressed="true"] { background-color: var(--palette-2); }
 .final .code-button[aria-pressed="true"] { background-color: var(--variable-collection-palette-5); }
-.final .filter-btn:hover { transform: translateY(-2px); }
-.final .filter-btn:active { transform: translateY(0); }
+.final .filter-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #1f1926;
+}
+.final .filter-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px #1f1926;
+}
+.final .filter-btn[aria-pressed="true"] {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 2px 2px 0px #1f1926 !important;
+}
+.final .filter-btn[aria-pressed="true"]:hover {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 2px 2px 0px #1f1926 !important;
+}
 
 .final .text-wrapper-10, .final .text-wrapper-11 {
   font-weight: 500; color: inherit; font-size: 24px; text-align: center;
@@ -636,10 +658,15 @@ body {
 
 .final .filter-item {
   display: none;
+  opacity: 0;
+  transform: translateY(15px) scale(0.98);
+  transition: opacity 0.25s ease-out, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .final .filter-item.show {
   display: flex;
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .final .filter-item.all-view {
@@ -1188,29 +1215,7 @@ html {
   position: relative;
 }
 
-#work-modal .close-modal {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: var(--palette-4);
-  color: #fff;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s;
-}
 
-#work-modal .close-modal:hover {
-  transform: rotate(90deg) scale(1.1);
-  background-color: var(--palette-1);
-}
 
 .wm-work-title {
   font-size: 28px;
@@ -1273,12 +1278,21 @@ html {
   border: 2px solid var(--palette-4);
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: 5px 5px 0px var(--palette-4);
+  transform: translate(0, 0);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.2s ease;
 }
 
 .wm-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 4px 4px 0px var(--palette-4);
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px var(--palette-4);
+}
+
+.wm-btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0px 0px 0px var(--palette-4);
 }
 
 .wm-btn-ig {
@@ -1346,7 +1360,7 @@ html {
 
 /* Custom Cursor globally (forces on all hover elements, replacing default hand pointer) */
 *, html, body, a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
-  cursor: url('assets/svg/custom-cursor-01.svg') 3 1, auto !important;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='24' height='24'><polygon points='4.82 1.93 4.81 30.07 13.44 19.38 27.19 19.01 4.82 1.93' fill='%231f1926' stroke='%23ffffff' stroke-linejoin='round'/></svg>") 2 1, auto !important;
 }
 
 /* Retain text cursor for inputs for good UX */
@@ -1356,5 +1370,5 @@ input[type="text"], input[type="email"], input[type="search"], input[type="tel"]
 
 /* Custom Cursor on Click (Active State) */
 *:active {
-  cursor: url('assets/svg/custom-cursor-02.svg') 3 1, auto !important;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='24' height='24'><polygon points='4.82 1.93 4.81 30.07 13.44 19.38 27.19 19.01 4.82 1.93' fill='%23ffffff' stroke='%231f1926' stroke-linejoin='round' stroke-linecap='square'/></svg>") 2 1, auto !important;
 }

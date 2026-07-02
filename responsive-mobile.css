@@ -463,16 +463,22 @@
   }
 
   .final .media-creative {
-    font-size: 22px;
+    font-size: 24px;
     text-align: center;
-    letter-spacing: -1px;
+    letter-spacing: -0.6px;
     justify-content: center;
+    margin: 0 0 8px 0;
   }
 
   .final .i-m-jundan-a-video {
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
     line-height: 1.6;
+    letter-spacing: -0.2px;
+    margin: 0 0 12px 0;
+  }
+  .final .i-m-jundan-a-video:last-of-type {
+    margin-bottom: 0;
   }
 
   .final .vector-4 {
