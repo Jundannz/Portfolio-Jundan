@@ -542,12 +542,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 xOffset = currentX;
                 yOffset = currentY;
 
-                // Show reset button & activate Easter Egg when dragged away
-                if (Math.abs(currentX) > 5 || Math.abs(currentY) > 5) {
-                    resetBtn?.classList.add('visible');
-                    dragElement.querySelector('.frame-30')?.classList.add('reset-active');
-                    easterEgg?.classList.add('active');
-                }
+                 // Show reset button & activate Easter Egg when dragged away
+                 if (Math.abs(currentX) > 5 || Math.abs(currentY) > 5) {
+                     resetBtn?.classList.add('visible');
+                     dragElement.querySelector('.frame-30')?.classList.add('reset-active');
+                     easterEgg?.classList.add('active');
+ 
+                     // Hide the drag hint text
+                     const dragHint = document.querySelector('.drag-hint-text');
+                     if (dragHint) {
+                         dragHint.classList.add('hidden');
+                     }
+                 }
 
                 // Update real-time terminal diagnostics
                 if (offsetXEl) offsetXEl.textContent = Math.round(currentX);

@@ -513,6 +513,37 @@ body {
   pointer-events: none;
 }
 
+.final .drag-hint-text {
+  position: absolute;
+  bottom: -42px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--palette-1);
+  letter-spacing: 1px;
+  pointer-events: none;
+  z-index: 12;
+  opacity: 0.75;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: drag-hint-flicker 1.8s ease-in-out infinite;
+}
+
+.final .drag-hint-text.hidden {
+  opacity: 0 !important;
+  transform: translateY(5px);
+  pointer-events: none;
+}
+
+@keyframes drag-hint-flicker {
+  0%, 100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
 /* Disable pointer events on children when dragging so iframe does not hijack drag */
 .final .frame-28.dragging iframe {
   pointer-events: none;

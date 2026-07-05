@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             this.obstacles = [];
             this.projectiles = [];
-            this.gameSpeed = 3.6;
+            this.gameSpeed = 4.0;
             this.spawnTimer = 0;
             
             this.lastTime = 0;
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.bullets = 0;
             this.obstacles = [];
             this.projectiles = [];
-            this.gameSpeed = 3.6;
+            this.gameSpeed = 4.0;
             this.spawnTimer = 0;
             this.frameCount = 0;
             this.lastTime = performance.now();
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (code === SHOOT_CODE) {
                     if (!this.shootUnlocked) {
                         this.shootUnlocked = true;
-                        this.setStatus('> CHEAT ENABLED: SHOOT MODE ONLINE 🔫 (Press F to fire, pick up ammo on the road)');
+                        this.setStatus('> CHEAT ENABLED: SHOOT MODE ONLINE (Press F to fire, pick up ammo on the road)');
                         playCheatSuccessSound();
                     } else {
                         this.setStatus('> SHOOT MODE ALREADY ACTIVE.');
@@ -244,8 +244,8 @@ document.addEventListener('DOMContentLoaded', function () {
             this.frameCount++;
             const d = this.dino;
 
-            // Dynamically calculate speed based on score (starts at 3.6, caps at 8.0)
-            this.gameSpeed = Math.min(8.0, 3.6 + this.score * 0.0035);
+            // Dynamically calculate speed based on score (starts at 4.0, caps at 8.5)
+            this.gameSpeed = Math.min(8.5, 4.0 + this.score * 0.004);
 
             // Gravity / vertical motion
             d.vy += d.gravity;
