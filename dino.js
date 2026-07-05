@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 duckHeight: 18,
                 y: 0,
                 vy: 0,
-                gravity: 0.22,
-                jumpForce: -5.7,
+                gravity: 0.28,
+                jumpForce: -6.4,
                 isJumping: false,
                 isDucking: false,
                 legPhase: 0
@@ -56,8 +56,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             this.obstacles = [];
             this.projectiles = [];
-            this.gameSpeed = 2.5;
+            this.gameSpeed = 3.0;
             this.spawnTimer = 0;
+            
+            this.lastTime = 0;
+            this.accumulator = 0;
+            this.timestep = 1000 / 60; // 60 FPS target update rate
 
             this.jump = this.jump.bind(this);
             this.duck = this.duck.bind(this);
@@ -84,16 +88,18 @@ document.addEventListener('DOMContentLoaded', function () {
             this.bullets = 0;
             this.obstacles = [];
             this.projectiles = [];
-            this.gameSpeed = 2.5;
+            this.gameSpeed = 3.0;
             this.spawnTimer = 0;
             this.frameCount = 0;
+            this.lastTime = performance.now();
+            this.accumulator = 0;
 
             this.dino.isJumping = false;
             this.dino.isDucking = false;
             this.dino.vy = 0;
             this.dino.y = this.groundY - this.dino.standHeight;
 
-            this.loop();
+            this.loop(this.lastTime);
         }
 
         destroy() {
@@ -236,8 +242,8 @@ document.addEventListener('DOMContentLoaded', function () {
             this.frameCount++;
             const d = this.dino;
 
-            // Dynamically calculate speed based on score (starts at 2.5, caps at 8.0)
-            this.gameSpeed = Math.min(8.0, 2.5 + this.score * 0.003);
+            // Dynamically calculate speed based on score (starts at 3.0, caps at 8.0)
+            this.gameSpeed = Math.min(8.0, 3.0 + this.score * 0.0035);
 
             // Gravity / vertical motion
             d.vy += d.gravity;
@@ -502,11 +508,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        loop() {
+        loop(time = performance.now()) {
             if (!this.isPlaying) return;
-            this.update();
+            
+            let dt = time - this.lastTime;
+            if (dt > 100) dt = 100; // Cap to avoid giant steps on tab freeze
+            this.lastTime = time;
+
+            this.accumulator += dt;
+
+            while (this.accumulator >= this.timestep) {
+                this.update();
+                this.accumulator -= this.timestep;
+            }
+
             this.draw();
-            this.animationId = requestAnimationFrame(() => this.loop());
+            this.animationId = requestAnimationFrame((t) => this.loop(t));
         }
     }
 
