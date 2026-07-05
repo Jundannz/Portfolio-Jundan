@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 duckHeight: 18,
                 y: 0,
                 vy: 0,
-                gravity: 0.28,
-                jumpForce: -6.4,
+                gravity: 0.38,
+                jumpForce: -7.5,
                 isJumping: false,
                 isDucking: false,
                 legPhase: 0
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             this.obstacles = [];
             this.projectiles = [];
-            this.gameSpeed = 3.0;
+            this.gameSpeed = 3.6;
             this.spawnTimer = 0;
             
             this.lastTime = 0;
@@ -76,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         init() {
+            this.destroy(); // Clean up existing listeners and loops
+
             window.addEventListener('keydown', this.handleKeyDown);
             window.addEventListener('keyup', this.handleKeyUp);
             this.canvas.addEventListener('click', this.handleCanvasClick);
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.bullets = 0;
             this.obstacles = [];
             this.projectiles = [];
-            this.gameSpeed = 3.0;
+            this.gameSpeed = 3.6;
             this.spawnTimer = 0;
             this.frameCount = 0;
             this.lastTime = performance.now();
@@ -242,8 +244,8 @@ document.addEventListener('DOMContentLoaded', function () {
             this.frameCount++;
             const d = this.dino;
 
-            // Dynamically calculate speed based on score (starts at 3.0, caps at 8.0)
-            this.gameSpeed = Math.min(8.0, 3.0 + this.score * 0.0035);
+            // Dynamically calculate speed based on score (starts at 3.6, caps at 8.0)
+            this.gameSpeed = Math.min(8.0, 3.6 + this.score * 0.0035);
 
             // Gravity / vertical motion
             d.vy += d.gravity;
