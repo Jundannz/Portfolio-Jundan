@@ -1,0 +1,843 @@
+/* ==========================================================================
+   STYLE HALAMAN INTERNAL (works.html & project.html)
+   --------------------------------------------------------------------------
+   Navbar, progress bar, footer, modal store, dan menu mobile TIDAK ditulis
+   ulang di sini — halaman internal memakai markup + css/style.css yang sama
+   dengan landing page, sehingga tampil & berperilaku identik.
+
+   File ini hanya berisi bagian khas halaman internal:
+   1. Kerangka & dekorasi latar (grid, bintang, bentuk)
+   2. Header halaman (judul "all works." + tombol kembali)
+   3. Filter kategori (memakai tombol .filter-btn dari landing page)
+   4. Grid kartu karya berwarna
+   5. Halaman detail proyek
+   6. Kondisi kosong / tidak ditemukan / media gagal
+   7. Responsif
+   Semua selector diawali .archive-page agar tidak bentrok dengan style.css.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Kerangka & dekorasi latar
+   -------------------------------------------------------------------------- */
+.archive-page .archive-main {
+  position: relative;
+  width: 100%;
+  /* ruang untuk navbar fixed (70px) + jarak napas */
+  padding: 140px 0 120px;
+  background-color: #ffffff;
+  /* dekorasi yang keluar tepi dipotong agar tidak muncul scroll horizontal */
+  overflow: hidden;
+}
+
+.archive-page .archive-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1182px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Elemen dekoratif: tidak bisa diklik & tidak dibaca screen reader */
+.archive-page .deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Grid garis seperti di section "my works" landing page */
+.archive-page .deco-grid {
+  top: 360px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1240px;
+  max-width: none;
+  height: auto;
+  opacity: 0.5;
+}
+
+.archive-page .deco-grid--2 { top: 1540px; }
+.archive-page .deco-grid--3 { top: 2720px; }
+
+/* Bentuk-bentuk di area judul (mengikuti hero landing page) */
+.archive-page .deco-circle {
+  top: 120px;
+  right: 9%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--palette-1);
+  opacity: 0.9;
+}
+
+.archive-page .deco-square {
+  top: 70px;
+  right: 22%;
+  width: 110px;
+  height: 110px;
+  background-color: var(--palette-3);
+  transform: rotate(-15.76deg);
+}
+
+.archive-page .deco-star-big { top: 230px; right: 15%; width: 150px; }
+/* Posisi diatur agar tidak menimpa judul atau tombol "Back to home" */
+.archive-page .deco-star-a { top: 1150px; left: 3%; width: 110px; }
+.archive-page .deco-star-b { top: 760px; right: 4%; width: 70px; }
+.archive-page .deco-star-c { top: 1300px; left: 4%; width: 72px; }
+.archive-page .deco-star-d { top: 1900px; right: 5%; width: 100px; }
+.archive-page .deco-polygon { top: 560px; left: 1%; width: 120px; opacity: 0.6; }
+
+/* --------------------------------------------------------------------------
+   2. Header halaman
+   -------------------------------------------------------------------------- */
+.archive-page .archive-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 50px;
+}
+
+.archive-page .archive-eyebrow {
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--palette-4);
+}
+
+/* Judul "all works." — gaya sama dengan judul "my works" di landing page */
+.archive-page .archive-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 8px;
+  margin: 0;
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -2.87px;
+  color: #000000;
+}
+
+.archive-page .archive-title__lead {
+  transition: opacity 0.2s ease;
+}
+
+.archive-page .archive-title__lead.is-changing {
+  opacity: 0;
+}
+
+/* height: auto menimpa aturan .final .works-wrapper milik landing page */
+.archive-page .archive-title .works-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: auto;
+  padding: 0 10px;
+}
+
+.archive-page .archive-title .accent {
+  position: relative;
+  z-index: 2;
+  font-family: "Fraunces", Helvetica, serif;
+  font-style: italic;
+  color: var(--palette-1);
+}
+
+.archive-page .archive-title .accent-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 120%;
+  transform: translate(-50%, -50%);
+}
+
+.archive-page .archive-title .dot {
+  color: var(--palette-1);
+}
+
+.archive-page .archive-lead {
+  max-width: 620px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--palette-4);
+}
+
+.archive-page .archive-count {
+  font-weight: 600;
+  color: var(--palette-1);
+}
+
+.archive-page .archive-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+/* Tombol kembali — gaya outline seperti tombol "Contact Me" di hero */
+.archive-page .back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 2px solid var(--palette-4);
+  border-radius: 25px;
+  background-color: #ffffff;
+  color: var(--palette-4);
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 4px 4px 0 var(--palette-4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.archive-page .back-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--palette-4);
+  background-color: var(--palette-1);
+  color: #ffffff;
+}
+
+.archive-page .back-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--palette-4);
+}
+
+.archive-page .back-btn:focus-visible,
+.archive-page .work-card:focus-visible,
+.archive-page .project-link:focus-visible {
+  outline: 3px solid var(--palette-1);
+  outline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Filter kategori
+   Tombol memakai class .filter-btn / .all-button / dst. dari style.css,
+   jadi warna & efek tekannya sama persis dengan landing page.
+   -------------------------------------------------------------------------- */
+.archive-page .archive-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 55px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Grid kartu karya berwarna
+   -------------------------------------------------------------------------- */
+.archive-page .archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 30px;
+  /* Animasi saat filter berganti (sama dengan landing page: 250ms) */
+  transition: opacity 0.25s ease-out, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archive-page .archive-grid.is-switching {
+  opacity: 0;
+  transform: translateY(15px) scale(0.98);
+}
+
+.archive-page .work-card[hidden] {
+  display: none;
+}
+
+/* Kartu: border tebal + hard shadow + warna bergilir seperti landing page */
+.archive-page .work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 0;
+  padding: 18px 20px 20px;
+  border: 2px solid var(--palette-4);
+  border-radius: 17px;
+  background-color: var(--palette-2);
+  box-shadow: 10px 10px 0 var(--palette-4);
+  color: var(--palette-4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.archive-page .work-card:hover {
+  transform: scale(1.03);
+  box-shadow: 15px 15px 0 var(--palette-4);
+}
+
+/* 6 warna kartu — urutan sama dengan kartu di landing page */
+.archive-page .work-card[data-tone="0"] { background-color: var(--palette-2); }
+.archive-page .work-card[data-tone="1"] { background-color: var(--palette-3); }
+.archive-page .work-card[data-tone="2"] { background-color: var(--variable-collection-palette-5); }
+.archive-page .work-card[data-tone="3"] { background-color: #e7ddff; }
+.archive-page .work-card[data-tone="4"] { background-color: #e7fffb; }
+.archive-page .work-card[data-tone="5"] { background-color: var(--variable-collection-palette-7); }
+
+.archive-page .work-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 2px solid var(--palette-4);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.archive-page .work-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.archive-page .work-card:hover .work-card__media img {
+  transform: scale(1.05);
+}
+
+.archive-page .work-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+/* Label kategori kecil di atas judul */
+.archive-page .category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  border: 2px solid var(--palette-4);
+  border-radius: 50px;
+  background-color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--palette-4);
+}
+
+.archive-page .work-card__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.archive-page .work-card__desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* Tag tools — pill berwarna seperti di landing page */
+.archive-page .tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.archive-page .tool-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 4px 14px;
+  border: 2px solid var(--palette-4);
+  border-radius: 50px;
+  font-size: 14px;
+  background-color: var(--palette-3);
+}
+
+.archive-page .tool-tag:nth-child(3n + 2) { background-color: var(--palette-2); }
+.archive-page .tool-tag:nth-child(3n + 3) { background-color: var(--variable-collection-palette-5); }
+
+/* Pada kartu yang warnanya sama dengan tag, tag diberi warna kontras */
+.archive-page .work-card[data-tone="1"] .tool-tag:nth-child(3n + 1) { background-color: #ffffff; }
+.archive-page .work-card[data-tone="0"] .tool-tag:nth-child(3n + 2) { background-color: #ffffff; }
+.archive-page .work-card[data-tone="2"] .tool-tag:nth-child(3n + 3) { background-color: #ffffff; }
+
+.archive-page .work-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--palette-4);
+}
+
+/* --------------------------------------------------------------------------
+   5. Halaman detail proyek
+   -------------------------------------------------------------------------- */
+.archive-page .project-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+/* Bingkai media meniru jendela "showreel" ungu di landing page */
+.archive-page .project-window {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 4px solid var(--palette-4);
+  border-radius: 20px;
+  background-color: var(--palette-1);
+  box-shadow: 9px 9px 0 var(--palette-4);
+}
+
+.archive-page .project-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 46px;
+  padding: 5px 16px;
+  border: 2px solid var(--palette-4);
+  border-radius: 10px;
+  background-color: #1f19264c;
+}
+
+.archive-page .window-dots {
+  display: flex;
+  flex-shrink: 0;
+  gap: 5px;
+}
+
+.archive-page .window-dots span {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+}
+
+.archive-page .window-dots span:nth-child(1) { background-color: var(--palette-2); }
+.archive-page .window-dots span:nth-child(2) { background-color: #ffd672; }
+.archive-page .window-dots span:nth-child(3) { background-color: var(--palette-3); }
+
+.archive-page .project-window__name {
+  overflow: hidden;
+  margin-left: auto;
+  font-size: 17px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
+
+.archive-page .project-media__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: #0d0813;
+}
+
+.archive-page .project-media__stage > img,
+.archive-page .project-media__stage > video,
+.archive-page .project-media__stage > iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.archive-page .project-media__stage > img {
+  object-fit: contain;
+  background-color: #ffffff;
+}
+
+/* Tombol putar video (video baru dimuat setelah diklik, tanpa autoplay) */
+.archive-page .media-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 8, 19, 0.55);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.archive-page .media-play:hover {
+  background-color: rgba(13, 8, 19, 0.72);
+}
+
+.archive-page .media-play__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  padding-left: 4px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* Kotak informasi proyek */
+.archive-page .project-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 30px;
+  border: 3px solid var(--palette-4);
+  border-radius: 17px;
+  background-color: #f7f0ff;
+  box-shadow: 9px 9px 0 var(--palette-4);
+}
+
+.archive-page .project-title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.archive-page .project-desc {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.archive-page .project-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.archive-page .project-meta__label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #6b5f78;
+}
+
+.archive-page .project-meta .tool-list {
+  justify-content: flex-start;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.archive-page .project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Tombol tautan asli — gaya tombol modal "preview.exe" */
+.archive-page .project-link {
+  display: inline-flex;
+  flex: 1 1 210px;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border: 2px solid var(--palette-4);
+  border-radius: 8px;
+  background-color: var(--palette-2);
+  box-shadow: 5px 5px 0 var(--palette-4);
+  text-align: center;
+  color: var(--palette-4);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.archive-page .project-link:first-child {
+  background-color: var(--palette-1);
+  color: #ffffff;
+}
+
+.archive-page .project-link:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--palette-4);
+}
+
+.archive-page .project-link:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 var(--palette-4);
+}
+
+.archive-page .project-link__title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.archive-page .project-link__sub {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.archive-page .project-note {
+  margin: 0;
+  font-size: 14px;
+  color: #4a4152;
+}
+
+/* "More works" di bawah halaman detail */
+.archive-page .more-works {
+  margin-top: 100px;
+}
+
+.archive-page .more-works__title {
+  margin: 0 0 40px;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  text-align: center;
+  color: #000000;
+}
+
+.archive-page .more-works__title .accent {
+  font-family: "Fraunces", Helvetica, serif;
+  font-style: italic;
+  color: var(--palette-1);
+}
+
+.archive-page .more-works__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* Tombol "VIEW ALL WORKS" — sama dengan tombol VIEW MORE di landing page */
+.archive-page .view-all-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border: 2px solid var(--palette-4);
+  border-radius: 10px;
+  background-color: var(--palette-2);
+  box-shadow: 8px 8px 0 var(--palette-4);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--palette-4);
+  transition: transform 0.2s ease;
+}
+
+.archive-page .view-all-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   6. Kondisi kosong / tidak ditemukan / media gagal
+   -------------------------------------------------------------------------- */
+.archive-page .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 60px 30px;
+  border: 3px dashed var(--palette-4);
+  border-radius: 17px;
+  background-color: #f7f0ff;
+  text-align: center;
+}
+
+.archive-page .empty-state[hidden] {
+  display: none;
+}
+
+.archive-page .empty-state__title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.archive-page .empty-state__text {
+  max-width: 460px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Placeholder bertanda jelas saat gambar/video gagal dimuat */
+.archive-page .media-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background-color: #f1ebff;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--palette-4);
+}
+
+.archive-page .media-fallback strong {
+  font-size: 14px;
+}
+
+.archive-page .project-media__stage > .media-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Responsif
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 1100px) {
+  .archive-page .deco-grid { width: 100%; }
+}
+
+@media screen and (max-width: 1024px) {
+  .archive-page .archive-main {
+    padding: 120px 0 100px;
+  }
+
+  .archive-page .archive-title {
+    font-size: 56px;
+  }
+
+  .archive-page .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 26px;
+  }
+
+  .archive-page .project-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .archive-page .deco-square,
+  .archive-page .deco-star-big { opacity: 0.35; }
+}
+
+@media screen and (max-width: 768px) {
+  .archive-page .archive-main {
+    padding: 100px 0 70px;
+  }
+
+  .archive-page .archive-container {
+    padding: 0 20px;
+  }
+
+  .archive-page .archive-head {
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .archive-page .archive-eyebrow {
+    font-size: 16px;
+  }
+
+  .archive-page .archive-title {
+    justify-content: center;
+    gap: 0 10px;
+    font-size: 42px;
+    letter-spacing: -1.5px;
+  }
+
+  .archive-page .archive-lead {
+    font-size: 14px;
+  }
+
+  .archive-page .archive-actions {
+    justify-content: center;
+  }
+
+  .archive-page .back-btn {
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  .archive-page .archive-filter {
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .archive-page .archive-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .archive-page .work-card {
+    box-shadow: 7px 7px 0 var(--palette-4);
+  }
+
+  .archive-page .work-card:hover {
+    transform: none;
+    box-shadow: 7px 7px 0 var(--palette-4);
+  }
+
+  .archive-page .work-card__title { font-size: 20px; }
+  .archive-page .work-card__desc { font-size: 14px; }
+
+  .archive-page .project-window {
+    padding: 12px;
+    gap: 12px;
+    border-width: 3px;
+    box-shadow: 6px 6px 0 var(--palette-4);
+  }
+
+  .archive-page .project-window__bar { height: 38px; padding: 4px 10px; }
+  .archive-page .window-dots span { width: 12px; height: 12px; }
+  .archive-page .project-window__name { font-size: 12px; }
+
+  .archive-page .project-info {
+    padding: 22px 18px;
+    box-shadow: 6px 6px 0 var(--palette-4);
+  }
+
+  .archive-page .project-title { font-size: 28px; }
+  .archive-page .project-desc { font-size: 15px; }
+  .archive-page .project-link { flex-basis: 100%; min-height: 48px; }
+
+  .archive-page .more-works { margin-top: 60px; }
+  .archive-page .more-works__title { font-size: 36px; margin-bottom: 26px; }
+  .archive-page .view-all-btn { font-size: 22px; }
+
+  /* Dekorasi dikurangi di HP agar konten tetap fokus */
+  .archive-page .deco-grid { opacity: 0.3; }
+  .archive-page .deco-square,
+  .archive-page .deco-star-big,
+  .archive-page .deco-polygon,
+  .archive-page .deco-star-b,
+  .archive-page .deco-star-c,
+  .archive-page .deco-star-d { display: none; }
+
+  .archive-page .deco-circle {
+    top: 70px;
+    right: -30px;
+    width: 90px;
+    height: 90px;
+    opacity: 0.25;
+  }
+
+  .archive-page .deco-star-a {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-page .archive-grid,
+  .archive-page .work-card,
+  .archive-page .work-card__media img {
+    transition: none;
+  }
+}

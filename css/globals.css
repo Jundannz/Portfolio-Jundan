@@ -1,0 +1,148 @@
+/* ==========================================================================
+   GLOBAL / DASAR
+   Dimuat oleh semua halaman (index.html, works.html, project.html).
+   Berisi reset, dasar tipografi, aksesibilitas fokus, scrollbar, dan kursor
+   kustom. Aturan yang khusus satu halaman ada di style.css / pages.css.
+   ========================================================================== */
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+/*
+ * Elemen dekoratif (teks raksasa "story", "#", "$") sengaja dibuat melewati
+ * tepi layar. Tanpa aturan ini, bagian yang melewati tepi kanan menciptakan
+ * area scroll kosong (±440px) sehingga halaman bisa digeser ke samping.
+ *
+ * `height: auto` diperlukan karena `overflow-x: hidden` membuat <html> menjadi
+ * kotak scroll; bila tingginya tetap 100% halaman tidak bisa digulir ke bawah.
+ * Aturan serupa sudah dipakai di responsive-mobile.css dan responsive-tablet.css.
+ */
+html {
+  overflow-x: hidden;
+  height: auto;
+  /* Scroll halus untuk semua anchor internal (#section) */
+  scroll-behavior: smooth;
+}
+
+/* Indikator fokus keyboard: jangan dihilangkan agar navigasi Tab tetap terlihat */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   Scrollbar kustom (Chromium + Firefox)
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f7;
+  border-left: 2px solid var(--palette-4);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--palette-1);
+  border: 2px solid var(--palette-4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--variable-collection-palette-6);
+}
+
+html {
+  scrollbar-color: var(--palette-1) #f5f5f7;
+  scrollbar-width: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Kursor kustom (SVG inline) — dipakai di seluruh elemen interaktif
+   -------------------------------------------------------------------------- */
+*,
+html,
+body,
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='24' height='24'><polygon points='4.82 1.93 4.81 30.07 13.44 19.38 27.19 19.01 4.82 1.93' fill='%231f1926' stroke='%23ffffff' stroke-linejoin='round'/></svg>") 2 1, auto !important;
+}
+
+/* Kursor teks tetap dipertahankan pada kolom isian agar nyaman diketik */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+[contenteditable="true"] {
+  cursor: text !important;
+}
+
+/* Kursor saat tombol ditekan */
+*:active {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='24' height='24'><polygon points='4.82 1.93 4.81 30.07 13.44 19.38 27.19 19.01 4.82 1.93' fill='%23ffffff' stroke='%231f1926' stroke-linejoin='round' stroke-linecap='square'/></svg>") 2 1, auto !important;
+}
+
+/* --------------------------------------------------------------------------
+   Skip link: tersembunyi sampai difokuskan dengan Tab, lalu tampil di atas
+   -------------------------------------------------------------------------- */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 10000;
+  padding: 10px 18px;
+  border: 2px solid var(--palette-4);
+  border-radius: 8px;
+  background-color: var(--palette-2);
+  color: var(--palette-4);
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 4px 4px 0 var(--palette-4);
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Hormati preferensi pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

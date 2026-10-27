@@ -1,0 +1,23 @@
+{
+  "name": "jundannz-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:local": "node scripts/build.mjs --source=local",
+    "data:local": "node scripts/build.mjs --source=local --target=root",
+    "data:cms": "node scripts/build.mjs --target=root",
+    "dev": "node scripts/serve.mjs . 8000",
+    "preview": "node scripts/serve.mjs dist 8000",
+    "test": "node --test tests/*.test.mjs",
+    "studio": "npm --prefix studio run dev",
+    "migrate:check": "node studio/scripts/migrate-legacy.mjs",
+    "migrate": "node studio/scripts/migrate-legacy.mjs --apply"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.3"
+  }
+}

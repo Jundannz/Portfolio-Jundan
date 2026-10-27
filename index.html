@@ -14,37 +14,41 @@
     href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="globals.css" />
-  <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="responsive-tablet.css" />
-  <link rel="stylesheet" href="responsive-mobile.css?v=3" />
+  <link rel="stylesheet" href="css/globals.css" />
+  <link rel="stylesheet" href="css/styleguide.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive-tablet.css" />
+  <link rel="stylesheet" href="css/responsive-mobile.css" />
+  <link rel="stylesheet" href="css/works-ui.css" />
 </head>
 
 <body class="index-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div id="scroll-progress"></div>
   <div class="final">
 
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <nav class="navbar" aria-label="Main navigation">
       <div class="frame-49">
-        <div class="logo">
-          <img class="logo-jundannz" src="assets\logo\logo-jundannz-01-crop-1.png" alt="Jundannz Logo" />
-        </div>
+        <a class="logo" href="#hero" aria-label="Jundannz — back to top">
+          <img class="logo-jundannz" src="assets/logo/logo-jundannz-01-crop-1.png" alt="Jundannz Logo" />
+        </a>
 
-        <div class="hamburger" id="hamburger-btn">
+        <!-- Tombol menu mobile: <button> agar bisa diakses lewat keyboard -->
+        <button class="hamburger" id="hamburger-btn" type="button" aria-label="Open navigation menu"
+          aria-controls="mobile-menu" aria-expanded="false">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
-        </div>
+        </button>
 
-        <ul class="navbar-2" id="mobile-menu" role="menubar">
-          <li role="none"><a href="#about" class="text-wrapper-43" role="menuitem">About</a></li>
-          <li role="none"><a href="#skills" class="text-wrapper-43" role="menuitem">Skills</a></li>
-          <li role="none"><a href="#portfolio" class="text-wrapper-43" role="menuitem">Portfolio</a></li>
-          <li role="none"><a href="#works" class="text-wrapper-43" role="menuitem">My Works</a></li>
+        <ul class="navbar-2" id="mobile-menu">
+          <li><a href="#about" class="text-wrapper-43">About</a></li>
+          <li><a href="#skills" class="text-wrapper-43">Skills</a></li>
+          <li><a href="#portfolio" class="text-wrapper-43">Portfolio</a></li>
+          <li><a href="#works" class="text-wrapper-43">My Works</a></li>
         </ul>
 
-        <a href="#" class="div-wrapper-2" id="store-btn-nav" aria-label="My Store">
+        <a href="#" class="div-wrapper-2" id="store-btn-nav" aria-label="My Store" aria-haspopup="dialog">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"
@@ -60,6 +64,9 @@
         </a>
       </div>
     </nav>
+
+    <!-- Konten utama landing page (satu <main> agar struktur landmark jelas) -->
+    <main id="main-content">
 
     <section class="hero-section" id="hero" aria-labelledby="hero-heading">
       <img class="ellipse-8" src="assets/decoration/ellipse-16.svg" alt="" aria-hidden="true" />
@@ -163,8 +170,12 @@
 
       <!-- Portfolio Window Wrapper (guarantees perfect overlay and sizing) -->
       <div class="portfolio-window-wrapper">
-        <!-- Easter Egg CRT Terminal -->
-        <div class="easter-egg-container" aria-hidden="true">
+        <!-- Easter Egg CRT Terminal.
+             Panel ini tersembunyi sampai jendela portfolio digeser (drag), jadi
+             diberi `inert` agar isinya tidak bisa difokus keyboard maupun dibaca
+             screen reader saat belum terlihat. `inert` dilepas oleh js/script.js
+             ketika panel benar-benar aktif. -->
+        <div class="easter-egg-container" inert>
           <div class="crt-screen">
             <div class="crt-scanlines"></div>
             <div class="terminal-header">
@@ -274,330 +285,23 @@
           </button>
         </div>
 
-        <div class="frame-14">
-
-          <div class="frame-15 filter-item all-view show">
-            <a href="#" data-link="https://www.instagram.com/p/DMc8OLjJrud/" target="_blank" class="frame-16">
-              <img class="rectangle-3" src="assets/img/different.webp" alt="DIFFERENT MV Edit" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">DIFFERENT - MV Edit</h3>
-                <p class="p">DIFFERENT by le sserafim MV semi mograph editing style, entry for #harraremakechain.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18"><span class="text-wrapper-13">After Effects</span></div>
-              </div>
-            </a>
-
-            <a href="#" data-link="https://vt.tiktok.com/ZSQp75oNT/" target="_blank" class="frame-19">
-              <img class="rectangle-3" src="assets/img/transisi-pionir.webp" alt="Transisi PIONIR Gadjah Mada 2026" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">PIONIR Gadjah Mada 2026 Transition</h3>
-                <p class="text-wrapper-14">Motion Graphic Transition animation for PIONIR Gadjah Mada 2026.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-23"><span class="text-wrapper-13">After Effects</span></div>
-                <div class="frame-18" style="background-color: var(--palette-2);"><span class="text-wrapper-13">Premiere
-                    Pro</span></div>
-              </div>
-            </a>
-
-            <a href="#"
-              data-link="https://drive.google.com/drive/folders/1X6MB0jVHmsZGK7wknPytvenPIkes3oVN?usp=drive_link"
-              target="_blank" class="frame-21">
-              <img class="rectangle-3" src="assets/img/logotype.webp" alt="Logotype Jundannz" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Logotype Jundannz</h3>
-                <p class="text-wrapper-14">Brush stylized logo for my personal rebrand.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-20"><span class="text-wrapper-13">Illustrator</span></div>
-              </div>
-            </a>
-          </div>
-
-          <div class="frame-15 filter-item all-view show">
-            <a href="#"
-              data-link="https://drive.google.com/file/d/1ieZhQhhXDVBcQ2zQoavZI18FsAaPGHVR/view?usp=drive_link"
-              target="_blank" class="frame-22">
-              <img class="rectangle-3" src="assets/img/early-bird.webp" alt="Thumbnail Early Bird" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Thumbnail Early Bird</h3>
-                <p class="text-wrapper-14">Symphony concert store thumbnail for early bird sale.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-23"><span class="text-wrapper-13">Illustrator</span></div>
-              </div>
-            </a>
-
-            <a href="#" data-link="https://github.com/Jundannz/Portfolio-Jundan" target="_blank" class="frame-24">
-              <img class="rectangle-4" src="assets/img/web.webp" alt="Portfolio Website" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Portfolio Website</h3>
-                <p class="text-wrapper-14">My portfolio website for digital personal branding.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18"><span class="text-wrapper-13">HTML</span></div>
-                <div class="frame-23"><span class="text-wrapper-13">CSS</span></div>
-                <div class="frame-20"><span class="text-wrapper-13">JavaScript</span></div>
-              </div>
-            </a>
-
-            <a href="#" data-link="https://github.com/Jundannz/Airbnb-Price-Prediction" target="_blank"
-              class="frame-26">
-              <img class="rectangle-3" src="assets/img/airbnb.webp" alt="Airbnb Price Prediction" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Airbnb Price Prediction</h3>
-                <p class="text-wrapper-14">Machine learning regression project to predict the airbnb price in Singapore.
-                </p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-23"><span class="text-wrapper-13">Jupyter Notebook</span></div>
-                <div class="frame-18"><span class="text-wrapper-13">Python</span></div>
-              </div>
-            </a>
-          </div>
-
-          <div class="frame-15 filter-item motion" style="display: none;">
-            <a href="#" data-link="https://www.instagram.com/p/DQB_WugCfn1/" target="_blank" class="frame-21">
-              <img class="rectangle-3" src="assets/img/jamet.webp" alt="JAMET MV Edit" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">JAMET - MV Edit</h3>
-                <p class="text-wrapper-14">JAMET music lyrics video, remake @2good2be.truee to join the trend.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18"><span class="text-wrapper-13">After Effects</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://www.instagram.com/p/DPYw8cNiVU_/" class="frame-24">
-              <img class="rectangle-3" src="assets/img/hilang.webp" alt="Hilang PMV Edit" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Hilang - PMV Edit</h3>
-                <p class="text-wrapper-14">Chaeroel - Hilang | Ryo Yamada PMV Edit.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-20"><span class="text-wrapper-13">After Effects</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://www.instagram.com/jundnn._/reel/DNiBJX4p2_i/" target="_blank"
-              class="frame-19">
-              <img class="rectangle-3" src="assets/img/aint-it-fun.webp" alt="Ain't It Fun PMV Edit" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Ain't It Fun - PMV Edit</h3>
-                <p class="text-wrapper-14">A Photo Music Video about Pionir Gadjah Mada 2025 combined with Ain't It Fun
-                  music.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18" style="background-color: var(--variable-collection-palette-7);"><span
-                    class="text-wrapper-13">After Effects</span></div>
-              </div>
-            </a>
-          </div>
-
-          <div class="frame-15 filter-item motion" style="display: none;">
-            <a href="#" data-link="https://www.instagram.com/p/DMc8OLjJrud/" target="_blank" class="frame-26">
-              <img class="rectangle-3" src="assets/img/different.webp" alt="DIFFERENT MV Edit" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">DIFFERENT - MV Edit</h3>
-                <p class="text-wrapper-14">DIFFERENT by le sserafim MV semi mograph editing style, entry for
-                  #harraremakechain.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-20"><span class="text-wrapper-13">After Effects</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://www.instagram.com/p/DLufY3XJDCO/" target="_blank" class="frame-16">
-              <img class="rectangle-3" src="assets/img/4ever.webp" alt="4EVER PMV Edit" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">4EVER - PMV Edit</h3>
-                <p class="text-wrapper-14">Naykilla - 4EVER | Chinatsu Photo Music Video Edit.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18"><span class="text-wrapper-13">After Effects</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://vt.tiktok.com/ZSQp75oNT/" target="_blank" class="frame-22">
-              <img class="rectangle-3" src="assets/img/transisi-pionir.webp" alt="PIONIR Gadjah Mada 2026 Transition" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">PIONIR Gadjah Mada 2026 Transition</h3>
-                <p class="text-wrapper-14">Motion Graphic Transition animation for PIONIR Gadjah Mada 2026.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-23"><span class="text-wrapper-13">After Effects</span></div>
-                <div class="frame-18" style="background-color: #64CFA8;"><span class="text-wrapper-13">Premiere
-                    Pro</span></div>
-              </div>
-            </a>
-          </div>
-
-          <div class="frame-15 filter-item design" style="display: none;">
-            <a href="#"
-              data-link="https://drive.google.com/drive/folders/1X6MB0jVHmsZGK7wknPytvenPIkes3oVN?usp=drive_link"
-              target="_blank" class="frame-26">
-              <img class="rectangle-3" src="assets/img/logotype.webp" alt="Logotype Jundannz" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Logotype Jundannz</h3>
-                <p class="text-wrapper-14">Brush stylized logo for my personal rebrand.</p>
-              </div>
-              <div class="frame-20" style="margin-top: auto;"><span class="text-wrapper-13">Illustrator</span></div>
-            </a>
-            <a href="#"
-              data-link="https://drive.google.com/file/d/1ieZhQhhXDVBcQ2zQoavZI18FsAaPGHVR/view?usp=drive_link"
-              target="_blank" class="frame-19">
-              <img class="rectangle-3" src="assets/img/early-bird.webp" alt="Thumbnail Early Bird" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Thumbnail Early Bird</h3>
-                <p class="text-wrapper-14">Symphony concert store thumbnail for early bird sale.</p>
-              </div>
-              <div class="frame-18" style="background-color: var(--variable-collection-palette-7); margin-top: auto;">
-                <span class="text-wrapper-13">After Effects</span>
-              </div>
-            </a>
-            <a href="#"
-              data-link="https://drive.google.com/file/d/1HBnEcAXpc5Z-LaWX7AUQoZWGdGLvZGz2/view?usp=drive_link"
-              target="_blank" class="frame-21">
-              <img class="rectangle-3" src="assets/img/bazar.webp" alt="Bazar Pamphlet" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Bazar Pamphlet</h3>
-                <p class="text-wrapper-14">A pamphlet for bazaar ramadhan event that sells some daily needs, especially
-                  for Idul Fitri.</p>
-              </div>
-              <div class="frame-20" style="margin-top: auto;"><span class="text-wrapper-13">Illustrator</span></div>
-            </a>
-          </div>
-
-          <div class="frame-15 filter-item design" style="display: none;">
-            <a href="#"
-              data-link="https://drive.google.com/file/d/1OmEh5JL_BgsOKY8kVb7bu8xb1lLuYcjn/view?usp=drive_link"
-              target="_blank" class="frame-16">
-              <img class="rectangle-3" src="assets/img/sca.webp" alt="SCA Banner" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">SCA Banner</h3>
-                <p class="text-wrapper-14">Smago Creative Art banner for branding and google form banner.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-23"><span class="text-wrapper-13">Jupyter Notebook</span></div>
-                <div class="frame-18"><span class="text-wrapper-13">Python</span></div>
-              </div>
-            </a>
-            <a href="#"
-              data-link="https://drive.google.com/file/d/1cOXgjFqsEQETCDJYYXvftBHnxIE4-bOT/view?usp=drive_link"
-              target="_blank" class="frame-24">
-              <img class="rectangle-3" src="assets/img/jundannz-banner.webp" alt="Jundannz Banner" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Jundannz Banner</h3>
-                <p class="text-wrapper-14">Jundannz banner for personal digital branding. Blends graffiti aesthetics
-                  with a winter atmosphere.</p>
-              </div>
-              <div class="frame-20" style="margin-top: auto;"><span class="text-wrapper-13">Photoshop</span></div>
-            </a>
-            <a href="#"
-              data-link="https://drive.google.com/file/d/1bLg_-9focUQ8GXGOLfqUqFPJQTS3vQpy/view?usp=drive_link"
-              target="_blank" class="frame-22">
-              <img class="rectangle-3" src="assets/img/ayo-sandalan.webp" alt="Ayo Sandalan Banner" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Ayo Sandalan Banner</h3>
-                <p class="text-wrapper-14">"Ayo Sandalan" banner is made to use in the "Sandalan" event that is held by
-                  Forum Anak Moyudan.</p>
-              </div>
-              <div class="frame-23" style="margin-top: auto;"><span class="text-wrapper-13">Illustrator</span></div>
-            </a>
-          </div>
-
-          <div class="frame-15 filter-item code" style="display: none;">
-            <a href="#" data-link="https://github.com/Jundannz/Airbnb-Price-Prediction" target="_blank"
-              class="frame-19">
-              <img class="rectangle-3" src="assets/img/airbnb.webp" alt="Airbnb Price Prediction" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Airbnb Price Prediction</h3>
-                <p class="text-wrapper-14">Machine learning regression project to predict the airbnb price in Singapore.
-                </p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-20"><span class="text-wrapper-13">Jupyter Notebook</span></div>
-                <div class="frame-18" style="background-color: var(--variable-collection-palette-7);"><span
-                    class="text-wrapper-13">Python</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://github.com/Jundannz/Mushroom-Classification-ML" target="_blank"
-              class="frame-21">
-              <img class="rectangle-3" src="assets/img/mushroom.webp" alt="Mushroom Classification" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Mushroom Classification</h3>
-                <p class="text-wrapper-14">Machine learning classification project to predict the mushroom whether is it
-                  poisonous or not.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-23" style="background-color: var(--variable-collection-palette-7);"><span
-                    class="text-wrapper-13">Jupyter Notebook</span></div>
-                <div class="frame-18"><span class="text-wrapper-13">Python</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://github.com/Jundannz/Portfolio-Jundan" target="_blank" class="frame-16">
-              <img class="rectangle-4" src="assets/img/web.webp" alt="Portfolio Website" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Portfolio Website</h3>
-                <p class="text-wrapper-14">My portfolio website for digital personal branding.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18"><span class="text-wrapper-13">HTML</span></div>
-                <div class="frame-23" style="background-color: white;"><span class="text-wrapper-13">CSS</span></div>
-                <div class="frame-20" style="background-color: var(--variable-collection-palette-5);"><span
-                    class="text-wrapper-13">JavaScript</span></div>
-              </div>
-            </a>
-          </div>
-
-          <div class="frame-15 filter-item code" style="display: none;">
-            <a href="#" data-link="https://github.com/Jundannz/Library-Management" target="_blank" class="frame-24">
-              <img class="rectangle-3" src="assets/img/library.webp" alt="Library Management" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">Library Management</h3>
-                <p class="text-wrapper-14">Library Management project is terminal based program that can help organizing
-                  books in library.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18" style="background-color: var(--variable-collection-palette-7);"><span
-                    class="text-wrapper-13">C++</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://github.com/Jundannz/TicTacToe" target="_blank" class="frame-26">
-              <img class="rectangle-3" src="assets/img/tictactoe.webp" alt="TicTacToe" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">TicTacToe</h3>
-                <p class="text-wrapper-14">This is a semi-big project, making TicTacToe game with some feature and some
-                  difficulty against computer.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-20"><span class="text-wrapper-13">C++</span></div>
-              </div>
-            </a>
-            <a href="#" data-link="https://github.com/Jundannz/RPG-System" target="_blank" class="frame-22">
-              <img class="rectangle-3" src="assets/img/rpg.webp" alt="RPG Game System" />
-              <div class="frame-17">
-                <h3 class="text-wrapper-12">RPG Game System</h3>
-                <p class="text-wrapper-14">RPG Game System project made using C++ language. This project copied how RPG
-                  Games logic work.</p>
-              </div>
-              <div class="frame-25" style="margin-top: auto;">
-                <div class="frame-18"><span class="text-wrapper-13">C++</span></div>
-              </div>
-            </a>
-          </div>
-
+        <div class="frame-14" data-featured-root aria-live="polite">
+          <p class="featured-note" role="status">Loading works…</p>
         </div>
 
-        <a href="https://drive.google.com/drive/folders/1eOO0LFWxUdWHfURsntQTNv0Fz7qtasoT?usp=drive_link"
-          class="frame-27" aria-label="View more works" target="_blank" rel="noopener noreferrer">
+        <!-- Tombol ini menuju arsip internal (bukan lagi Google Drive).
+             Tautan Drive untuk file asli tetap tersedia di halaman detail karya. -->
+        <a href="works.html" class="frame-27" aria-label="View all works in the archive">
           <span class="text-wrapper-15">VIEW MORE</span>
         </a>
       </div>
     </section>
 
-    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+    <section class="contact-section" id="contact" aria-labelledby="collaborate-heading">
       <img class="vector" src="assets/decoration/vector-6.svg" alt="" aria-hidden="true" />
       <img class="star" src="assets/decoration/star-14.svg" alt="" aria-hidden="true" />
       <img class="img" src="assets/decoration/star-15.svg" alt="" aria-hidden="true" />
-      <h2 class="let-s-collaborate">
+      <h2 class="let-s-collaborate" id="collaborate-heading">
         <span class="span">let's</span>
         <span class="text-wrapper-7">collaborate</span>
         <span class="text-wrapper-6">!</span>
@@ -613,7 +317,7 @@
         </div>
         <div class="div">
           <div class="frame-wrapper">
-            <form class="frame-4" id="contact-form" aria-labelledby="contact-heading"
+            <form class="frame-4" id="contact-form" aria-label="Send a message form"
               action="https://formspree.io/f/xdarwgvg" method="POST">
               <div class="frame-5">
                 <div class="frame-6">
@@ -683,6 +387,8 @@
       <img class="star-3" src="assets/decoration/star-17.svg" alt="" aria-hidden="true" />
       <img class="line" src="assets/decoration/line-1.svg" alt="" aria-hidden="true" />
     </section>
+
+    </main>
   </div>
 
   <footer class="footer-section">
@@ -793,20 +499,25 @@
 
             <div class="wm-media">
               <img id="work-modal-img" src="" alt="Work Preview">
-              <iframe id="work-modal-iframe" src="" allowfullscreen></iframe>
-              <video id="work-modal-video" controls autoplay loop muted></video>
+              <iframe id="work-modal-iframe" title="Work video preview" allowfullscreen></iframe>
+              <video id="work-modal-video" controls playsinline preload="none"></video>
             </div>
 
             <div class="wm-buttons">
-              <a href="https://instagram.com/jundnn._" target="_blank" class="wm-btn wm-btn-ig">
-                <span class="wm-btn-title">Need something similar?</span>
-                <span class="wm-btn-sub">DM me on Instagram</span>
+              <a id="work-modal-detail" href="works.html" class="wm-btn wm-btn-detail">
+                <span class="wm-btn-title">View project page</span>
+                <span class="wm-btn-sub">Full details on this site</span>
               </a>
-              <a id="work-modal-link" href="#" target="_blank" class="wm-btn wm-btn-link">
+              <a id="work-modal-link" href="#" target="_blank" rel="noopener noreferrer" class="wm-btn wm-btn-link">
                 <span class="wm-btn-title">Check full works</span>
                 <span class="wm-btn-sub">View original post/site</span>
               </a>
             </div>
+
+            <p class="wm-footer-note">
+              Need something similar? <a href="https://instagram.com/jundnn._" target="_blank"
+                rel="noopener noreferrer">DM me on Instagram</a>.
+            </p>
           </div>
         </div>
       </div>
@@ -814,8 +525,11 @@
     </div>
   </div>
 
-  <script src="dino.js"></script>
-  <script src="script.js"></script>
+  <script src="js/dino.js"></script>
+  <script src="js/works-core.js"></script>
+  <script src="js/works-store.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/pages.js"></script>
 </body>
 
 </html>

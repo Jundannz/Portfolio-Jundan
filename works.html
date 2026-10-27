@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>All Works — Jundannz Portfolio</title>
+  <link rel="icon" href="assets/logo/logo-j-01.png" type="image/png">
+  <meta name="description" content="Full archive of motion, design, and code works by Jundannz." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Style yang sama dengan landing page (navbar, footer, modal, tombol filter) -->
+  <link rel="stylesheet" href="css/globals.css" />
+  <link rel="stylesheet" href="css/styleguide.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive-tablet.css" />
+  <link rel="stylesheet" href="css/responsive-mobile.css" />
+  <!-- Style khusus halaman arsip & detail -->
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/works-ui.css" />
+</head>
+
+<body class="archive-page">
+  <a class="skip-link" href="#archive-top">Skip to main content</a>
+  <div id="scroll-progress"></div>
+  <div class="final">
+
+    <!-- Navbar: markup sama persis dengan index.html, tautan diarahkan ke index.html#section -->
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="frame-49">
+        <a class="logo" href="index.html" aria-label="Jundannz — back to home">
+          <img class="logo-jundannz" src="assets/logo/logo-jundannz-01-crop-1.png" alt="Jundannz Logo" />
+        </a>
+
+        <button class="hamburger" id="hamburger-btn" type="button" aria-label="Open navigation menu"
+          aria-controls="mobile-menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <ul class="navbar-2" id="mobile-menu">
+          <li><a href="index.html#about" class="text-wrapper-43">About</a></li>
+          <li><a href="index.html#skills" class="text-wrapper-43">Skills</a></li>
+          <li><a href="index.html#portfolio" class="text-wrapper-43">Portfolio</a></li>
+          <li><a href="works.html" class="text-wrapper-43 active" aria-current="page">My Works</a></li>
+        </ul>
+
+        <a href="#" class="div-wrapper-2" id="store-btn-nav" aria-label="My Store" aria-haspopup="dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="text-wrapper-41">My Store</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="archive-main" id="archive-top">
+      <!-- Dekorasi latar (grid & bentuk) mengikuti gaya landing page -->
+      <img class="deco deco-grid" src="assets/decoration/grid-web-1.webp" alt="" aria-hidden="true" />
+      <img class="deco deco-grid deco-grid--2" src="assets/decoration/grid-web-1.webp" alt="" aria-hidden="true" />
+      <img class="deco deco-grid deco-grid--3" src="assets/decoration/grid-web-1.webp" alt="" aria-hidden="true" />
+      <div class="deco deco-circle" aria-hidden="true"></div>
+      <div class="deco deco-square" aria-hidden="true"></div>
+      <img class="deco deco-polygon" src="assets/decoration/polygon-1.svg" alt="" aria-hidden="true" />
+      <img class="deco deco-star-big" src="assets/decoration/star-1.svg" alt="" aria-hidden="true" />
+      <img class="deco deco-star-a" src="assets/decoration/star-10.svg" alt="" aria-hidden="true" />
+      <img class="deco deco-star-b" src="assets/decoration/star-11.svg" alt="" aria-hidden="true" />
+      <img class="deco deco-star-c" src="assets/decoration/star-13.svg" alt="" aria-hidden="true" />
+      <img class="deco deco-star-d" src="assets/decoration/star-12.svg" alt="" aria-hidden="true" />
+
+      <div class="archive-container">
+        <header class="archive-head">
+          <p class="archive-eyebrow">creative archive</p>
+          <!-- Kata pertama ("all", "motion", dst.) diganti otomatis sesuai filter aktif -->
+          <h1 class="archive-title">
+            <span class="archive-title__lead" id="archive-title-lead">all</span>
+            <span class="works-wrapper">
+              <span class="accent">works</span>
+              <img class="accent-frame" src="assets/decoration/frame-tulisan.webp" alt="" aria-hidden="true" />
+            </span>
+          </h1>
+          <p class="archive-lead">
+            The complete archive of my motion, design, and code projects. Filter by category or open a
+            project to see the details. <span class="archive-count" id="archive-count"></span>
+          </p>
+          <div class="archive-actions">
+            <a href="index.html#works" class="back-btn">← Back to home</a>
+          </div>
+        </header>
+
+        <!-- Tombol filter memakai class yang sama dengan landing page -->
+        <div class="archive-filter" id="archive-filter" role="group" aria-label="Filter works by category">
+          <button type="button" class="all-button filter-btn" data-filter="all-view" aria-pressed="true">
+            <span class="text-wrapper-10">All</span>
+          </button>
+          <button type="button" class="motion-button filter-btn" data-filter="motion" aria-pressed="false">
+            <span class="text-wrapper-11">Motion</span>
+          </button>
+          <button type="button" class="design-button filter-btn" data-filter="design" aria-pressed="false">
+            <span class="text-wrapper-11">Design</span>
+          </button>
+          <button type="button" class="code-button filter-btn" data-filter="code" aria-pressed="false">
+            <span class="text-wrapper-11">Code</span>
+          </button>
+        </div>
+
+        <div class="archive-toolbar" id="archive-toolbar">
+          <p id="archive-range" tabindex="-1" role="status" aria-live="polite"></p>
+          <div class="archive-sort-control"><label for="archive-sort">Sort by</label>
+            <select id="archive-sort">
+              <option value="curated">Curated order</option>
+              <option value="date-desc">Newest first</option>
+              <option value="date-asc">Oldest first</option>
+              <option value="name-asc">Name A–Z</option>
+              <option value="name-desc">Name Z–A</option>
+            </select>
+          </div>
+        </div>
+        <div id="archive-load-status" role="status"></div>
+        <!-- Kartu dirender dari data publik hasil build. -->
+        <div class="archive-grid" id="archive-grid" aria-live="polite"></div>
+
+        <nav id="archive-pagination" aria-label="Project pages" hidden></nav>
+        <div class="empty-state" id="archive-empty" hidden>
+          <p class="empty-state__title" id="archive-empty-title">No works in this category yet</p>
+          <p class="empty-state__text" id="archive-empty-text">Check back soon, or browse every project instead.</p>
+          <button type="button" class="back-btn" data-filter-reset>Show all works</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer: sama dengan landing page -->
+  <footer class="footer-section">
+    <div class="frame">
+      <div class="div">
+        <img class="logo-jundannz" src="assets/logo/logo-jundannz-04-crop-1.png" alt="JUNDANNZ Logo" />
+        <p class="text-wrapper">My personal portfolio website for digital rebranding purpose.</p>
+        <a href="#archive-top" class="div-wrapper" aria-label="Back to top">
+          <span class="text-wrapper-2">↑ BACK TO TOP</span>
+        </a>
+      </div>
+      <div class="frame-2">
+        <nav class="navbar" aria-label="Footer navigation">
+          <a href="index.html" class="text-wrapper-3">Home</a>
+          <a href="index.html#about" class="text-wrapper-3">About</a>
+          <a href="index.html#skills" class="text-wrapper-3">Skills</a>
+          <a href="index.html#portfolio" class="text-wrapper-3">Portfolio</a>
+          <a href="works.html" class="text-wrapper-3">My Works</a>
+          <a href="index.html#contact" class="text-wrapper-3">Contact</a>
+        </nav>
+        <div class="frame-3">
+          <a href="https://wa.me/6285702083124" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <img class="img" src="assets/logo/whatsapp.webp" alt="WhatsApp" />
+          </a>
+          <a href="https://tiktok.com/@jundannz" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <img class="img" src="assets/logo/tik-tok.webp" alt="TikTok" />
+          </a>
+          <a href="https://facebook.com/jundan.haq/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <img class="img" src="assets/logo/facebook-circled.webp" alt="Facebook" />
+          </a>
+          <a href="https://youtube.com/@jundnn._" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <img class="img" src="assets/logo/you-tube.webp" alt="YouTube" />
+          </a>
+          <a href="mailto:jundanhaq@gmail.com" aria-label="Email">
+            <img class="img" src="assets/logo/emailputih.webp" alt="Email" />
+          </a>
+          <a href="https://github.com/Jundannz" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img class="img" src="assets/logo/githubputih.webp" alt="GitHub" />
+          </a>
+          <a href="https://linkedin.com/in/jundansaifulhaq" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn">
+            <img class="img" src="assets/logo/linkedin-circled.webp" alt="LinkedIn" />
+          </a>
+          <a href="https://instagram.com/jundnn._" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img class="img" src="assets/logo/instagramputih.webp" alt="Instagram" />
+          </a>
+        </div>
+        <div class="frame-4">
+          <p class="text-wrapper-4">© JUNDANNZ PORTFOLIO V1.0</p>
+          <p class="p">DESIGNED IN FIGMA, CODED WITH LOVE ♡</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal "My Store" (sama dengan landing page) -->
+  <div id="store-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-modal" aria-label="Close modal">×</button>
+      <div class="modal-header">
+        <h3 class="modal-title">Select Store</h3>
+        <p class="modal-subtitle">Choose your preferred currency platform</p>
+      </div>
+      <div class="store-options">
+        <a href="https://sociabuzz.com/jundannz/shop" target="_blank" rel="noopener noreferrer"
+          class="store-card sociabuzz">
+          <div class="store-icon">🇮🇩</div>
+          <div class="store-info">
+            <span class="store-name">Sociabuzz</span>
+            <span class="store-currency">IDR (Rupiah)</span>
+          </div>
+          <div class="store-arrow">➔</div>
+        </a>
+        <a href="https://payhip.com/Jundannz" target="_blank" rel="noopener noreferrer" class="store-card payhip">
+          <div class="store-icon">🇺🇸</div>
+          <div class="store-info">
+            <span class="store-name">Payhip</span>
+            <span class="store-currency">USD (Dollar)</span>
+          </div>
+          <div class="store-arrow">➔</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/works-core.js"></script>
+  <script src="js/works-store.js"></script>
+  <!-- script.js menangani navbar, progress bar, menu mobile, dan modal store -->
+  <script src="js/script.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+
+</html>

@@ -1,3 +1,18 @@
+/* ==========================================================================
+   EASTER EGG: MINI GAME "JUNDAN SYSTEM DIAGNOSTICS"
+   --------------------------------------------------------------------------
+   Diaktifkan dengan menggeser (drag) header jendela portfolio, lalu menekan
+   tombol "Click me!" sebanyak 10 kali pada panel terminal.
+
+   Isi file:
+   - class DinoGame : logika game (lompat, menghindar, menembak, skor)
+   - Efek suara sederhana memakai Web Audio API (tanpa file audio)
+   - window.resetDinoGame() : dipanggil js/script.js saat tombol Reset ditekan
+
+   Game hanya berjalan setelah panel easter egg aktif, sehingga tidak membebani
+   halaman saat pertama kali dibuka.
+   ========================================================================== */
+
 document.addEventListener('DOMContentLoaded', function () {
     // Handle Easter Egg interactive click me card and Dino Game
     const floppyCard = document.getElementById('floppy-card');

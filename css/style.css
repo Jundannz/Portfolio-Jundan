@@ -1,3 +1,14 @@
+/* ==========================================================================
+   STYLE UTAMA LANDING PAGE (index.html)
+   Struktur file:
+   1. Dasar & navbar      5. Section Portfolio (showreel)
+   2. Hero                6. Section My Works (filter + kartu karya)
+   3. About               7. Section Contact
+   4. Skills              8. Footer, modal, dan komponen bersama
+   Reset, scrollbar, dan kursor kustom ada di css/globals.css.
+   Aturan responsif ada di css/responsive-tablet.css & responsive-mobile.css.
+   ========================================================================== */
+
 /* Global  */
 body {
   margin: 0;
@@ -1236,10 +1247,7 @@ body {
   .final .rectangle-6 { display: none; }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* Tombol hamburger (hanya tampil di mobile, lihat responsive-mobile.css) */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -1558,12 +1566,28 @@ html {
   box-shadow: 0px 0px 0px var(--palette-4);
 }
 
-.wm-btn-ig {
-  background-color: var(--palette-1);
+/* Tombol menuju halaman detail internal (project.html) */
+.wm-btn-detail {
+  background-color: var(--palette-3);
 }
 
 .wm-btn-link {
   background-color: var(--palette-2);
+}
+
+/* Catatan kecil di bawah tombol modal (tautan DM Instagram) */
+.wm-footer-note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  text-align: center;
+  color: var(--palette-4);
+  opacity: 0.85;
+}
+
+.wm-footer-note a {
+  color: var(--palette-1);
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .wm-btn-title {
@@ -1576,9 +1600,6 @@ html {
   font-size: 13px;
   color: rgba(31, 25, 38, 0.7);
 }
-
-.wm-btn-ig .wm-btn-title { color: #fff; }
-.wm-btn-ig .wm-btn-sub { color: rgba(255, 255, 255, 0.8); }
 
 @media (max-width: 600px) {
   .wm-buttons {

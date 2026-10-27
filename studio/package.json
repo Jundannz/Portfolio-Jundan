@@ -1,0 +1,15 @@
+{
+  "name": "jundannz-portfolio-studio",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22.12"},
+  "scripts": {"dev": "sanity dev --host 127.0.0.1", "build": "sanity build"},
+  "dependencies": {
+    "sanity": "6.20.0",
+    "@sanity/client": "8.11.0",
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "styled-components": "^6.1.15"
+  }
+}
+
