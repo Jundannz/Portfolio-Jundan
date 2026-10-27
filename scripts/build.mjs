@@ -25,6 +25,7 @@ import { pathToFileURL } from 'node:url';
 import { ROOT, loadLegacyRecords, recordToPublicWork } from './lib/legacy.mjs';
 import { readSanityEnv, fetchPublishedWorks } from './lib/sanity-query.mjs';
 import { loadDotEnv } from './lib/env.mjs';
+import { syncThreeVendor } from './lib/vendor.mjs';
 
 const require = createRequire(import.meta.url);
 const core = require('../js/works-core.js');
@@ -34,6 +35,8 @@ const core = require('../js/works-core.js');
 const SITE_FILES = ['index.html', 'works.html', 'project.html'];
 const SITE_DIRS = ['css', 'assets'];
 const SITE_JS = ['works-core.js', 'works-store.js', 'pages.js', 'script.js', 'dino.js'];
+// Modul hero 3D (js/hero-scene/). Three.js disalin terpisah dari node_modules.
+export const HERO_SCENE_JS = ['index.js', 'config.js', 'scene.js', 'laptop.js', 'companions.js', 'geometry-utils.js', 'screen-texture.js'];
 
 function parseArgs(argv) {
   const args = { source: 'sanity', target: 'dist' };
@@ -155,6 +158,10 @@ async function main() {
   SITE_FILES.forEach((f) => fs.copyFileSync(path.join(ROOT, f), path.join(tmpDir, f)));
   SITE_DIRS.forEach((d) => copyRecursive(path.join(ROOT, d), path.join(tmpDir, d)));
   SITE_JS.forEach((f) => fs.copyFileSync(path.join(ROOT, 'js', f), path.join(tmpDir, 'js', f)));
+  fs.mkdirSync(path.join(tmpDir, 'js', 'hero-scene'), { recursive: true });
+  HERO_SCENE_JS.forEach((f) => fs.copyFileSync(path.join(ROOT, 'js', 'hero-scene', f), path.join(tmpDir, 'js', 'hero-scene', f)));
+  const three = syncThreeVendor(tmpDir);
+  console.log(`✔ Three.js ${three.version} disalin ke dist/js/vendor/three`);
   writeJson(path.join(tmpDir, 'data', 'works.json'), payload);
 
   fs.rmSync(outDir, { recursive: true, force: true });

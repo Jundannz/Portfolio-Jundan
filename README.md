@@ -31,6 +31,52 @@ tetapi server bawaan membatasi file yang dilayani. Jangan membuka melalui `file:
 Untuk memeriksa paket publik: `npm run build:local`, lalu `npm run preview`.
 Production Vercel menolak sumber local/fixture dan selalu menjalankan `npm run build`.
 
+## Hero 3D (Three.js)
+
+Sisi kanan hero berisi laptop kartun 3D prosedural (tanpa model/aset eksternal) dengan
+empat elemen pendamping: tombol play, bintang, kursor, dan potongan timeline. Three.js
+dipakai langsung sebagai ES module; tidak ada bundler atau framework baru.
+
+- Dependency: `three` (versi tepat di `package.json`, lisensi MIT). Browser memuat
+  `js/vendor/three/three.module.js` + `three.core.js`, yang disalin dari `node_modules`.
+  `npm run dev` menyalinnya otomatis (`predev`); manual: `npm run vendor`. Folder
+  `js/vendor/` diabaikan Git. `npm run build` menyalin langsung ke `dist/js/vendor/three`.
+- Modul (`js/hero-scene/`): `index.js` (entry, deteksi breakpoint/WebGL/reduced motion,
+  fallback), `config.js` (**semua parameter**), `scene.js` (renderer, kamera, loop,
+  interaksi, cleanup), `laptop.js`, `companions.js`, `screen-texture.js` (isi layar),
+  `geometry-utils.js`. Gaya area visual di `css/hero-3d.css`.
+- Menambah file di `js/hero-scene/` wajib juga ditambahkan ke `HERO_SCENE_JS`
+  (`scripts/build.mjs`) dan allowlist `scripts/serve.mjs`; `npm test` memeriksa ini.
+
+Parameter di `js/hero-scene/config.js`:
+
+| Bagian | Isi |
+| --- | --- |
+| `colors`, `material` | Warna laptop, keyboard, pendamping, cahaya; tingkat matte |
+| `laptop` | Ukuran base/lid, sudut bukaan, jumlah tombol, resolusi tekstur layar |
+| `pose` | Sudut tiga perempat utama (`yaw`, `pitch`, `roll`), titik putar, offset |
+| `camera` | FOV, sudut pandang, area komposisi yang wajib muat (tanpa zoom/pan) |
+| `idle` | Amplitudo/periode melayang dan berayun |
+| `interaction` | Kemiringan pointer, sensitivitas drag, batas pitch, jeda & kecepatan kembali |
+| `companions` | Posisi, skala, float `[amplitudo, periode, fase]`, wobble tiap elemen |
+| `render` | Batas pixel ratio, kehalusan lengkungan, kecepatan playhead layar |
+
+Perilaku:
+
+- Aktif hanya pada layout desktop (≥1025px). Tablet dan mobile tetap memakai dekorasi
+  lama (di sana dekorasi berada transparan di belakang teks), dan Three.js tidak diunduh.
+- Drag (mouse/pen, atau geser horizontal pada layar sentuh) memutar laptop hingga sisi
+  belakang; geser vertikal tetap scroll halaman. Animasi otomatis berhenti saat drag dan
+  laptop kembali halus ke pose utama ±1,6 detik setelah diam.
+- Loop berhenti saat hero di luar layar atau tab tidak aktif; animasi berbasis waktu.
+- `prefers-reduced-motion: reduce`: satu frame statis, tanpa loop dan tanpa respons pointer.
+- Fallback: bila WebGL tidak ada, library gagal dimuat, atau context hilang, dekorasi
+  lama tampil kembali. Judul/CTA tidak menunggu scene. Canvas `aria-hidden`.
+- Debug di console: `PortfolioHeroScene.reinit()` / `PortfolioHeroScene.dispose()`.
+
+Preview: `npm run data:local`, `npm run dev`, buka `http://127.0.0.1:8000/index.html`
+pada jendela ≥1025px. Hasil production: `npm run build:local`, lalu `npm run preview`.
+
 ## Setup Sanity (dilakukan pemilik)
 
 1. Masuk ke [Sanity Manage](https://www.sanity.io/manage), buat/pilih proyek dan dataset
@@ -231,6 +277,7 @@ Anda sebelum production. Rujukan mekanisme resmi:
 - `js/works-core.js`, `js/works-store.js`, `js/pages.js`: data, state, render.
 - `js/script.js`: filter/modal beranda untuk kartu dinamis; fitur lain dipertahankan.
 - `css/works-ui.css`: kontrol sort/pagination, status, proporsi media detail.
+- `js/hero-scene/`, `css/hero-3d.css`, `scripts/vendor.mjs`: hero 3D (lihat bagian Hero 3D).
 - `scripts/build.mjs`, `scripts/lib/*`, `scripts/serve.mjs`: pipeline data dan preview.
 - `studio/`: Studio resmi, skema, konfigurasi dan migrasi draft.
 - `tests/`: fixture, unit, integrasi dan DOM. `README.md` adalah panduan utama.

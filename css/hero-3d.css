@@ -1,0 +1,72 @@
+/* ==========================================================================
+   HERO 3D — area visual kanan hero (laptop Three.js)
+   --------------------------------------------------------------------------
+   Hanya aktif pada layout desktop (≥1025px). Tablet & mobile tetap memakai
+   dekorasi lama dari style.css / responsive-*.css tanpa perubahan.
+   Status dikendalikan js/hero-scene/index.js:
+     html.hero3d-pending  → sebelum modul berjalan (cegah dekorasi berkedip)
+     html.hero3d-active   → scene sedang dimuat / tampil
+     [data-state]         → loading | ready | fallback | off
+   ========================================================================== */
+
+.final .hero-visual {
+  display: none;
+}
+
+@media screen and (min-width: 1025px) {
+  .final .hero-visual {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    /* Pusat area ≈ pusat cincin lavender; tidak pernah melewati kolom teks (berakhir ±730px) */
+    width: min(860px, calc(100% - 800px));
+    z-index: 1;
+    /* Scroll vertikal tetap milik browser; drag horizontal memutar laptop */
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .final .hero-visual[data-state="ready"] {
+    cursor: grab !important;
+  }
+
+  .final .hero-visual.is-dragging,
+  .final .hero-visual.is-dragging * {
+    cursor: grabbing !important;
+  }
+
+  /* Mode reduced motion: pose statis, tanpa isyarat drag */
+  .final .hero-visual[data-motion="reduced"] {
+    cursor: inherit !important;
+    pointer-events: none;
+  }
+
+  .final .hero-visual__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .final .hero-visual[data-state="ready"] .hero-visual__canvas {
+    opacity: 1;
+  }
+
+  /* Dekorasi kanan lama disembunyikan selama scene dimuat/aktif.
+     Cincin lavender (.ellipse-8) tetap sebagai latar komposisi. */
+  html.hero3d-pending .final .hero-legacy-deco,
+  html.hero3d-active .final .hero-legacy-deco {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .final .hero-visual__canvas {
+    transition: none;
+  }
+}

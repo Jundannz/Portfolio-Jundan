@@ -20,6 +20,24 @@
   <link rel="stylesheet" href="css/responsive-tablet.css" />
   <link rel="stylesheet" href="css/responsive-mobile.css" />
   <link rel="stylesheet" href="css/works-ui.css" />
+  <link rel="stylesheet" href="css/hero-3d.css" />
+  <!-- Hero 3D: tandai sejak awal agar dekorasi lama tidak berkedip sebelum
+       scene siap. Jika modul gagal berjalan, tanda dilepas setelah 4 detik
+       sehingga dekorasi lama tampil sebagai fallback. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      if (!window.matchMedia || !window.matchMedia('(min-width: 1025px)').matches) return;
+      root.classList.add('hero3d-pending');
+      setTimeout(function () {
+        if (root.classList.contains('hero3d-pending')) {
+          root.classList.remove('hero3d-pending');
+          var v = document.querySelector('[data-hero-visual]');
+          if (v && !v.dataset.state) v.dataset.state = 'fallback';
+        }
+      }, 4000);
+    })();
+  </script>
 </head>
 
 <body class="index-page">
@@ -70,11 +88,16 @@
 
     <section class="hero-section" id="hero" aria-labelledby="hero-heading">
       <img class="ellipse-8" src="assets/decoration/ellipse-16.svg" alt="" aria-hidden="true" />
-      <div class="rectangle-11" aria-hidden="true"></div>
-      <div class="ellipse-9" aria-hidden="true"></div>
-      <img class="polygon-2" src="assets/decoration/polygon-1.svg" alt="" aria-hidden="true" />
-      <img class="star-15" src="assets/decoration/star-1.svg" alt="" aria-hidden="true" />
-      <img class="star-16" src="assets/decoration/star-2.svg" alt="" aria-hidden="true" />
+      <!-- Dekorasi lama: tampil pada mobile dan sebagai fallback statis bila
+           scene 3D tidak bisa dimuat. Disembunyikan saat scene aktif (css/hero-3d.css). -->
+      <div class="rectangle-11 hero-legacy-deco" aria-hidden="true"></div>
+      <div class="ellipse-9 hero-legacy-deco" aria-hidden="true"></div>
+      <img class="polygon-2 hero-legacy-deco" src="assets/decoration/polygon-1.svg" alt="" aria-hidden="true" />
+      <img class="star-15 hero-legacy-deco" src="assets/decoration/star-1.svg" alt="" aria-hidden="true" />
+      <img class="star-16 hero-legacy-deco" src="assets/decoration/star-2.svg" alt="" aria-hidden="true" />
+
+      <!-- Laptop 3D dekoratif (js/hero-scene/). Canvas dimasukkan oleh JS. -->
+      <div class="hero-visual" data-hero-visual aria-hidden="true"></div>
 
       <div class="hero-text">
         <div class="frame-48">
@@ -530,6 +553,7 @@
   <script src="js/works-store.js"></script>
   <script src="js/script.js"></script>
   <script src="js/pages.js"></script>
+  <script type="module" src="js/hero-scene/index.js"></script>
 </body>
 
 </html>

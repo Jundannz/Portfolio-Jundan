@@ -18,7 +18,7 @@ const TYPES = {
 };
 
 // Folder yang tidak boleh disajikan (meniru isi dist/ di production)
-const ALLOWED = /^\/(?:index\.html|works\.html|project\.html|(?:assets|css)\/[^\\]+|js\/(?:works-core|works-store|pages|script|dino)\.js|data\/works\.json)$/;
+const ALLOWED = /^\/(?:index\.html|works\.html|project\.html|(?:assets|css)\/[^\\]+|js\/(?:works-core|works-store|pages|script|dino)\.js|js\/hero-scene\/(?:index|config|scene|laptop|companions|geometry-utils|screen-texture)\.js|js\/vendor\/three\/(?:three\.module|three\.core)\.js|data\/works\.json)$/;
 
 http.createServer((req, res) => {
   let pathname;

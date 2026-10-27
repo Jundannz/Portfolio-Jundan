@@ -49,6 +49,26 @@ test('store membedakan error dari kosong dan dapat retry',async()=>{
  await assert.rejects(sandbox.window.PortfolioWorksStore.load(),/offline/);
  assert.equal((await sandbox.window.PortfolioWorksStore.load()).works.length,0);assert.equal(calls,2);
 });
+test('hero 3D: semua modul ada di daftar build, allowlist server, dan import relatif valid',async()=>{
+ const {HERO_SCENE_JS}=await import('../scripts/build.mjs');
+ const dir=path.join(ROOT,'js/hero-scene');
+ const files=fs.readdirSync(dir).filter(f=>f.endsWith('.js')).sort();
+ assert.deepEqual([...HERO_SCENE_JS].sort(),files,'HERO_SCENE_JS harus mencakup semua file js/hero-scene');
+ const serve=fs.readFileSync(path.join(ROOT,'scripts/serve.mjs'),'utf8');
+ for(const f of files){
+  assert.match(serve,new RegExp(f.replace('.js','').replace('-','\\-')),`serve.mjs belum mengizinkan ${f}`);
+  const src=fs.readFileSync(path.join(dir,f),'utf8');
+  for(const m of src.matchAll(/(?:from|import\()\s*'(\.[^']+)'/g)){
+   const target=path.resolve(dir,m[1]);
+   if(target.includes(path.join('js','vendor','three')))continue;
+   assert.ok(fs.existsSync(target),`${f} mengimpor file yang tidak ada: ${m[1]}`);
+  }
+ }
+ const html=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
+ assert.match(html,/<script type="module" src="js\/hero-scene\/index.js"><\/script>/);
+ assert.match(html,/data-hero-visual aria-hidden="true"/);
+ assert.ok(fs.existsSync(path.join(ROOT,'node_modules/three/build/three.core.js')),'dependency three belum terpasang (npm ci)');
+});
 test('HTML memakai core/store dan tidak lagi memuat legacy',()=>{
  for(const file of ['index.html','works.html','project.html']){
   const text=fs.readFileSync(path.join(ROOT,file),'utf8');
