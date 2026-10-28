@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 btnText.textContent = 'MESSAGE SENT! ✓';
-                submitBtn.style.backgroundColor = '#3ABEAB';
+                submitBtn.style.backgroundColor = '#0b6b4f';
                 this.reset();
                 setTimeout(() => {
                     btnText.textContent = originalText;
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch((error) => {
                 console.error('Gagal mengirim pesan:', error);
                 btnText.textContent = 'FAILED - TRY AGAIN';
-                submitBtn.style.backgroundColor = '#ff6b6b';
+                submitBtn.style.backgroundColor = '#b23a2e';
                 setTimeout(() => {
                     btnText.textContent = originalText;
                     submitBtn.disabled = false;
@@ -383,12 +383,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ----------------------------------------------------------------------
        6. Efek 3D tilt pada kartu skill
+       Kartu kini HTML/CSS (bukan satu gambar), jadi yang dimiringkan adalah
+       elemen kartu itu sendiri agar animasi tetap sama.
        ---------------------------------------------------------------------- */
-    const skillCards = document.querySelectorAll('.frame-33 article');
+    const skillCards = document.querySelectorAll('.frame-33 .skill-card');
 
     skillCards.forEach(card => {
-        const img = card.querySelector('img');
-        if (!img) return;
+        const baseTilt = getComputedStyle(card).getPropertyValue('--tilt').trim() || '0deg';
 
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -398,20 +399,20 @@ document.addEventListener('DOMContentLoaded', function () {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            // Angka 15 menentukan intensitas kemiringan
-            const rotateX = ((y - centerY) / centerY) * -15;
-            const rotateY = ((x - centerX) / centerX) * 15;
+            // Angka 12 menentukan intensitas kemiringan
+            const rotateX = ((y - centerY) / centerY) * -12;
+            const rotateY = ((x - centerX) / centerX) * 12;
 
-            img.style.transform = `scale(1.03) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            card.style.transform = `rotate(${baseTilt}) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
 
         card.addEventListener('mouseleave', () => {
-            img.style.transform = '';
-            img.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            card.style.transform = '';
+            card.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
         });
 
         card.addEventListener('mouseenter', () => {
-            img.style.transition = 'transform 0.1s ease-out';
+            card.style.transition = 'transform 0.1s ease-out';
         });
     });
 

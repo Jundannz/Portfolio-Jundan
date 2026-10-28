@@ -31,6 +31,46 @@ tetapi server bawaan membatasi file yang dilayani. Jangan membuka melalui `file:
 Untuk memeriksa paket publik: `npm run build:local`, lalu `npm run preview`.
 Production Vercel menolak sumber local/fixture dan selalu menjalankan `npm run build`.
 
+## Palet warna
+
+Tema memakai teal, coral, mint, charcoal, sage, kuning mentega, dan putih hangat.
+Token didefinisikan sekali di `css/styleguide.css`:
+
+| Token | Nilai | Peran |
+| --- | --- | --- |
+| `--palette-1` | `#087F72` | teal gelap: identitas, CTA, tautan, navigasi aktif |
+| `--palette-2` | `#F5A38B` | coral: dekorasi & bidang kartu |
+| `--palette-3` | `#58BFA7` | mint: aksen pendamping |
+| `--palette-4` | `#242B29` | charcoal: teks, outline, shadow, permukaan gelap |
+| `--variable-collection-palette-5` | `#DCEBE3` | sage pucat: cincin hero & dekorasi latar |
+| `--variable-collection-palette-6` | `#B8D8CA` | sage: bidang sekunder |
+| `--variable-collection-palette-7` | `#F5D77A` | kuning mentega: highlight kecil |
+| `--site-background` | `#F7F5EF` | latar utama putih hangat |
+| `--surface` | `#FFFFFF` | permukaan putih |
+
+Token semantik (`--brand`, `--brand-text`, `--ink`, `--surface-warm`,
+`--card-tone-0..5`, `--terminal-*`) memetakan palet ke peran, sehingga satu warna
+dasar bisa dipakai untuk peran dengan kontras berbeda. `--brand-text` (#067267)
+dipakai untuk teks kecil di atas latar terang agar tetap ≥ 4.5:1.
+
+Aturan warna yang dipakai:
+
+- Judul memakai warna solid (charcoal + aksen teal); tanpa gradient/efek cahaya.
+- Bidang utama putih hangat/putih; teal sebagai aksen, coral & kuning pendamping.
+- Footer tetap permukaan gelap charcoal agar logo dan ikon putih tetap kontras.
+- Kartu karya memakai 6 tone (`--card-tone-0..5`) dengan teks charcoal.
+- Warna thumbnail/foto/logo pihak ketiga tidak diubah.
+
+Tiga kartu skill adalah HTML/CSS (`index.html` + `css/style.css`), bukan lagi satu
+gambar WebP, sehingga teks dan logo bisa diwarnai ulang. Logo software memakai
+berkas di `assets/logo/` dalam warna aslinya. Gambar kartu lama
+(`videoskill.webp`, `designskill.webp`, `programmerskill.webp`) disimpan sebagai
+cadangan tetapi tidak lagi dimuat.
+
+Hero Three.js memakai warna yang sama melalui `js/hero-scene/config.js`
+(bodi krem dengan tepian teal, bezel/keyboard bed charcoal, layar charcoal dengan
+elemen teal/coral/mint/kuning, bintang coral, tombol play mint, playhead kuning).
+
 ## Hero 3D (Three.js)
 
 Sisi kanan hero berisi laptop kartun 3D prosedural (tanpa model/aset eksternal) dengan

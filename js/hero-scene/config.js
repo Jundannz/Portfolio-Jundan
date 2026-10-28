@@ -8,35 +8,37 @@
    ========================================================================== */
 
 export const HERO_SCENE_CONFIG = {
-  // Palet mengikuti css/styleguide.css
+  // Palet mengikuti css/styleguide.css (teal, coral, mint, charcoal, sage,
+  // kuning mentega, putih hangat). Tidak ada lagi tint ungu.
   colors: {
-    body: '#8a4dff',        // cangkang laptop (lid belakang + sisi bawah)
-    deck: '#e6dbff',        // permukaan atas base (sekitar keyboard)
-    keyboardWell: '#2b2236',// cekungan keyboard
-    key: '#fbf8ff',         // tombol keyboard
-    keyAccents: ['#ff9bff', '#3abeab', '#ffd672'], // Esc / Enter / panah
-    trackpad: '#d3c1ff',
-    hinge: '#1f1926',
-    bezel: '#1f1926',
-    feet: '#1f1926',
-    port: '#3a2d4f',
-    emblem: '#ff9bff',      // bintang di punggung lid (terlihat saat diputar)
-    shadow: '#3b1a73',      // bayangan lembut di bawah laptop
+    body: '#f3ece0',         // cangkang laptop: krem/putih hangat
+    bodyEdge: '#0e6f65',     // tepian teal pada bodi (dipakai di lid/base trim)
+    deck: '#f7f5ef',         // permukaan atas base (sekitar keyboard)
+    keyboardWell: '#242b29', // cekungan keyboard charcoal
+    key: '#fbf9f3',          // tombol keyboard putih hangat
+    keyAccents: ['#58bfa7', '#f5a38b', '#f5d77a'], // Esc / Enter / panah: mint, coral, kuning
+    trackpad: '#e6e0d4',
+    hinge: '#242b29',
+    bezel: '#242b29',
+    feet: '#242b29',
+    port: '#3a423f',
+    emblem: '#f5a38b',       // bintang di punggung lid (terlihat saat diputar)
+    shadow: '#2b3a35',       // bayangan lembut di bawah laptop
     // Elemen pendamping
-    playButton: '#3abeab',
+    playButton: '#58bfa7',   // tombol play mint/teal
     playIcon: '#ffffff',
-    star: '#ff9bff',
-    cursor: '#1f1926',
+    star: '#f5a38b',         // bintang pendamping coral
+    cursor: '#242b29',
     cursorOutline: '#ffffff',
-    chipBase: '#1f1926',
-    chipClips: ['#8a4dff', '#ff9bff', '#3abeab'],
-    chipPlayhead: '#ffd672',
+    chipBase: '#242b29',
+    chipClips: ['#087f72', '#f5a38b', '#58bfa7'],
+    chipPlayhead: '#f5d77a', // playhead kuning mentega
     // Cahaya
-    hemiSky: '#f6f0ff',
-    hemiGround: '#cbb6ff',
+    hemiSky: '#fbf7ee',
+    hemiGround: '#cfe4da',
     keyLight: '#ffffff',
-    fillLight: '#ffd9fb',
-    rimLight: '#bff7ee'
+    fillLight: '#ffe3d6',
+    rimLight: '#d8f2ea'
   },
 
   // Material matte/satin (0 = mengkilap, 1 = sangat matte)

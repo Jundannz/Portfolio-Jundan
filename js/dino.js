@@ -391,8 +391,8 @@ document.addEventListener('DOMContentLoaded', function () {
         drawDino() {
             const ctx = this.ctx;
             const box = this.getDinoBox();
-            const body = '#70ffb5';
-            const dark = '#0d0813';
+            const body = '#7fe0c4';
+            const dark = '#101614';
 
             if (this.dino.isDucking) {
                 // Low crouched silhouette
@@ -434,13 +434,13 @@ document.addEventListener('DOMContentLoaded', function () {
         drawObstacle(obs) {
             const ctx = this.ctx;
             if (obs.type === 'cactus') {
-                ctx.fillStyle = '#4c9a6a';
+                ctx.fillStyle = '#4a8a76';
                 ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
                 ctx.fillRect(obs.x - 4, obs.y + obs.height * 0.35, 4, obs.height * 0.3);
                 ctx.fillRect(obs.x + obs.width, obs.y + obs.height * 0.15, 4, obs.height * 0.3);
             } else if (obs.type === 'bird') {
                 const flap = Math.sin(obs.wingPhase) * 6;
-                ctx.fillStyle = '#ff8f6b';
+                ctx.fillStyle = '#f5a38b';
                 ctx.fillRect(obs.x + 6, obs.y + 4, obs.width - 12, obs.height - 6); // body
                 ctx.beginPath();
                 ctx.moveTo(obs.x + obs.width / 2, obs.y + 6);
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.lineTo(obs.x + obs.width / 2 + 2, obs.y + 8);
                 ctx.closePath();
                 ctx.fill();
-                ctx.fillStyle = '#ffd672';
+                ctx.fillStyle = '#f5d77a';
                 ctx.fillRect(obs.x + obs.width - 4, obs.y + 5, 4, 3); // beak
             } else if (obs.type === 'ammo') {
                 const pulse = 1 + Math.sin(obs.pulsePhase) * 0.15;
@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.translate(cx, cy);
                 ctx.rotate(Math.PI / 4);
                 ctx.scale(pulse, pulse);
-                ctx.fillStyle = '#70ffb5';
+                ctx.fillStyle = '#7fe0c4';
                 ctx.fillRect(-obs.width / 2, -obs.height / 2, obs.width, obs.height);
                 ctx.restore();
             }
@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         drawProjectiles() {
             const ctx = this.ctx;
-            ctx.fillStyle = '#ffd672';
+            ctx.fillStyle = '#f5d77a';
             this.projectiles.forEach(p => {
                 ctx.fillRect(p.x, p.y, p.width, p.height);
             });
@@ -480,10 +480,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         draw() {
             const ctx = this.ctx;
-            ctx.fillStyle = '#0d0813';
+            ctx.fillStyle = '#101614';
             ctx.fillRect(0, 0, 600, 150);
 
-            ctx.strokeStyle = '#1f1926';
+            ctx.strokeStyle = '#242b29';
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(0, this.groundY);
@@ -496,30 +496,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // HUD
             ctx.font = '12px "Courier New", Courier, monospace';
-            ctx.fillStyle = '#70ffb5';
+            ctx.fillStyle = '#7fe0c4';
             ctx.fillText(`SCORE: ${this.score}  HI: ${this.highScore}`, 10, 20);
 
             if (this.shootUnlocked) {
-                ctx.fillStyle = '#ffd672';
+                ctx.fillStyle = '#f5d77a';
                 ctx.fillText(`AMMO: ${this.bullets}/${MAX_BULLETS}`, 10, 36);
             }
 
             if (this.isImmortal) {
-                ctx.fillStyle = '#70ffb5';
+                ctx.fillStyle = '#7fe0c4';
                 ctx.fillText('IMMORTAL MODE', 470, 20);
             }
 
             if (this.gameOver) {
-                ctx.fillStyle = 'rgba(13, 8, 19, 0.8)';
+                ctx.fillStyle = 'rgba(16, 22, 20, 0.82)';
                 ctx.fillRect(0, 0, 600, 150);
 
                 ctx.font = 'bold 20px "Courier New", Courier, monospace';
-                ctx.fillStyle = '#ffd672';
+                ctx.fillStyle = '#f5d77a';
                 ctx.textAlign = 'center';
                 ctx.fillText('GAME OVER', 300, 70);
 
                 ctx.font = '12px "Courier New", Courier, monospace';
-                ctx.fillStyle = '#70ffb5';
+                ctx.fillStyle = '#7fe0c4';
                 ctx.fillText('PRESS SPACEBAR / CLICK SCREEN TO RESTART', 300, 100);
                 ctx.textAlign = 'left';
             }

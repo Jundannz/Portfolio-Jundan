@@ -66,7 +66,7 @@
     border-radius: 12px;
     border: 2px solid var(--palette-4);
     border-bottom: 2px solid var(--palette-4);
-    box-shadow: 4px 4px 0px rgba(31, 25, 38, 0.15);
+    box-shadow: 4px 4px 0px rgba(36, 43, 41, 0.15);
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -146,7 +146,7 @@
     display: block;
     width: 26px; 
     height: 3px; 
-    background-color: #1f1926; 
+    background-color: var(--palette-4); 
     border-radius: 3px;
     margin: 0; 
     transition: all 0.3s ease-in-out;
@@ -228,18 +228,18 @@
     padding: 14px 20px;
     border-radius: 50px;
     border: 2px solid var(--palette-4);
-    box-shadow: 4px 4px 0px rgba(31, 25, 38, 1);
+    box-shadow: 4px 4px 0px rgba(36, 43, 41, 1);
     transform: translate(0px, 0px);
     transition: transform 0.4s ease, box-shadow 0.4s ease !important;
   }
   
-  .final .navbar-2 li:nth-child(1) a { background-color: var(--palette-3); color: #ffffff; }
+  .final .navbar-2 li:nth-child(1) a { background-color: var(--palette-3); color: var(--palette-4); }
   .final .navbar-2 li:nth-child(2) a { background-color: var(--variable-collection-palette-7); color: var(--palette-4); }
   .final .navbar-2 li:nth-child(3) a { background-color: var(--palette-2); color: var(--palette-4); }
-  .final .navbar-2 li:nth-child(4) a { background-color: var(--variable-collection-palette-5); color: #ffffff; }
+  .final .navbar-2 li:nth-child(4) a { background-color: var(--variable-collection-palette-5); color: var(--palette-4); }
 
   .final .navbar-2 a.active, .final .navbar-2 a:active {
-    box-shadow: 0px 0px 0px rgba(31, 25, 38, 1);
+    box-shadow: 0px 0px 0px rgba(36, 43, 41, 1);
     transform: translate(4px, 4px);
     transition: transform 0.4s ease, box-shadow 0.4s ease !important;
   }
@@ -330,7 +330,7 @@
 
   #store-btn-nav:active {
     transform: translateX(-50%) scale(0.95) !important;
-    box-shadow: 0 4px 12px rgba(106, 0, 255, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(8, 127, 114, 0.3) !important;
   }
 
   .final .text-wrapper-41 {
@@ -524,9 +524,9 @@
     align-items: center !important;
     justify-content: flex-start !important;
     max-width: 100% !important;
-    background-color: #6a00ff1a !important;
+    background-color: var(--surface-sage-soft) !important;
     border-radius: 20px !important;
-    border: 1px solid #000000 !important;
+    border: 1px solid var(--sage) !important;
   }
 
   .final .video,
@@ -541,20 +541,26 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    transform: none !important;
   }
 
-  .final .rectangle-7,
-  .final .rectangle-8,
-  .final .rectangle-9 {
-    width: 100% !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    object-fit: contain !important;
-    aspect-ratio: auto !important;
-    border-radius: 15px !important;
+  /* Di HP kartu memakai rasio asli agar tinggi tiap kartu tetap proporsional */
+  .final .skill-card {
+    width: 100%;
+    aspect-ratio: 429 / 516;
+    height: auto;
+    max-height: none;
   }
+
+  .final .skill-card__inner {
+    padding: 24px 20px !important;
+    gap: 18px;
+  }
+
+  .final .skill-card__title { font-size: 24px; }
+  .final .skill-card__list { font-size: 15px; }
+  .final .skill-card__logos img { width: 44px; height: 44px; }
+  .final .skill-card__mark { font-size: 190px; top: -0.4em; }
 
   /* Portfolio */
   .final .portfolio-section {
@@ -945,7 +951,7 @@
 
   .final .frame-11:hover .text-wrapper-5,
   .final .frame-10 .frame-3:hover .text-wrapper-5 {
-    color: var(--palette-1);
+    color: var(--brand-text);
   }
 
   .final .img-2 {

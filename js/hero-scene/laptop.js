@@ -27,15 +27,21 @@ export function createLaptop(config, track, maxAnisotropy) {
   const bodyMat = mat(C.body, config.material.satinRoughness);
   const darkMat = mat(C.hinge, 0.7);
 
+  // Bodi dua nada: permukaan krem/putih hangat, sisi & bevel teal gelap.
+  // roundedPlate/roundedSlab membuat dua group material (0 = permukaan,
+  // 1 = sisi + bevel), jadi tepian teal didapat tanpa geometri tambahan.
+  const bodyEdgeMat = mat(C.bodyEdge, 0.5);
+  const shellMats = [bodyMat, bodyEdgeMat];
+
   // ---------- BASE ----------
   const base = new THREE.Mesh(
     geo(roundedPlate(L.width, L.depth, L.baseThickness, L.cornerRadius, L.baseThickness * 0.45, q)),
-    bodyMat
+    shellMats
   );
   base.position.y = L.baseThickness / 2;
   laptop.add(base);
 
-  // Deck lavender sedikit menonjol di atas cangkang → kesan dua-tone kartun
+  // Deck putih hangat sedikit menonjol di atas cangkang → kesan dua-tone kartun
   const deckH = 0.05;
   const deckTop = L.baseThickness + deckH * 0.5;
   const deck = new THREE.Mesh(
@@ -135,7 +141,7 @@ export function createLaptop(config, track, maxAnisotropy) {
 
   const lidShell = new THREE.Mesh(
     geo(roundedSlab(L.width, L.lidHeight, L.lidThickness, L.cornerRadius, L.lidThickness * 0.45, q)),
-    bodyMat
+    shellMats
   );
   lidShell.position.y = L.lidHeight / 2 + 0.02;
   lidPivot.add(lidShell);
@@ -160,7 +166,7 @@ export function createLaptop(config, track, maxAnisotropy) {
   lidPivot.add(screen);
 
   // Kamera kecil di bezel atas
-  const cam = new THREE.Mesh(geo(new THREE.SphereGeometry(0.032, 10, 8)), mat('#4a3d60', 0.4));
+  const cam = new THREE.Mesh(geo(new THREE.SphereGeometry(0.032, 10, 8)), mat(C.port, 0.4));
   cam.position.set(0, screenY + screenH / 2 + (L.lidHeight - 0.16 - screenH) / 4, front + 0.03);
   lidPivot.add(cam);
 

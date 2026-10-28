@@ -24,51 +24,51 @@ export function createScreenTexture(config, maxAnisotropy = 1) {
   const ctx = canvas.getContext('2d');
   const s = W / 1024; // skala bila ukuran tekstur diubah
 
-  // Latar aplikasi
-  ctx.fillStyle = '#241b30';
+  // Latar aplikasi (charcoal, tanpa tint ungu)
+  ctx.fillStyle = '#1b211f';
   ctx.fillRect(0, 0, W, H);
 
   // Bar judul dengan tiga titik (seperti jendela di website)
-  ctx.fillStyle = '#2f2540';
+  ctx.fillStyle = '#242b29';
   ctx.fillRect(0, 0, W, 44 * s);
-  ['#ff9bff', '#ffd672', '#3abeab'].forEach((c, i) => {
+  ['#f5a38b', '#f5d77a', '#58bfa7'].forEach((c, i) => {
     ctx.fillStyle = c;
     ctx.beginPath();
     ctx.arc((30 + i * 26) * s, 22 * s, 8 * s, 0, Math.PI * 2);
     ctx.fill();
   });
-  ctx.fillStyle = '#4a3d60';
+  ctx.fillStyle = '#39423f';
   roundRect(ctx, 400 * s, 14 * s, 224 * s, 16 * s, 8 * s);
   ctx.fill();
 
-  // Panel preview (kiri) — komposisi abstrak
+  // Panel preview (kiri) — komposisi abstrak teal → coral
   const px = 26 * s, py = 66 * s, pw = 620 * s, ph = 316 * s;
   const grad = ctx.createLinearGradient(px, py, px + pw, py + ph);
-  grad.addColorStop(0, '#7b3dff');
-  grad.addColorStop(1, '#ff9bff');
+  grad.addColorStop(0, '#087f72');
+  grad.addColorStop(1, '#f5a38b');
   ctx.save();
   roundRect(ctx, px, py, pw, ph, 18 * s);
   ctx.fillStyle = grad;
   ctx.fill();
   ctx.clip();
   // "bukit" berlapis
-  ctx.fillStyle = 'rgba(31,25,38,0.35)';
+  ctx.fillStyle = 'rgba(20, 26, 24, 0.35)';
   ctx.beginPath();
   ctx.moveTo(px, py + ph);
   ctx.quadraticCurveTo(px + pw * 0.25, py + ph * 0.45, px + pw * 0.55, py + ph * 0.8);
   ctx.quadraticCurveTo(px + pw * 0.8, py + ph * 0.55, px + pw, py + ph * 0.7);
   ctx.lineTo(px + pw, py + ph);
   ctx.fill();
-  // matahari teal
-  ctx.fillStyle = '#3abeab';
+  // matahari mint
+  ctx.fillStyle = '#58bfa7';
   ctx.beginPath();
   ctx.arc(px + pw * 0.72, py + ph * 0.36, 52 * s, 0, Math.PI * 2);
   ctx.fill();
-  // kotak kuning miring
+  // kotak kuning mentega miring
   ctx.save();
   ctx.translate(px + pw * 0.24, py + ph * 0.34);
   ctx.rotate(-0.28);
-  ctx.fillStyle = '#ffd672';
+  ctx.fillStyle = '#f5d77a';
   roundRect(ctx, -38 * s, -38 * s, 76 * s, 76 * s, 12 * s);
   ctx.fill();
   ctx.restore();
@@ -78,7 +78,7 @@ export function createScreenTexture(config, maxAnisotropy = 1) {
   ctx.beginPath();
   ctx.arc(px + pw / 2, py + ph / 2, 34 * s, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = '#6a00ff';
+  ctx.fillStyle = '#087f72';
   ctx.beginPath();
   ctx.moveTo(px + pw / 2 - 10 * s, py + ph / 2 - 16 * s);
   ctx.lineTo(px + pw / 2 + 17 * s, py + ph / 2);
@@ -88,19 +88,19 @@ export function createScreenTexture(config, maxAnisotropy = 1) {
 
   // Panel properti (kanan) — slider & keyframe
   const rx = 668 * s, rw = 330 * s;
-  ctx.fillStyle = '#2f2540';
+  ctx.fillStyle = '#242b29';
   roundRect(ctx, rx, py, rw, ph, 18 * s);
   ctx.fill();
   const sliders = [0.72, 0.4, 0.86, 0.55];
   sliders.forEach((v, i) => {
     const y = py + (46 + i * 66) * s;
-    ctx.fillStyle = '#4a3d60';
+    ctx.fillStyle = '#39423f';
     roundRect(ctx, rx + 22 * s, y - 14 * s, 120 * s, 12 * s, 6 * s);
     ctx.fill();
-    ctx.fillStyle = '#4a3d60';
+    ctx.fillStyle = '#39423f';
     roundRect(ctx, rx + 22 * s, y + 10 * s, rw - 44 * s, 10 * s, 5 * s);
     ctx.fill();
-    ctx.fillStyle = ['#ff9bff', '#3abeab', '#ab88f0', '#ffd672'][i];
+    ctx.fillStyle = ['#f5a38b', '#58bfa7', '#dcebe3', '#f5d77a'][i];
     roundRect(ctx, rx + 22 * s, y + 10 * s, (rw - 44 * s) * v, 10 * s, 5 * s);
     ctx.fill();
     ctx.fillStyle = '#ffffff';
@@ -112,21 +112,21 @@ export function createScreenTexture(config, maxAnisotropy = 1) {
   // Timeline
   const T = TIMELINE_AREA;
   const tx0 = T.x0 * W, tx1 = T.x1 * W, ty0 = T.y0 * H, ty1 = T.y1 * H;
-  ctx.fillStyle = '#1b1424';
+  ctx.fillStyle = '#151a18';
   roundRect(ctx, 26 * s, ty0 - 34 * s, W - 52 * s, ty1 - ty0 + 50 * s, 16 * s);
   ctx.fill();
   // penggaris waktu
-  ctx.fillStyle = '#5a4b73';
+  ctx.fillStyle = '#5d6a65';
   for (let i = 0; i <= 34; i++) {
     const x = tx0 + (tx1 - tx0) * (i / 34);
     const tall = i % 5 === 0;
     ctx.fillRect(x - 1.5 * s, ty0 - (tall ? 24 : 16) * s, 3 * s, (tall ? 14 : 7) * s);
   }
   // label track (ikon bulat kecil)
-  const trackColors = ['#8a4dff', '#ff9bff', '#3abeab'];
+  const trackColors = ['#087f72', '#f5a38b', '#58bfa7'];
   const trackH = (ty1 - ty0) / 3;
   trackColors.forEach((c, i) => {
-    ctx.fillStyle = '#2f2540';
+    ctx.fillStyle = '#242b29';
     roundRect(ctx, 40 * s, ty0 + i * trackH + 8 * s, 64 * s, trackH - 16 * s, 10 * s);
     ctx.fill();
     ctx.fillStyle = c;
@@ -154,7 +154,7 @@ export function createScreenTexture(config, maxAnisotropy = 1) {
       ctx.fill();
       if (i === 0 && j === 1) {
         // keyframe berlian
-        ctx.fillStyle = '#ffd672';
+        ctx.fillStyle = '#f5d77a';
         [0.3, 0.7].forEach((k) => {
           ctx.save();
           ctx.translate(x + w * k, y + h * 0.62);
@@ -166,7 +166,7 @@ export function createScreenTexture(config, maxAnisotropy = 1) {
     });
   });
   // gelombang audio di track ketiga
-  ctx.strokeStyle = 'rgba(31,25,38,0.55)';
+  ctx.strokeStyle = 'rgba(20,26,24,0.55)';
   ctx.lineWidth = 3 * s;
   ctx.lineCap = 'round';
   const wy = ty0 + 2.5 * trackH;

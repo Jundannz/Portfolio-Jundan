@@ -1,9 +1,56 @@
+/* ==========================================================================
+   PALET & TOKEN WARNA
+   --------------------------------------------------------------------------
+   Palet dasar (teal, coral, mint, charcoal, sage, kuning mentega, putih hangat)
+   lalu token semantik per peran. Komponen memakai token semantik agar satu
+   warna dasar bisa dipakai untuk peran dengan kontras berbeda.
+   ========================================================================== */
+
 :root {
-  --palette-1: rgba(106, 0, 255, 1);
-  --palette-2: rgba(255, 155, 255, 1);
-  --palette-3: rgba(58, 190, 171, 1);
-  --palette-4: rgba(31, 25, 38, 1);
-  --variable-collection-palette-5: rgba(171, 136, 240, 1);
-  --variable-collection-palette-6: rgba(155, 110, 252, 1);
-  --variable-collection-palette-7: rgba(255, 214, 114, 1);
+  /* Palet dasar */
+  --palette-1: #087f72; /* teal gelap: identitas utama */
+  --palette-2: #f5a38b; /* coral */
+  --palette-3: #58bfa7; /* mint */
+  --palette-4: #242b29; /* charcoal */
+  --variable-collection-palette-5: #dcebe3; /* sage pucat */
+  --variable-collection-palette-6: #b8d8ca; /* sage */
+  --variable-collection-palette-7: #f5d77a; /* kuning mentega */
+
+  --site-background: #f7f5ef; /* putih hangat */
+  --surface: #ffffff; /* permukaan putih */
+
+  /* Token semantik */
+  --ink: var(--palette-4);
+  --ink-muted: #4a524e;
+  --ink-soft: #5a625e;
+  --brand: var(--palette-1);
+  --brand-text: #067267; /* teal lebih gelap untuk teks kecil di atas latar terang */
+  --brand-strong: #06655b; /* hover/active teal */
+  --on-brand: #ffffff;
+
+  --accent-coral: var(--palette-2);
+  --accent-mint: var(--palette-3);
+  --accent-butter: var(--variable-collection-palette-7);
+
+  --sage: var(--variable-collection-palette-6);
+
+  --surface-warm: var(--site-background);
+  --surface-muted: #e9e6dc;
+  --surface-sage-soft: #eef5f1;
+  --surface-blush-soft: #fbe3d9;
+  --surface-fallback: #f0f6f2;
+
+  /* Warna bidang kartu karya (6 tone, dipakai landing & arsip) */
+  --card-tone-0: var(--palette-2);
+  --card-tone-1: var(--palette-3);
+  --card-tone-2: var(--variable-collection-palette-5);
+  --card-tone-3: var(--surface-blush-soft);
+  --card-tone-4: #eaf4f0; /* mint sangat pucat */
+  --card-tone-5: var(--variable-collection-palette-7);
+
+  /* Permukaan gelap (terminal easter egg, media) */
+  --terminal-bg: #101614;
+  --terminal-ink: #7fe0c4;
+
+  --focus-ring: var(--palette-1);
 }

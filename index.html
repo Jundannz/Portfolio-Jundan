@@ -6,6 +6,7 @@
   <meta charset="utf-8" />
   <title>Jundannz Portfolio</title>
   <link rel="icon" href="assets/logo/logo-j-01.png" type="image/png">
+  <meta name="theme-color" content="#087f72">
   <meta name="description" content="My personal portfolio website for digital rebranding purpose." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,13 +162,77 @@
       <div class="rectangle-6" aria-hidden="true"></div>
       <div class="frame-33">
         <article class="video">
-          <img class="rectangle-7" src="assets/decoration/videoskill.webp" alt="Motion & Video Skills" />
+          <div class="skill-card skill-card--motion">
+            <span class="skill-card__mark" aria-hidden="true">+</span>
+            <div class="skill-card__inner">
+              <div class="skill-card__head">
+                <h3 class="skill-card__title">Motion &amp; Video</h3>
+                <ul class="skill-card__list">
+                  <li>Video Editing</li>
+                  <li>Motion Graphic</li>
+                  <li>Visual Effect</li>
+                  <li>Color Grading</li>
+                </ul>
+              </div>
+              <div class="skill-card__tools">
+                <h4 class="skill-card__tools-label">Tools I use:</h4>
+                <ul class="skill-card__logos">
+                  <li><img src="assets/logo/adobe-after-effects-CC-icon-1-2.webp" alt="Adobe After Effects" loading="lazy" /></li>
+                  <li><img src="assets/logo/adobe-premiere-pro-CC-icon-1-2.webp" alt="Adobe Premiere Pro" loading="lazy" /></li>
+                  <li><img src="assets/logo/davinci-resolve-17-logo-2.webp" alt="DaVinci Resolve" loading="lazy" /></li>
+                  <li><img src="assets/logo/blender-logo-no-text-1-2.webp" alt="Blender" loading="lazy" /></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </article>
         <article class="design">
-          <img class="rectangle-8" src="assets/decoration/designskill.webp" alt="Designer Skills" />
+          <div class="skill-card skill-card--design">
+            <span class="skill-card__mark" aria-hidden="true">*</span>
+            <div class="skill-card__inner">
+              <div class="skill-card__head">
+                <h3 class="skill-card__title">Designer</h3>
+                <ul class="skill-card__list">
+                  <li>UI Design</li>
+                  <li>Graphic Design</li>
+                  <li>Branding</li>
+                  <li>Commercial</li>
+                </ul>
+              </div>
+              <div class="skill-card__tools">
+                <h4 class="skill-card__tools-label">Tools I use:</h4>
+                <ul class="skill-card__logos">
+                  <li><img src="assets/logo/adobe-illustrator-CC-icon.webp" alt="Adobe Illustrator" loading="lazy" /></li>
+                  <li><img src="assets/logo/adobe-photoshop-CC-icon-1.webp" alt="Adobe Photoshop" loading="lazy" /></li>
+                  <li><img src="assets/logo/figma-logo-1.webp" alt="Figma" loading="lazy" /></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </article>
         <article class="programmer">
-          <img class="rectangle-9" src="assets/decoration/programmerskill.webp" alt="Programmer Skills" />
+          <div class="skill-card skill-card--code">
+            <span class="skill-card__mark" aria-hidden="true">#</span>
+            <div class="skill-card__inner">
+              <div class="skill-card__head">
+                <h3 class="skill-card__title">Programmer</h3>
+                <ul class="skill-card__list">
+                  <li>Web Developer</li>
+                  <li>Data Science</li>
+                  <li>Logical Thinking</li>
+                  <li>Coding</li>
+                </ul>
+              </div>
+              <div class="skill-card__tools">
+                <h4 class="skill-card__tools-label">Stack:</h4>
+                <ul class="skill-card__logos">
+                  <li><img src="assets/logo/python-logo-notext-1.webp" alt="Python" loading="lazy" /></li>
+                  <li><img src="assets/logo/ISO-c-logo-1.webp" alt="C++" loading="lazy" /></li>
+                  <li><img src="assets/logo/unofficial-javascript-logo-2.webp" alt="JavaScript" loading="lazy" /></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
       <div class="frame-43">
@@ -180,10 +245,10 @@
     </section>
 
     <section class="portfolio-section" id="portfolio" aria-labelledby="portfolio-heading">
-      <img class="cube" src="assets/decoration/cube-group-kanan-atas.webp" alt="" aria-hidden="true" />
-      <img class="cube-2" src="assets/decoration/cube-group-kiri-atas.webp" alt="" aria-hidden="true" />
-      <img class="cube-3" src="assets/decoration/cube-group-kiri-bawah.webp" alt="" aria-hidden="true" />
-      <img class="cube-4" src="assets/decoration/cube-group-kanan-bawah.webp" alt="" aria-hidden="true" />
+      <img class="cube" src="assets/decoration/cube-group-kanan-atas.svg" alt="" aria-hidden="true" />
+      <img class="cube-2" src="assets/decoration/cube-group-kiri-atas.svg" alt="" aria-hidden="true" />
+      <img class="cube-3" src="assets/decoration/cube-group-kiri-bawah.svg" alt="" aria-hidden="true" />
+      <img class="cube-4" src="assets/decoration/cube-group-kanan-bawah.svg" alt="" aria-hidden="true" />
       <img class="star-8" src="assets/decoration/star-3.svg" alt="" aria-hidden="true" />
       <img class="star-9" src="assets/decoration/star-6.svg" alt="" aria-hidden="true" />
       <img class="star-10" src="assets/decoration/star-5.svg" alt="" aria-hidden="true" />
@@ -224,12 +289,12 @@
               </div>
               <div id="dino-game-wrapper" style="display: none; width: 100%; margin-top: 10px;">
                 <canvas id="dino-canvas" width="600" height="150"
-                  style="width: 100%; height: auto; display: block; background: #0c0812; border: 2px solid var(--palette-4); border-radius: 4px;"></canvas>
+                  style="width: 100%; height: auto; display: block; background: #101614; border: 2px solid var(--palette-4); border-radius: 4px;"></canvas>
                 <div class="cheat-line-container"
-                  style="display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 14px; color: #70ffb5;">
+                  style="display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 14px; color: #7fe0c4;">
                   <span>> SECRET:</span>
                   <input type="text" id="dino-cheat-input" placeholder="e.g. reload" autocomplete="off"
-                    style="background: transparent; border: none; outline: none; color: #70ffb5; font-family: inherit; font-size: 14px; flex: 1; caret-color: #70ffb5;">
+                    style="background: transparent; border: none; outline: none; color: #7fe0c4; font-family: inherit; font-size: 14px; flex: 1; caret-color: #7fe0c4;">
                 </div>
               </div>
             </div>
@@ -395,8 +460,8 @@
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M10 13C10.4286 13.5714 11.2 14 12 14C14.2091 14 16 12.2091 16 10C16 7.79086 14.2091 6 12 6M14 11C13.5714 10.4286 12.8 10 12 10C9.79086 10 8 11.7909 8 14C8 16.2091 9.79086 18 12 18"
-                      stroke="#1F1926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M7 7L17 17" stroke="#1F1926" stroke-width="2" stroke-linecap="round" />
+                      stroke="#242B29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M7 7L17 17" stroke="#242B29" stroke-width="2" stroke-linecap="round" />
                   </svg>
                   <a href="https://jundannz.carrd.co" class="text-wrapper-5" target="_blank"
                     rel="noopener noreferrer">More Links / Carrd</a>

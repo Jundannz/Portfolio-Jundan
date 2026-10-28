@@ -20,7 +20,7 @@
     top: 0;
     bottom: 0;
     right: 20px;
-    /* Pusat area ≈ pusat cincin lavender; tidak pernah melewati kolom teks (berakhir ±730px) */
+    /* Pusat area ≈ pusat cincin sage pucat; tidak pernah melewati kolom teks (berakhir ±730px) */
     width: min(860px, calc(100% - 800px));
     z-index: 1;
     /* Scroll vertikal tetap milik browser; drag horizontal memutar laptop */
@@ -58,7 +58,7 @@
   }
 
   /* Dekorasi kanan lama disembunyikan selama scene dimuat/aktif.
-     Cincin lavender (.ellipse-8) tetap sebagai latar komposisi. */
+     Cincin sage pucat (.ellipse-8) tetap sebagai latar komposisi. */
   html.hero3d-pending .final .hero-legacy-deco,
   html.hero3d-active .final .hero-legacy-deco {
     visibility: hidden;
